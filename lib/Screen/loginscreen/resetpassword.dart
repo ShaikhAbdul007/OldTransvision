@@ -64,7 +64,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                         if (value!.isEmpty) {
                           return "Password Cannot be Empty";
                         } else {
-                          return "null";
+                          return "Password Does Not Match";
                         }
                       },
                       decoration: InputDecoration(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transvision_app1/utils/routes.dart';
 import '../../MyComponent/ddb2.dart';
 
 class BookingDetails extends StatefulWidget {
@@ -207,7 +208,10 @@ class _BookingDetails extends State<BookingDetails> {
                       height: 50,
                       width: 120,
                       child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, MyRoutes.bookingDetailsRoute2);
+                          },
                           child: const Text(
                             "Next",
                             style: TextStyle(

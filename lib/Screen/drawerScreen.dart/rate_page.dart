@@ -108,19 +108,16 @@ class RatePage extends StatelessWidget {
               Card(
                 child: Table(
                   border: TableBorder.all(),
-                  columnWidths: const {
-                    1: FractionColumnWidth(0.15),
-                    2: FractionColumnWidth(0.15),
-                    3: FractionColumnWidth(0.15),
-                    4: FractionColumnWidth(0.15),
-                  },
+                  // columnWidths: const {
+                  //   1: FractionColumnWidth(0.15),
+                  //   2: FractionColumnWidth(0.15),
+                  //   3: FractionColumnWidth(0.15),
+                  // },
                   children: [
-                    buildRow(
-                        ['Description', 'Type', 'Currency', 'Charges', 'Edit'],
+                    buildRow(['Description', 'Type', 'Currency', 'Charges'],
                         isHeader: true),
-                    buildRow(['Bl Charges', 'Docs', 'INR', '4000.00', 'Edit']),
-                    buildRow(['MUC Charges', 'Docs', 'INR', '170.00', 'Edit']),
-                    buildRow(['Seal Charges', 'CONT', 'USD', '5', 'Edit']),
+                    buildRow(['Bl Charges', 'Docs', 'INR', '4000.00']),
+                    buildRow(['MUC Charges', 'Docs', 'INR', '170.00']),
                   ],
                 ),
               )
@@ -137,7 +134,7 @@ class RatePage extends StatelessWidget {
         //     fontWeight: isHeader ? FontWeight.bold : FontWeight.normal,
         //     fontSize: 18);
         return Padding(
-            padding: const EdgeInsets.all(5), child: Center(child: Text(cell)));
+            padding: const EdgeInsets.all(8), child: Center(child: Text(cell)));
       }).toList());
 
   getButton(String hint) {
