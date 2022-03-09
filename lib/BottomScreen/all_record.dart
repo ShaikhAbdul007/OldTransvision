@@ -17,8 +17,7 @@ class _HomeState extends State<Home> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         actions: [
-          IconButton(
-              onPressed: () {}, icon: const Icon(Icons.circle_notifications)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.notifications)),
           IconButton(
               onPressed: () {}, icon: const Icon(Icons.power_settings_new)),
         ],
@@ -54,13 +53,17 @@ class _HomeState extends State<Home> {
                           const BookingDetails()));
             },
             child: Row(
-              mainAxisSize: MainAxisSize.min,
+              // mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: const [
                 Icon(Icons.add_box_rounded),
                 SizedBox(
-                  width: 10.0,
+                  width: 5.0,
                 ),
-                Text("Booking")
+                Text(
+                  "Booking",
+                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),
+                )
               ],
             ),
             shape: const RoundedRectangleBorder(

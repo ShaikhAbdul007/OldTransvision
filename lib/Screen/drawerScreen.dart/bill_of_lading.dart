@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:transvision_app1/DropDown/ddb1.dart';
+
+import '../../MyComponent/ddb2.dart';
 
 class BillOfLading extends StatefulWidget {
   const BillOfLading({Key? key}) : super(key: key);
@@ -26,7 +27,6 @@ class _BillOfLadingState extends State<BillOfLading> {
           backgroundColor: Colors.orange[300],
           title: const Text("Bill Of Lading"),
           centerTitle: true,
-          leading: const Icon(Icons.arrow_back),
         ),
         body: Center(
             child: Padding(

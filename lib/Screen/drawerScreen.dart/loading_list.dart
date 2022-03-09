@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:transvision_app1/DropDown/ddb2.dart';
+
+import '../../MyComponent/ddb2.dart';
 
 class LoadingList extends StatefulWidget {
   const LoadingList({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class _LoadingListState extends State<LoadingList> {
           backgroundColor: Colors.orange[300],
           title: const Text("Loading List"),
           centerTitle: true,
-          leading: const Icon(Icons.arrow_back),
+          // leading: const Icon(Icons.arrow_back),
         ),
         body: Center(
           child: ListView(children: [
@@ -45,7 +46,7 @@ class _LoadingListState extends State<LoadingList> {
                         style: TextStyle(
                             fontSize: 18.0, fontWeight: FontWeight.w500),
                       ),
-                      DropDownButton2(listItems: items1),
+                      DropDownButton(listItems: items1),
                       Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +56,7 @@ class _LoadingListState extends State<LoadingList> {
                             style: TextStyle(
                                 fontSize: 18.0, fontWeight: FontWeight.w500),
                           ),
-                          DropDownButton2(listItems: items1)
+                          DropDownButton(listItems: items1)
                         ],
                       ),
                       const SizedBox(

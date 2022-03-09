@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class DropDownButton2 extends StatefulWidget {
+class DropDownButton extends StatefulWidget {
   final List<dynamic> listItems;
 
-  const DropDownButton2({Key? key, required this.listItems}) : super(key: key);
+  const DropDownButton({Key? key, required this.listItems}) : super(key: key);
 
   @override
-  State<DropDownButton2> createState() => _DropDownButton2State();
+  State<DropDownButton> createState() => _DropDownButtonState();
 }
 
-class _DropDownButton2State extends State<DropDownButton2> {
-  String? _chosenValue;
+class _DropDownButtonState extends State<DropDownButton> {
+  dynamic _chosenValue;
 
   @override
   Widget build(BuildContext context) {

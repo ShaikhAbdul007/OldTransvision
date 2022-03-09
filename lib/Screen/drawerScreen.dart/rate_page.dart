@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:transvision_app1/DropDown/ddb1.dart';
-import 'package:transvision_app1/DropDown/ddb3.dart';
+import '../../MyComponent/ddb2.dart';
 
 class RatePage extends StatelessWidget {
   const RatePage({Key? key}) : super(key: key);
@@ -23,7 +22,7 @@ class RatePage extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(top: 10.0, right: 12.0, left: 12.0),
+          padding: const EdgeInsets.only(top: 10.0, right: 5.0, left: 5.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -58,7 +57,7 @@ class RatePage extends StatelessWidget {
                               fontSize: 18.0,
                               fontWeight: FontWeight.w600)),
                       const SizedBox(height: 10.0),
-                      DropDownButton3(listItems: size)
+                      DropDownButton(listItems: size)
                     ],
                   )),
                   const SizedBox(
@@ -95,21 +94,53 @@ class RatePage extends StatelessWidget {
                   ))
                 ],
               ),
-              ListView.builder(itemBuilder: ((context, index) {
-                return Table(
-                  children: const [
-                    TableRow(children: [
-                      TableCell(child: Text("Abdul")),
-                      TableCell(child: Text("Rehman")),
-                      TableCell(child: Text("Shaikh")),
-                    ])
+              Row(
+                children: [
+                  Expanded(child: getButton("Refresh")),
+                  const SizedBox(
+                    width: 10.0,
+                  ),
+                  Expanded(
+                    child: getButton("Share"),
+                  )
+                ],
+              ),
+              Card(
+                child: Table(
+                  border: TableBorder.all(),
+                  columnWidths: const {
+                    1: FractionColumnWidth(0.15),
+                    2: FractionColumnWidth(0.15),
+                    3: FractionColumnWidth(0.15),
+                    4: FractionColumnWidth(0.15),
+                  },
+                  children: [
+                    buildRow(
+                        ['Description', 'Type', 'Currency', 'Charges', 'Edit'],
+                        isHeader: true),
+                    buildRow(['Bl Charges', 'Docs', 'INR', '4000.00', 'Edit']),
+                    buildRow(['MUC Charges', 'Docs', 'INR', '170.00', 'Edit']),
+                    buildRow(['Seal Charges', 'CONT', 'USD', '5', 'Edit']),
                   ],
-                );
-              }))
+                ),
+              )
             ],
           ),
         ),
       ),
     );
+  }
+
+  TableRow buildRow(List<String> cell, {bool isHeader = false}) => TableRow(
+          children: cell.map((cell) {
+        // final style = TextStyle(
+        //     fontWeight: isHeader ? FontWeight.bold : FontWeight.normal,
+        //     fontSize: 18);
+        return Padding(
+            padding: const EdgeInsets.all(5), child: Center(child: Text(cell)));
+      }).toList());
+
+  getButton(String hint) {
+    return ElevatedButton(onPressed: () {}, child: Text(hint));
   }
 }

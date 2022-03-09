@@ -136,7 +136,6 @@ class _BillSummaryState extends State<BillSummary> {
           ),
           backgroundColor: Colors.orange[300],
           centerTitle: true,
-          leading: const Icon(Icons.arrow_back),
         ),
         body: SafeArea(
           child: ListView(

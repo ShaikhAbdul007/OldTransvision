@@ -115,7 +115,6 @@ class _ReportsState extends State<Reports> {
         centerTitle: false,
         shadowColor: Colors.black,
         backgroundColor: Colors.orange[300],
-        elevation: 0.0,
       ),
       body: SafeArea(
           child: ListView(

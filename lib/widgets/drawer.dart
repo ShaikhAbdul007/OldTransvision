@@ -6,14 +6,6 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Map<String, dynamic> screen = {
-      'Booking Details': {
-        'routes': '/bd',
-        'icon': const Icon(
-          Icons.bookmark_added_rounded,
-          color: Colors.black,
-          size: 25.0,
-        ),
-      },
       'Do Slip': {
         'routes': '/ds',
         'icon': const Icon(
@@ -50,6 +42,14 @@ class MyDrawer extends StatelessWidget {
         'routes': '/reports',
         'icon': const Icon(
           Icons.report_rounded,
+          color: Colors.black,
+          size: 25.0,
+        ),
+      },
+      'Quotes': {
+        'routes': '/rate',
+        'icon': const Icon(
+          Icons.bookmark_added_rounded,
           color: Colors.black,
           size: 25.0,
         ),

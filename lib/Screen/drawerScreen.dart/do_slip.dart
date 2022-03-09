@@ -97,7 +97,6 @@ class _DoSlipState extends State<DoSlip> {
           ),
           backgroundColor: Colors.orange[300],
           centerTitle: true,
-          leading: const Icon(Icons.arrow_back),
         ),
         body: Center(
             child: ListView(children: [
