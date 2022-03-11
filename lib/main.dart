@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         title: 'TransVision',
         theme: ThemeData(
             primarySwatch: Colors.orange, primaryColor: Colors.orange[500]),
-        initialRoute: '/splash',
+        initialRoute: '/bd',
         routes: {
           "/login": (context) => const LoginPage(),
           "/address": (context) => const AddressPage(),
