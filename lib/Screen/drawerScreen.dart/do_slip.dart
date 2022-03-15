@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:transvision_app1/MyComponent/colors.dart';
+import 'package:transvision_app1/MyComponent/text.dart';
+import 'package:transvision_app1/MyComponent/textFeild.dart';
 
 class DoSlip extends StatefulWidget {
   const DoSlip({Key? key}) : super(key: key);
@@ -119,11 +122,10 @@ class _DoSlipState extends State<DoSlip> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          "From Date",
-                          style: TextStyle(
-                              fontSize: 18.0, fontWeight: FontWeight.w500),
-                        ),
+                        WeightText(
+                            text: "From Date",
+                            size: 18.0,
+                            color: AppColor.black),
                         const SizedBox(
                           height: 8.0,
                         ),
@@ -136,11 +138,10 @@ class _DoSlipState extends State<DoSlip> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
-                              "To Date",
-                              style: TextStyle(
-                                  fontSize: 18.0, fontWeight: FontWeight.w500),
-                            ),
+                            WeightText(
+                                text: "To Date",
+                                size: 18.0,
+                                color: AppColor.black),
                             const SizedBox(
                               height: 8.0,
                             ),
@@ -155,20 +156,14 @@ class _DoSlipState extends State<DoSlip> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
-                              "Reference Number",
-                              style: TextStyle(
-                                  fontSize: 18.0, fontWeight: FontWeight.w500),
-                            ),
+                            WeightText(
+                                text: "Reference Number",
+                                size: 18.0,
+                                color: AppColor.black),
                             const SizedBox(
                               height: 8.0,
                             ),
-                            TextField(
-                                decoration: InputDecoration(
-                                    hintText: "Enter The Reference No",
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15),
-                                    )))
+                            const MyTextField(hint: "Enter The Reference No")
                           ],
                         ),
                         const SizedBox(

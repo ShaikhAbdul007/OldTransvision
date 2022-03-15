@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transvision_app1/BottomScreen/all_record.dart';
+import 'package:transvision_app1/MyComponent/colors.dart';
 import 'package:transvision_app1/Screen/bookingscreen/bokingdtls2.dart';
 import 'package:transvision_app1/BottomScreen/address.dart';
 import 'Screen/drawerScreen.dart/bill_of_lading.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'TransVision',
         theme: ThemeData(
-            primarySwatch: Colors.orange, primaryColor: Colors.orange[500]),
+            primarySwatch: Colors.orange, primaryColor: AppColor.primaryColor),
         initialRoute: '/bd',
         routes: {
           "/login": (context) => const LoginPage(),

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:transvision_app1/MyComponent/colors.dart';
+import 'package:transvision_app1/MyComponent/sizedbox.dart';
+import 'package:transvision_app1/MyComponent/text.dart';
 import '../../MyComponent/ddb2.dart';
 
 class RatePage extends StatelessWidget {
@@ -83,11 +86,8 @@ class RatePage extends StatelessWidget {
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text("Commodity",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.w600)),
+                      WeightText(
+                          text: "Commodity", size: 18.0, color: AppColor.black),
                       const SizedBox(height: 10.0),
                       DropDownButton(listItems: commodity)
                     ],
@@ -97,9 +97,7 @@ class RatePage extends StatelessWidget {
               Row(
                 children: [
                   Expanded(child: getButton("Refresh")),
-                  const SizedBox(
-                    width: 10.0,
-                  ),
+                  const CustomWidth(),
                   Expanded(
                     child: getButton("Share"),
                   )
@@ -108,11 +106,6 @@ class RatePage extends StatelessWidget {
               Card(
                 child: Table(
                   border: TableBorder.all(),
-                  // columnWidths: const {
-                  //   1: FractionColumnWidth(0.15),
-                  //   2: FractionColumnWidth(0.15),
-                  //   3: FractionColumnWidth(0.15),
-                  // },
                   children: [
                     buildRow(['Description', 'Type', 'Currency', 'Charges'],
                         isHeader: true),
@@ -130,9 +123,6 @@ class RatePage extends StatelessWidget {
 
   TableRow buildRow(List<String> cell, {bool isHeader = false}) => TableRow(
           children: cell.map((cell) {
-        // final style = TextStyle(
-        //     fontWeight: isHeader ? FontWeight.bold : FontWeight.normal,
-        //     fontSize: 18);
         return Padding(
             padding: const EdgeInsets.all(8), child: Center(child: Text(cell)));
       }).toList());

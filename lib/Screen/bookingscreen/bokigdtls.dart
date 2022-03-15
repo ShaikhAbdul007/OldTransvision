@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:transvision_app1/MyComponent/colors.dart';
+import 'package:transvision_app1/MyComponent/sizedbox.dart';
+import 'package:transvision_app1/MyComponent/text.dart';
+import 'package:transvision_app1/MyComponent/textfeild.dart';
 import 'package:transvision_app1/utils/routes.dart';
 import '../../MyComponent/ddb2.dart';
 
@@ -28,10 +32,9 @@ class _BookingDetails extends State<BookingDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.orange[300],
-        title: const Text(
-          "Booking Details",
-        ),
+        backgroundColor: AppColor.bgColor,
+        title: NormalText(
+            text: "Booking Details", size: 20.0, color: AppColor.black),
         centerTitle: true,
         elevation: 0.0,
       ),
@@ -42,10 +45,7 @@ class _BookingDetails extends State<BookingDetails> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "IDC From",
-                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                ),
+                BoldText(text: "IDC From", size: 18.0, color: AppColor.black),
                 const SizedBox(
                   height: 4.0,
                 ),
@@ -54,16 +54,14 @@ class _BookingDetails extends State<BookingDetails> {
                 )
               ],
             ),
-            const SizedBox(
-              height: 15.0,
-            ),
+            const Customerheight(),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Port Of Loading",
-                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                ),
+                BoldText(
+                    text: "Port Of Loading ",
+                    size: 18.0,
+                    color: AppColor.black),
                 const SizedBox(
                   height: 4.0,
                 ),
@@ -72,16 +70,14 @@ class _BookingDetails extends State<BookingDetails> {
                 )
               ],
             ),
-            const SizedBox(
-              height: 15.0,
-            ),
+            const Customerheight(),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Port Of Destination",
-                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                ),
+                BoldText(
+                    text: "Port Of Destination",
+                    size: 18.0,
+                    color: AppColor.black),
                 const SizedBox(
                   height: 4.0,
                 ),
@@ -90,14 +86,9 @@ class _BookingDetails extends State<BookingDetails> {
                 )
               ],
             ),
-            const SizedBox(
-              height: 15.0,
-            ),
+            const Customerheight(),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const Text(
-                "IDC To",
-                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-              ),
+              BoldText(text: "IDC To", size: 18.0, color: AppColor.black),
               const SizedBox(
                 height: 4.0,
               ),
@@ -113,44 +104,24 @@ class _BookingDetails extends State<BookingDetails> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text("Quantity",
-                            style: TextStyle(
-                                fontSize: 18.0, fontWeight: FontWeight.bold)),
+                        BoldText(
+                            text: "Quantity",
+                            size: 18.0,
+                            color: AppColor.black),
                         const SizedBox(
                           height: 15.0,
                         ),
-                        Container(
-                          height: 72,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              border: Border.all(
-                                  color: Colors.black,
-                                  style: BorderStyle.solid,
-                                  width: 1.0)),
-                          child: const TextField(
-                              cursorColor: Colors.black,
-                              decoration: InputDecoration(
-                                hintText: "Enter The Quantity",
-                                hintStyle: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w500),
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide.none),
-                              )),
-                        ),
+                        const CustomTextFeild(hint: "Enter Quantity")
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    width: 20.0,
-                  ),
+                  const CustomWidth(),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text("Size",
-                            style: TextStyle(
-                                fontSize: 18.0, fontWeight: FontWeight.bold)),
+                        BoldText(
+                            text: "Size", size: 18.0, color: AppColor.black),
                         const SizedBox(
                           height: 4.0,
                         ),
@@ -162,18 +133,15 @@ class _BookingDetails extends State<BookingDetails> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 10.0,
-              ),
+              const Customerheight(),
               Row(
                 children: [
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text("Type",
-                            style: TextStyle(
-                                fontSize: 18.0, fontWeight: FontWeight.bold)),
+                        BoldText(
+                            text: "Type", size: 18.0, color: AppColor.black),
                         const SizedBox(
                           height: 4.0,
                         ),
@@ -181,16 +149,15 @@ class _BookingDetails extends State<BookingDetails> {
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    width: 20.0,
-                  ),
+                  const CustomWidth(),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text("Commodity",
-                            style: TextStyle(
-                                fontSize: 18.0, fontWeight: FontWeight.bold)),
+                        BoldText(
+                            text: "Commodity",
+                            size: 18.0,
+                            color: AppColor.black),
                         const SizedBox(
                           height: 4.0,
                         ),
@@ -212,36 +179,16 @@ class _BookingDetails extends State<BookingDetails> {
                             Navigator.pushNamed(
                                 context, MyRoutes.bookingDetailsRoute2);
                           },
-                          child: const Text(
-                            "Next",
-                            style: TextStyle(
-                                fontSize: 22.0, fontWeight: FontWeight.w600),
-                          ))),
+                          child: WeightText(
+                              text: "Next",
+                              size: 20.0,
+                              color: AppColor.black))),
                 ),
               )
             ]),
           ],
         ),
       ),
-
-      // floatingActionButtonLocation:
-      //     FloatingActionButtonLocation.miniCenterDocked,
-      // floatingActionButton: SizedBox(
-      //   height: 50,
-      //   width: 170,
-      //   child: FloatingActionButton(
-      //     backgroundColor: Colors.orange[400],
-      //     onPressed: () {
-      //       Navigator.pushNamed(context, MyRoutes.bookingDetailsRoute2);
-      //     },
-      //     shape:
-      //         BeveledRectangleBorder(borderRadius: BorderRadius.circular(5)),
-      //     child: const Text(
-      //       "Next",
-      //       style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),
-      //     ),
-      //   ),
-      // )
     );
   }
 }

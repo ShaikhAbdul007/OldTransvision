@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:transvision_app1/MyComponent/colors.dart';
+import 'package:transvision_app1/MyComponent/text.dart';
+import 'package:transvision_app1/MyComponent/textFeild.dart';
 
 import '../../MyComponent/ddb2.dart';
 
@@ -24,7 +27,7 @@ class _BillOfLadingState extends State<BillOfLading> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.orange[300],
+          backgroundColor: AppColor.bgColor,
           title: const Text("Bill Of Lading"),
           centerTitle: true,
         ),
@@ -41,35 +44,24 @@ class _BillOfLadingState extends State<BillOfLading> {
                     "assets/images/loading.png",
                     fit: BoxFit.cover,
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 10.0),
-                    child: Text(
-                      "Search",
-                      style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.w500),
-                    ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: WeightText(
+                        text: "Search", size: 20.0, color: AppColor.black),
                   ),
                   const SizedBox(height: 5.0),
                   DropDownButton(listItems: item),
                   const Padding(
                     padding: EdgeInsets.only(left: 8.0, top: 5, right: 8.0),
-                    // child: ,
                   )
                 ],
               ),
               const SizedBox(
                 height: 10.0,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                      hintText: "Enter Details",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      )),
-                ),
-              ),
+              const Padding(
+                  padding: EdgeInsets.only(left: 8.0, right: 8.0),
+                  child: MyTextField(hint: "Enter Details")),
               Padding(
                 padding:
                     const EdgeInsets.only(right: 20.0, left: 20.0, top: 20.0),

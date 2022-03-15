@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:transvision_app1/MyComponent/colors.dart';
+import 'package:transvision_app1/MyComponent/text.dart';
 
 import '../../MyComponent/ddb2.dart';
 
@@ -41,21 +43,17 @@ class _LoadingListState extends State<LoadingList> {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        "Vessel",
-                        style: TextStyle(
-                            fontSize: 18.0, fontWeight: FontWeight.w500),
-                      ),
+                      WeightText(
+                          text: "Vessel", size: 18.0, color: AppColor.black),
                       DropDownButton(listItems: items1),
                       Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "Vayage",
-                            style: TextStyle(
-                                fontSize: 18.0, fontWeight: FontWeight.w500),
-                          ),
+                          WeightText(
+                              text: "Vayage",
+                              size: 18.0,
+                              color: AppColor.black),
                           DropDownButton(listItems: items1)
                         ],
                       ),

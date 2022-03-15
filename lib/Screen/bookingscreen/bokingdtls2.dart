@@ -1,34 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:transvision_app1/MyComponent/colors.dart';
+import 'package:transvision_app1/MyComponent/sizedbox.dart';
+import 'package:transvision_app1/MyComponent/text.dart';
+import 'package:transvision_app1/MyComponent/textfeild.dart';
 
 class BookingDetails2 extends StatelessWidget {
   const BookingDetails2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Widget getField(String hint) {
-      return Container(
-        height: 55,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            border: Border.all(
-                color: Colors.black, style: BorderStyle.solid, width: 1.0)),
-        child: TextField(
-            cursorColor: Colors.black,
-            decoration: InputDecoration(
-              hintText: hint,
-              hintStyle: const TextStyle(
-                  color: Colors.black, fontWeight: FontWeight.w500),
-              border: const OutlineInputBorder(borderSide: BorderSide.none),
-            )),
-      );
-    }
-
-    getheight() {
-      return const SizedBox(
-        height: 15.0,
-      );
-    }
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.orange[300],
@@ -43,24 +23,25 @@ class BookingDetails2 extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Freight/Container",
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.w500)),
-                getheight(),
-                getField("Freight/Container"),
-                getheight(),
-                const Text("Weight/Cont in kgs.",
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.w500)),
-                getheight(),
-                getField("Weight/Cont in kgs."),
-                getheight(),
-                const Text("Rate Aggred by",
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.w500)),
-                getheight(),
-                getField("Rate Aggred by"),
-                getheight(),
+                WeightText(
+                    text: "Freight/Container",
+                    size: 18.0,
+                    color: AppColor.black),
+                const Customerheight(),
+                const CustomTextFeild(hint: "Freight/Container"),
+                const Customerheight(),
+                WeightText(
+                    text: "Weight/Cont in kgs.",
+                    size: 18.0,
+                    color: AppColor.black),
+                const Customerheight(),
+                const CustomTextFeild(hint: "Weight/Cont in kgs."),
+                const Customerheight(),
+                WeightText(
+                    text: "Rate Aggred by", size: 18.0, color: AppColor.black),
+                const Customerheight(),
+                const CustomTextFeild(hint: "Rate Aggred by"),
+                const Customerheight(),
                 Center(
                   child: InkWell(
                     onTap: () {},
@@ -86,7 +67,7 @@ class BookingDetails2 extends StatelessWidget {
                     ),
                   ),
                 ),
-                getheight(),
+                const Customerheight(),
                 ListView.builder(
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
@@ -103,7 +84,7 @@ class BookingDetails2 extends StatelessWidget {
                   },
                   itemCount: 3,
                 ),
-                getheight(),
+                const Customerheight(),
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                   child: Row(
