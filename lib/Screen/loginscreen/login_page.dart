@@ -15,10 +15,13 @@ class _LoginPageState extends State<LoginPage> {
   String password = "";
   bool isPasswordVisible = false;
 
+  final uri =
+      " http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/login?username=C100&password=TSV12345";
+
   moveToNext(BuildContext context) {
     if (_formkey.currentState!.validate()) {
       setState(() {
-        Navigator.pushNamed(context, MyRoutes.mynavigationRoute);
+        Navigator.pushNamed(context, MyRoutes.myNavigationRoute);
       });
     }
   }
@@ -110,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                         if (value!.isEmpty) {
                           return "Password Cannot be Empty";
                         } else if (value.length < 6) {
-                          return "Password length should be atleast 6 Character ";
+                          return "Password length should be Atleast 6 Character ";
                         } else {
                           return null;
                         }

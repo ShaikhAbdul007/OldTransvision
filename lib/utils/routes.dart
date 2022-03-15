@@ -10,7 +10,7 @@ class MyRoutes {
   static String reportsRoute = "/reports";
   static String contactedRoute = "/contact";
   static String recordShowRoute = "/record";
-  static String mynavigationRoute = "/navigation";
+  static String myNavigationRoute = "/navigation";
   static String bookingDetailsRoute = "/bd";
   static String bookingDetailsRoute2 = "/bd2";
   static String rateRoute = "/rate";
