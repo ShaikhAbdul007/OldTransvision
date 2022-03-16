@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         title: 'TransVision',
         theme: ThemeData(
             primarySwatch: Colors.orange, primaryColor: AppColor.primaryColor),
-        initialRoute: '/bd',
+        initialRoute: '/login',
         routes: {
           "/login": (context) => const LoginPage(),
           "/address": (context) => const AddressPage(),
