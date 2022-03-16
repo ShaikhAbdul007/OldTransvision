@@ -1,6 +1,10 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:transvision_app1/utils/routes.dart';
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -15,21 +19,31 @@ class _LoginPageState extends State<LoginPage> {
   String password = "";
   bool isPasswordVisible = false;
 
-  final uri =
-      " http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/login?username=C100&password=TSV12345";
-
-  moveToNext(BuildContext context) {
+  Future<dynamic> callLoginAPI(BuildContext context) async {
     if (_formkey.currentState!.validate()) {
-      setState(() {
-        Navigator.pushNamed(context, MyRoutes.myNavigationRoute);
-      });
+      var uri =
+          "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/login?username=" +
+              username.text +
+              "&password=" +
+              password;
+      final response = await http.get(Uri.parse(uri));
+      if (response.statusCode == 200) {
+        if (jsonDecode(response.body)["loginResult"] == "Consignee Login") {
+          setState(() {
+            Navigator.pushNamed(context, MyRoutes.myNavigationRoute);
+          });
+        } else {
+          print("error");
+        }
+      } else {
+        throw Exception('Failed to Login');
+      }
     }
   }
 
   @override
   void initState() {
     super.initState();
-
     username.addListener(() => setState(() {}));
   }
 
@@ -126,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               InkWell(
-                onTap: () => moveToNext(context),
+                onTap: () => callLoginAPI(context),
                 child: Container(
                   padding: const EdgeInsets.symmetric(
                       vertical: 10.0, horizontal: 5.0),
