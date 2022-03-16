@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:transvision_app1/MyComponent/colors.dart';
+import 'package:transvision_app1/MyComponent/text.dart';
 import 'package:transvision_app1/utils/routes.dart';
 import 'package:http/http.dart' as http;
 
@@ -20,24 +20,32 @@ class _LoginPageState extends State<LoginPage> {
   bool isPasswordVisible = false;
 
   Future<dynamic> callLoginAPI(BuildContext context) async {
-    if (_formkey.currentState!.validate()) {
-      var uri =
-          "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/login?username=" +
-              username.text +
-              "&password=" +
-              password;
-      final response = await http.get(Uri.parse(uri));
-      if (response.statusCode == 200) {
-        if (jsonDecode(response.body)["loginResult"] == "Consignee Login") {
-          setState(() {
-            Navigator.pushNamed(context, MyRoutes.myNavigationRoute);
-          });
-        } else {
-          print("error");
+    try {
+      if (_formkey.currentState!.validate()) {
+        var uri =
+            "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/login?username=" +
+                username.text +
+                "&password=" +
+                password;
+
+        final response = await http.get(Uri.parse(uri));
+        if (response.statusCode == 200) {
+          if (jsonDecode(response.body)["loginResult"] == "Consignee Login") {
+            setState(() {
+              Navigator.pushNamed(context, MyRoutes.myNavigationRoute);
+            });
+          } else if (jsonDecode(response.body)["loginResult"] ==
+              "Shipper Login") {
+            setState(() {
+              Navigator.pushNamed(context, MyRoutes.myNavigationRoute);
+            });
+          } else {
+            return "Login Failed";
+          }
         }
-      } else {
-        throw Exception('Failed to Login');
       }
+    } catch (e) {
+      return (e);
     }
   }
 
@@ -66,13 +74,10 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               const SizedBox(height: 15.0),
-              const Text(
-                "Welcome to TransVision ",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
-              ),
+              BoldText(
+                  text: "Welcome To TransVision",
+                  size: 20,
+                  color: AppColor.black),
               const SizedBox(
                 height: 15.0,
               ),
@@ -112,6 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                     TextFormField(
                       obscureText: !isPasswordVisible,
                       decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.key),
                         suffixIcon: IconButton(
                             icon: isPasswordVisible
                                 ? const Icon(Icons.visibility)
@@ -126,8 +132,8 @@ class _LoginPageState extends State<LoginPage> {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Password Cannot be Empty";
-                        } else if (value.length < 6) {
-                          return "Password length should be Atleast 6 Character ";
+                        } else if (value.length < 8) {
+                          return "Password length should be Atleast 8 Character ";
                         } else {
                           return null;
                         }
