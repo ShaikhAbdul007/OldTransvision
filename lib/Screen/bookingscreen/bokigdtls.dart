@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:transvision_app1/MyComponent/colors.dart';
 import 'package:transvision_app1/MyComponent/sizedbox.dart';
@@ -14,7 +16,7 @@ class BookingDetails extends StatefulWidget {
 }
 
 class _BookingDetails extends State<BookingDetails> {
-  final url = "http://192.168.1.143:9999/SqlJobApi/SqlInterface.svc/pol/";
+  final url = "http://192.168.1.143:9999/SqlJobApi/SqlInterface.svc/pol";
 
   final items = ['NavaSiva', 'Patna', 'Dubai', 'Singapoor', 'Chennai'];
   final items1 = ['AbuDabi', ' Dubai', ' Sharjaha', 'Chennai'];
