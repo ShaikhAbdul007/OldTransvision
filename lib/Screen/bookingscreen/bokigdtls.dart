@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:transvision_app1/MyComponent/colors.dart';
 import 'package:transvision_app1/MyComponent/sizedbox.dart';
