@@ -14,6 +14,8 @@ class BookingDetails extends StatefulWidget {
 }
 
 class _BookingDetails extends State<BookingDetails> {
+  final url = "http://192.168.1.143:9999/SqlJobApi/SqlInterface.svc/pol/";
+
   final items = ['NavaSiva', 'Patna', 'Dubai', 'Singapoor', 'Chennai'];
   final items1 = ['AbuDabi', ' Dubai', ' Sharjaha', 'Chennai'];
   final items2 = [' Patna', 'Mahim', ' Dubai', ' Shimla', 'Kerala'];
