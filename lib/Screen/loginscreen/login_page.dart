@@ -32,15 +32,29 @@ class _LoginPageState extends State<LoginPage> {
         if (response.statusCode == 200) {
           if (jsonDecode(response.body)["loginResult"] == "Consignee Login") {
             setState(() {
+              showDialog(
+                  context: context,
+                  builder: (_) => const AlertDialog(
+                        content: Text('Succesfull Login'),
+                      ));
               Navigator.pushNamed(context, MyRoutes.myNavigationRoute);
             });
           } else if (jsonDecode(response.body)["loginResult"] ==
               "Shipper Login") {
             setState(() {
+              showDialog(
+                  context: context,
+                  builder: (_) => const AlertDialog(
+                        content: Text('Succesfull Login'),
+                      ));
               Navigator.pushNamed(context, MyRoutes.myNavigationRoute);
             });
           } else {
-            return "Login Failed";
+            return showDialog(
+                context: context,
+                builder: (_) => const AlertDialog(
+                      content: Text('Login Failed'),
+                    ));
           }
         }
       }
