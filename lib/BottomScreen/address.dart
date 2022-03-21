@@ -1,9 +1,16 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:transvision_app1/utils/routes.dart';
+import 'package:http/http.dart' as http;
 
-class AddressPage extends StatelessWidget {
+class AddressPage extends StatefulWidget {
   const AddressPage({Key? key}) : super(key: key);
 
+  @override
+  State<AddressPage> createState() => _AddressPageState();
+}
+
+class _AddressPageState extends State<AddressPage> {
   @override
   Widget build(BuildContext context) {
     Widget addTextField(String label, String hint) {
