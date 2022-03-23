@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:transvision_app1/MyComponent/colors.dart';
 import 'package:transvision_app1/MyComponent/sizedbox.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
-import '../../MyComponent/ddb2.dart';
+import '../../MyComponent/loadingPortdropdown.dart';
 
 class RatePage extends StatelessWidget {
   const RatePage({Key? key}) : super(key: key);
@@ -37,7 +37,7 @@ class RatePage extends StatelessWidget {
                     fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 10.0),
-              DropDownButton(listItems: export),
+              // DropDownButton(listItems: export),
               const SizedBox(height: 20.0),
               const Text("Port",
                   style: TextStyle(
@@ -45,7 +45,7 @@ class RatePage extends StatelessWidget {
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600)),
               const SizedBox(height: 10.0),
-              DropDownButton(listItems: port),
+              // DropDownButton(listItems: port),
               const SizedBox(height: 15.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -60,7 +60,7 @@ class RatePage extends StatelessWidget {
                               fontSize: 18.0,
                               fontWeight: FontWeight.w600)),
                       const SizedBox(height: 10.0),
-                      DropDownButton(listItems: size)
+                      // DropDownButton(listItems: size)
                     ],
                   )),
                   const SizedBox(
@@ -76,7 +76,7 @@ class RatePage extends StatelessWidget {
                               fontSize: 18.0,
                               fontWeight: FontWeight.w600)),
                       const SizedBox(height: 10.0),
-                      DropDownButton(listItems: type)
+                      // DropDownButton(listItems: type)
                     ],
                   )),
                   const SizedBox(
@@ -89,7 +89,7 @@ class RatePage extends StatelessWidget {
                       WeightText(
                           text: "Commodity", size: 18.0, color: AppColor.black),
                       const SizedBox(height: 10.0),
-                      DropDownButton(listItems: commodity)
+                      // DropDownButton(listItems: commodity)
                     ],
                   ))
                 ],

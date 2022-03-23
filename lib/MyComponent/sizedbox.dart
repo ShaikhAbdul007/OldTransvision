@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-class Customerheight extends StatelessWidget {
-  const Customerheight({Key? key}) : super(key: key);
-
+class CustomHeight extends StatelessWidget {
+  const CustomHeight({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return const SizedBox(

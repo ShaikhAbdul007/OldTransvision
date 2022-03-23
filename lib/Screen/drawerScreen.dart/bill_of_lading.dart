@@ -3,7 +3,7 @@ import 'package:transvision_app1/MyComponent/colors.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 import 'package:transvision_app1/MyComponent/textFeild.dart';
 
-import '../../MyComponent/ddb2.dart';
+import '../../MyComponent/loadingPortdropdown.dart';
 
 class BillOfLading extends StatefulWidget {
   const BillOfLading({Key? key}) : super(key: key);
@@ -50,7 +50,7 @@ class _BillOfLadingState extends State<BillOfLading> {
                         text: "Search", size: 20.0, color: AppColor.black),
                   ),
                   const SizedBox(height: 5.0),
-                  DropDownButton(listItems: item),
+                  // DropDownButton(listItems: item),
                   const Padding(
                     padding: EdgeInsets.only(left: 8.0, top: 5, right: 8.0),
                   )
