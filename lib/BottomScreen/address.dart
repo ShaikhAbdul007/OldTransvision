@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:transvision_app1/Model/UsersDetails.dart';
 import 'package:transvision_app1/utils/routes.dart';
 import 'package:http/http.dart' as http;
 
@@ -11,20 +13,41 @@ class AddressPage extends StatefulWidget {
 }
 
 class _AddressPageState extends State<AddressPage> {
+  var add1 = TextEditingController();
+  var add2 = TextEditingController();
+  var add3 = TextEditingController();
+  var city = TextEditingController();
+  var contno = TextEditingController();
+  var country = TextEditingController();
+  var email = TextEditingController();
+  var email1 = TextEditingController();
+  var email2 = TextEditingController();
+  var mail = TextEditingController();
+  var mobno = TextEditingController();
+  var panno = TextEditingController();
+  var pincode = TextEditingController();
+  var state = TextEditingController();
+  var statecode = TextEditingController();
+  var staxno = TextEditingController();
+
+   List<UserDetails> userDetails = [];
+
+  Future<List<UserDetails>> getUserApi() async {
+    final response = await http.get(Uri.parse(
+        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/consigneedata?username=c100"));
+    var data = jsonDecode(response.body.toString());
+    if (response.statusCode == 200) {
+      for (Map i in data) {
+        userDetails.add(UserDetails.fromJson(i));
+      }
+      return userDetails;
+    } else {
+      return userDetails;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    Widget addTextField(String label, String hint) {
-      return TextField(
-        cursorColor: Colors.black,
-        decoration: InputDecoration(
-            labelText: label,
-            hintText: hint,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
-            )),
-      );
-    }
-
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.orange[300],
@@ -39,13 +62,33 @@ class _AddressPageState extends State<AddressPage> {
               children: [
                 Column(
                   children: [
-                    addTextField("House/Flat No", "House/Flat No"),
+                    TextField(
+                      controller: add1,
+                      onChanged: (val){
+                        setState(() {
+                         userDetails()=> val;
+                        });
+                      },
+                      readOnly: true,
+                      cursorColor: Colors.black,
+                      decoration: InputDecoration(
+                          labelText: "House/Flat No",
+                          hintText: " House/Flat No",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          )),
+                    ),
                     const SizedBox(
                       height: 15.0,
                     ),
-                    addTextField(
-                      "LandMark",
-                      "LandMark",
+                    TextField(
+                      cursorColor: Colors.black,
+                      decoration: InputDecoration(
+                          labelText: "LandMark",
+                          hintText: " LandMark",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          )),
                     ),
                     const SizedBox(
                       height: 15.0,
@@ -54,12 +97,30 @@ class _AddressPageState extends State<AddressPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Expanded(
-                            child: addTextField("City", "Enter Your City")),
+                          child: TextField(
+                            cursorColor: Colors.black,
+                            decoration: InputDecoration(
+                                labelText: "City",
+                                hintText: " Enter Your City",
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                )),
+                          ),
+                        ),
                         const SizedBox(
                           width: 15.0,
                         ),
                         Expanded(
-                            child: addTextField("State", "Ebter Your State")),
+                          child: TextField(
+                            cursorColor: Colors.black,
+                            decoration: InputDecoration(
+                                labelText: "State",
+                                hintText: " Enter Your State",
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                )),
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -71,12 +132,30 @@ class _AddressPageState extends State<AddressPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Expanded(
-                        child: addTextField("Country", "Enter Your Country")),
+                      child: TextField(
+                        cursorColor: Colors.black,
+                        decoration: InputDecoration(
+                            labelText: "Country",
+                            hintText: " Enter Your Country",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            )),
+                      ),
+                    ),
                     const SizedBox(
                       width: 15.0,
                     ),
                     Expanded(
-                        child: addTextField("Pin Code", "Enter Your Pin-Code")),
+                      child: TextField(
+                        cursorColor: Colors.black,
+                        decoration: InputDecoration(
+                            labelText: "Pin-Code",
+                            hintText: " Enter Your Pin-Code",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            )),
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(
@@ -85,7 +164,16 @@ class _AddressPageState extends State<AddressPage> {
                 Row(
                   children: [
                     Expanded(
-                        child: addTextField("PAN NO", "Enter Your Pan-No")),
+                      child: TextField(
+                        cursorColor: Colors.black,
+                        decoration: InputDecoration(
+                            labelText: "Pan-No",
+                            hintText: " Enter Your Pan-No",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            )),
+                      ),
+                    )
                   ],
                 ),
                 const SizedBox(
@@ -95,14 +183,19 @@ class _AddressPageState extends State<AddressPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Expanded(
-                        child:
-                            addTextField("Mobile No", "Enter Your Mobile No")),
+                      child: TextField(
+                        cursorColor: Colors.black,
+                        decoration: InputDecoration(
+                            labelText: "Mobile No",
+                            hintText: " Enter Your Mobile No",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            )),
+                      ),
+                    ),
                     const SizedBox(
                       width: 10.0,
                     ),
-                    Expanded(
-                        child: addTextField(
-                            "Contact No", "Enter Your Contact No")),
                   ],
                 ),
                 const SizedBox(
@@ -111,8 +204,16 @@ class _AddressPageState extends State<AddressPage> {
                 Row(
                   children: [
                     Expanded(
-                        child: addTextField(
-                            "Primary E-mail", "Enter Your Primary E-mail")),
+                      child: TextField(
+                        cursorColor: Colors.black,
+                        decoration: InputDecoration(
+                            labelText: "Primary E-mail",
+                            hintText: " Enter Your Primary E-mail",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            )),
+                      ),
+                    )
                   ],
                 ),
                 const SizedBox(
@@ -121,8 +222,16 @@ class _AddressPageState extends State<AddressPage> {
                 Row(
                   children: [
                     Expanded(
-                        child: addTextField(
-                            "Secondary E-mail", "Enter Your Secondary E-mail")),
+                      child: TextField(
+                        cursorColor: Colors.black,
+                        decoration: InputDecoration(
+                            labelText: "Secondary E-mail",
+                            hintText: " Enter Your Secondary E-mail",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            )),
+                      ),
+                    )
                   ],
                 ),
                 const SizedBox(height: 15.0),

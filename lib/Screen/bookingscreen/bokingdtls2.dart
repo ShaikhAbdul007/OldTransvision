@@ -27,21 +27,21 @@ class BookingDetails2 extends StatelessWidget {
                     text: "Freight/Container",
                     size: 18.0,
                     color: AppColor.black),
-                const Customerheight(),
+                const CustomHeight(),
                 const CustomTextFeild(hint: "Freight/Container"),
-                const Customerheight(),
+                const CustomHeight(),
                 WeightText(
                     text: "Weight/Cont in kgs.",
                     size: 18.0,
                     color: AppColor.black),
-                const Customerheight(),
+                const CustomHeight(),
                 const CustomTextFeild(hint: "Weight/Cont in kgs."),
-                const Customerheight(),
+                const CustomHeight(),
                 WeightText(
                     text: "Rate Aggred by", size: 18.0, color: AppColor.black),
-                const Customerheight(),
+                const CustomHeight(),
                 const CustomTextFeild(hint: "Rate Aggred by"),
-                const Customerheight(),
+                const CustomHeight(),
                 Center(
                   child: InkWell(
                     onTap: () {},
@@ -67,7 +67,7 @@ class BookingDetails2 extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Customerheight(),
+                const CustomHeight(),
                 ListView.builder(
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
@@ -84,7 +84,7 @@ class BookingDetails2 extends StatelessWidget {
                   },
                   itemCount: 3,
                 ),
-                const Customerheight(),
+                const CustomHeight(),
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                   child: Row(

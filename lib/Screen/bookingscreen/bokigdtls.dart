@@ -1,12 +1,17 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:transvision_app1/Model/IcdTo.dart';
 import 'package:transvision_app1/MyComponent/colors.dart';
+import 'package:transvision_app1/MyComponent/destinationOfPort.dart';
+import 'package:transvision_app1/MyComponent/icdFromDropDown.dart';
+import 'package:transvision_app1/MyComponent/icdToDropDown.dart';
 import 'package:transvision_app1/MyComponent/sizedbox.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 import 'package:transvision_app1/MyComponent/textfeild.dart';
 import 'package:transvision_app1/utils/routes.dart';
+import '../../Model/IcdFrom.dart';
 import '../../Model/LoadingPort.dart';
-import '../../MyComponent/ddb2.dart';
+import '../../MyComponent/loadingPortdropdown.dart';
 import 'package:http/http.dart' as http;
 
 class BookingDetails extends StatefulWidget {
@@ -17,6 +22,7 @@ class BookingDetails extends StatefulWidget {
 }
 
 class _BookingDetails extends State<BookingDetails> {
+
   final items = [];
   final items1 = [];
   final items2 = [];
@@ -24,13 +30,18 @@ class _BookingDetails extends State<BookingDetails> {
   final item4 = [];
   final item5 = [];
   final item6 = [];
+  final icdForm= TextEditingController();
   List<LoadingPort> loadingPort = [];
+  List<IcdFrom> idcFromPort = [];
+  List<IcdTo> icdToPort=[];
+
   Future<List<LoadingPort>> getLoadingPortApi() async {
     final response = await http.get(
         Uri.parse("http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/pol/"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       for (Map i in data) {
+        // print(i['portname']);
         loadingPort.add(LoadingPort.fromJson(i));
       }
       return loadingPort;
@@ -38,6 +49,44 @@ class _BookingDetails extends State<BookingDetails> {
       return loadingPort;
     }
   }
+
+  Future<List<IcdFrom>> getIcdFromPortApi() async {
+    final response = await http.get(Uri.parse(
+        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/icdfrom/"));
+    var data = jsonDecode(response.body.toString());
+    if (response.statusCode == 200) {
+      for (Map i in data) {
+        idcFromPort.add(IcdFrom.fromJson(i));
+      }
+      return idcFromPort;
+    } else {
+      return idcFromPort;
+    }
+  }
+
+  Future<List<IcdTo>> getIcdToApi()async{
+    final response= await http.get(Uri.parse("http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/icdto?icd=icd"));
+    var data= jsonDecode(response.body.toString());
+    if(response.statusCode==200){
+      for(Map i in data){
+        icdToPort.add(IcdTo.fromJson(i));
+      }
+      return icdToPort;
+    }else{
+      return icdToPort;
+    }
+
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getLoadingPortApi();
+    getIcdFromPortApi();
+    getIcdToApi();
+     }
+
 
   @override
   Widget build(BuildContext context) {
@@ -59,12 +108,20 @@ class _BookingDetails extends State<BookingDetails> {
                 const SizedBox(
                   height: 4.0,
                 ),
-                DropDownButton(
-                  listItems: items,
-                )
+                FutureBuilder(
+                    future: getIcdFromPortApi(),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      if (snapshot.hasData) {
+                        return  IcdFromDropDownButton(
+                          listItems: idcFromPort,
+                        );
+                      } else {
+                        return const Text("Loading Item");
+                      }
+                    })
               ],
             ),
-            const Customerheight(),
+            const CustomHeight(),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -80,17 +137,15 @@ class _BookingDetails extends State<BookingDetails> {
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       try {
                         if (snapshot.hasData) {
-                          return DropDownButton(
-                            listItems: loadingPort,
-                          );
+                          return LoadingPortDropDownButton(listItems: loadingPort);
                         } else {
-                          return const Text("Failed");
+                          return const Text("Loading Item");
                         }
                       } catch (e) {
                         return throw Exception();
                       }
                     }),
-                const Customerheight(),
+                const CustomHeight(),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -101,20 +156,26 @@ class _BookingDetails extends State<BookingDetails> {
                     const SizedBox(
                       height: 4.0,
                     ),
-                    DropDownButton(
+                    DestinationPortDropDownButton(
                       listItems: items2,
                     )
                   ],
                 ),
-                const Customerheight(),
+                const CustomHeight(),
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   BoldText(text: "IDC To", size: 18.0, color: AppColor.black),
                   const SizedBox(
                     height: 4.0,
                   ),
-                  DropDownButton(
-                    listItems: items3,
-                  ),
+                  FutureBuilder(
+                      future: getIcdFromPortApi(),
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        if (snapshot.hasData) {
+                          return  IcdToDropDownButton(listItems: icdToPort);
+                        } else {
+                          return const Text("Loading Item");
+                        }
+                      }),
                   const SizedBox(
                     height: 5.0,
                   ),
@@ -147,15 +208,13 @@ class _BookingDetails extends State<BookingDetails> {
                             const SizedBox(
                               height: 4.0,
                             ),
-                            DropDownButton(
-                              listItems: item5,
-                            )
+
                           ],
                         ),
                       ),
                     ],
                   ),
-                  const Customerheight(),
+                  const CustomHeight(),
                   Row(
                     children: [
                       Expanded(
@@ -169,7 +228,7 @@ class _BookingDetails extends State<BookingDetails> {
                             const SizedBox(
                               height: 4.0,
                             ),
-                            DropDownButton(listItems: item4)
+
                           ],
                         ),
                       ),
@@ -185,7 +244,7 @@ class _BookingDetails extends State<BookingDetails> {
                             const SizedBox(
                               height: 4.0,
                             ),
-                            DropDownButton(listItems: item6)
+
                           ],
                         ),
                       ),
