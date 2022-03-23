@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:transvision_app1/MyComponent/colors.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 
-import '../../MyComponent/ddb2.dart';
+import '../../MyComponent/loadingPortdropdown.dart';
 
 class LoadingList extends StatefulWidget {
   const LoadingList({Key? key}) : super(key: key);
@@ -45,7 +45,7 @@ class _LoadingListState extends State<LoadingList> {
                     children: [
                       WeightText(
                           text: "Vessel", size: 18.0, color: AppColor.black),
-                      DropDownButton(listItems: items1),
+                      // DropDownButton(listItems: items1),
                       Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,7 +54,7 @@ class _LoadingListState extends State<LoadingList> {
                               text: "Vayage",
                               size: 18.0,
                               color: AppColor.black),
-                          DropDownButton(listItems: items1)
+                          // DropDownButton(listItems: items1)
                         ],
                       ),
                       const SizedBox(
