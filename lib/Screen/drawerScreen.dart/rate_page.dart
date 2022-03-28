@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:transvision_app1/MyComponent/colors.dart';
 import 'package:transvision_app1/MyComponent/sizedbox.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
-import '../../MyComponent/loadingPortdropdown.dart';
+import '../../MyComponent/DropDown/Loading.dart';
 
 class RatePage extends StatelessWidget {
   const RatePage({Key? key}) : super(key: key);
