@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-import '../Model/IcdTo.dart';
-
 class LoadingPortDropDownButton extends StatefulWidget {
   final List<dynamic> listItems;
-  const LoadingPortDropDownButton({Key? key, required this.listItems})
+  final Function(dynamic value) notifyParent;
+  const LoadingPortDropDownButton(
+      {Key? key, required this.listItems, required this.notifyParent})
       : super(key: key);
 
   @override
@@ -15,7 +15,7 @@ class LoadingPortDropDownButton extends StatefulWidget {
 }
 
 class _LoadingPortDropDownButtonState extends State<LoadingPortDropDownButton> {
-  dynamic _loadingPortSelectedValue;
+  dynamic _loadingPortSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +26,15 @@ class _LoadingPortDropDownButtonState extends State<LoadingPortDropDownButton> {
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           border: Border.all(width: 2.0, style: BorderStyle.solid)),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<dynamic>(
+        child: DropdownButtonFormField<dynamic>(
           isExpanded: true,
-          value: _loadingPortSelectedValue,
+          value: _loadingPortSelected,
           style: const TextStyle(color: Colors.black),
           items:
-              widget.listItems.map<DropdownMenuItem<dynamic>>((dynamic value) {
+              widget.listItems.map<DropdownMenuItem<dynamic>>((dynamic item) {
             return DropdownMenuItem<dynamic>(
-              value: value,
-              child: Text("$value"),
+              value: item.port,
+              child: Text(item.portname),
             );
           }).toList(),
           hint: const Text(
@@ -42,9 +42,10 @@ class _LoadingPortDropDownButtonState extends State<LoadingPortDropDownButton> {
             style: TextStyle(
                 color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
           ),
-          onChanged: (value) {
+          onChanged: (_loadingPortSelectedValue) {
             setState(() {
-              _loadingPortSelectedValue = value;
+              widget.notifyParent(_loadingPortSelectedValue);
+              print(_loadingPortSelectedValue);
             });
           },
         ),
