@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
               showDialog(
                   context: context,
                   builder: (_) => const AlertDialog(
-                        content: Text('Succesfull Login'),
+                        content: Text('SuccessFull Login'),
                       ));
               Navigator.pushNamed(context, MyRoutes.myNavigationRoute);
             });
