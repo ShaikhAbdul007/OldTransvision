@@ -3,7 +3,7 @@ import 'package:transvision_app1/MyComponent/colors.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 import 'package:transvision_app1/MyComponent/textFeild.dart';
 
-import '../../MyComponent/loadingPortdropdown.dart';
+import '../../MyComponent/DropDown/Loading.dart';
 
 class BillOfLading extends StatefulWidget {
   const BillOfLading({Key? key}) : super(key: key);
