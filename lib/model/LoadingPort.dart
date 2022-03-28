@@ -3,13 +3,14 @@
 
 class LoadingPort {
   LoadingPort({
-      String? port, 
-      String? portname,}){
+    String? port,
+    String? portname,
+  }) {
     _port = port;
     _portname = portname;
-}
+  }
 
-  LoadingPort.fromJson(dynamic json) {
+  LoadingPort.fromJson(Map<dynamic, dynamic> json) {
     _port = json['port'];
     _portname = json['portname'];
   }
@@ -25,6 +26,4 @@ class LoadingPort {
     map['portname'] = _portname;
     return map;
   }
-  @override toString() => '$portname';
 }
-
