@@ -3,7 +3,7 @@
 
 class IcdTo {
   IcdTo({
-      String? icd, 
+      String? icd,
       String? icdname,}){
     _icd = icd;
     _icdname = icdname;
@@ -25,5 +25,7 @@ class IcdTo {
     map['icdname'] = _icdname;
     return map;
   }
+  @override toString() => '$_icdname';
+
 
 }
