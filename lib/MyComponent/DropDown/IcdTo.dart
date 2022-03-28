@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 
-class DestinationPortDropDownButton extends StatefulWidget {
+class IcdToDropDownButton extends StatefulWidget {
   final List<dynamic> listItems;
-  const DestinationPortDropDownButton({Key? key, required this.listItems})
+  const IcdToDropDownButton({Key? key, required this.listItems})
       : super(key: key);
 
   @override
-  State<DestinationPortDropDownButton> createState() =>
-      _DestinationPortDropDownButtonState();
+  State<IcdToDropDownButton> createState() => _IcdDropDownButtonState();
 }
 
-class _DestinationPortDropDownButtonState
-    extends State<DestinationPortDropDownButton> {
-  dynamic _destinationPortSelectedValue;
+class _IcdDropDownButtonState extends State<IcdToDropDownButton> {
+  dynamic _selectedValue;
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +21,16 @@ class _DestinationPortDropDownButtonState
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           border: Border.all(width: 2.0, style: BorderStyle.solid)),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<dynamic>(
+        child: DropdownButtonFormField<dynamic>(
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Field Cannot be Empty";
+            } else {
+              return null;
+            }
+          },
           isExpanded: true,
-          value: _destinationPortSelectedValue,
+          value: _selectedValue,
           style: const TextStyle(color: Colors.black),
           items:
               widget.listItems.map<DropdownMenuItem<dynamic>>((dynamic value) {
@@ -41,7 +46,8 @@ class _DestinationPortDropDownButtonState
           ),
           onChanged: (value) {
             setState(() {
-              _destinationPortSelectedValue = value;
+              _selectedValue = value;
+
             });
           },
         ),

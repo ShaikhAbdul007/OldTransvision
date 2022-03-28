@@ -3,13 +3,13 @@
 
 class IcdFrom {
   IcdFrom({
-      String? icd, 
+      String? icd,
       String? icdname,}){
     _icd = icd;
     _icdname = icdname;
 }
 
-  IcdFrom.fromJson(dynamic json) {
+  IcdFrom.fromJson(Map<dynamic, dynamic> json) {
     _icd = json['icd'];
     _icdname = json['icdname'];
   }
@@ -25,5 +25,4 @@ class IcdFrom {
     map['icdname'] = _icdname;
     return map;
   }
-@override toString() => '$_icdname';
 }
