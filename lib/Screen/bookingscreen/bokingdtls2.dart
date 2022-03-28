@@ -28,19 +28,19 @@ class BookingDetails2 extends StatelessWidget {
                     size: 18.0,
                     color: AppColor.black),
                 const CustomHeight(),
-                const CustomTextFeild(hint: "Freight/Container"),
+                const CustomTextField(hint: "Freight/Container"),
                 const CustomHeight(),
                 WeightText(
                     text: "Weight/Cont in kgs.",
                     size: 18.0,
                     color: AppColor.black),
                 const CustomHeight(),
-                const CustomTextFeild(hint: "Weight/Cont in kgs."),
+                const CustomTextField(hint: "Weight/Cont in kgs."),
                 const CustomHeight(),
                 WeightText(
                     text: "Rate Aggred by", size: 18.0, color: AppColor.black),
                 const CustomHeight(),
-                const CustomTextFeild(hint: "Rate Aggred by"),
+                const CustomTextField(hint: "Rate Aggred by"),
                 const CustomHeight(),
                 Center(
                   child: InkWell(
