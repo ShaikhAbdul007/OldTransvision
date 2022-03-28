@@ -44,7 +44,7 @@ class _BookingDetails extends State<BookingDetails> {
 
   Future<List<LoadingPort>> getLoadingPortApi() async {
     final response = await http.get(
-        Uri.parse("http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/pol/"));
+        Uri.parse("http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/pol/"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       loadingPort = [];
@@ -59,7 +59,7 @@ class _BookingDetails extends State<BookingDetails> {
 
   Future<List<DestinationPort>> getDestinationPortApi(dynamic value) async {
     final response = await http.get(Uri.parse(
-        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/pod?port=$value"));
+        "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/pod?port=$value"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       for (Map i in data) {
@@ -80,7 +80,7 @@ class _BookingDetails extends State<BookingDetails> {
 
   Future<List<IcdFrom>> getIcdFromPortApi() async {
     final response = await http.get(Uri.parse(
-        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/icdfrom/"));
+        "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/icdfrom/"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       idcFromPort = [];
@@ -96,7 +96,7 @@ class _BookingDetails extends State<BookingDetails> {
 
   Future<List<IcdTo>> getIcdToApi(dynamic value) async {
     final response = await http.get(Uri.parse(
-        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/icdto?icd=$value"));
+        "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/icdto?icd=$value"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       for (Map i in data) {
@@ -117,7 +117,7 @@ class _BookingDetails extends State<BookingDetails> {
 
   Future<List<SizedModel>> getSizeApi(dynamic value) async {
     final response = await http.get(Uri.parse(
-        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/contType?contSize=$value"));
+        "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/contType?contSize=$value"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       sizeModel = [];
