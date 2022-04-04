@@ -1,18 +1,39 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-class ContactedPerson extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import '../Model/UsersDetails.dart';
+
+class ContactedPerson extends StatefulWidget {
   const ContactedPerson({Key? key}) : super(key: key);
 
   @override
+  State<ContactedPerson> createState() => _ContactedPersonState();
+}
+
+class _ContactedPersonState extends State<ContactedPerson> {
+  @override
   Widget build(BuildContext context) {
-    Widget contactField(String hint, String label) {
-      return TextField(
-        decoration: InputDecoration(
-            hintText: hint,
-            labelText: label,
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(15))),
-      );
+
+    // var contactperson = "";
+    // var contno = "";
+    late Future<UserDetails> contactedUserDetails;
+
+    Future<UserDetails> getContactedPersonApi()async{
+      final response = await http.get(Uri.parse("http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/consigneedata?username=c1001"));
+      var data= jsonDecode(response.body.toString());
+      if(response.statusCode==200){
+        return UserDetails.fromJson(data);
+      }  else {
+        throw Exception('Failed to API');
+      }
+
+    }
+    @override
+    void initState() {
+      // TODO: implement initState
+      super.initState();
+      contactedUserDetails = getContactedPersonApi();
     }
 
     return Scaffold(
@@ -35,11 +56,47 @@ class ContactedPerson extends StatelessWidget {
                     const EdgeInsets.only(left: 10.0, right: 10.0, top: 15.0),
                 child: Column(
                   children: [
-                    contactField("Enter Contacted Name", "Contacted Person"),
+                    FutureBuilder(
+                        future: getContactedPersonApi(),
+                        builder: (BuildContext context,
+                            AsyncSnapshot snapshot) {
+                          if (snapshot.hasData) {
+                            return TextField(
+                            readOnly: true,
+                            cursorColor: Colors.black,
+                            decoration: InputDecoration(
+                              // labelText: "Contacted person",
+                                hintText: snapshot.data.contactperson,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                )),
+                          );}
+                            else {
+                            return const CircularProgressIndicator();
+                          }
+                        }),
                     const SizedBox(
                       height: 20.0,
                     ),
-                    contactField("Enter Mobile No", "Mobile No"),
+                    FutureBuilder(
+                        future: getContactedPersonApi(),
+                        builder: (BuildContext context,
+                            AsyncSnapshot snapshot) {
+                          if (snapshot.hasData) {
+                            return TextField(
+                              readOnly: true,
+                              cursorColor: Colors.black,
+                              decoration: InputDecoration(
+                                // labelText: "Mobile No",
+                                  hintText: snapshot.data.contno,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  )),
+                            );}
+                          else {
+                            return const CircularProgressIndicator();
+                          }
+                        }),
                     const SizedBox(
                       height: 8.0,
                     ),
