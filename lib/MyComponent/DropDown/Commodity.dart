@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:transvision_app1/MyComponent/text.dart';
 
 class CommodityDropDownButton extends StatefulWidget {
-  final List<dynamic> listItems;
+   final List<dynamic> listItems;
   const CommodityDropDownButton({Key? key, required this.listItems}) : super(key: key);
 
   @override
@@ -9,8 +10,9 @@ class CommodityDropDownButton extends StatefulWidget {
 }
 
 class _CommodityDropDownButtonState extends State<CommodityDropDownButton> {
+      dynamic commodityValue;
 
-  dynamic commodityValue;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,20 +27,16 @@ class _CommodityDropDownButtonState extends State<CommodityDropDownButton> {
           value: commodityValue,
           style: const TextStyle(color: Colors.black),
           items:
-          widget.listItems.map<DropdownMenuItem<dynamic>>((dynamic value) {
+          widget.listItems.map<DropdownMenuItem<dynamic>>((dynamic item) {
             return DropdownMenuItem<dynamic>(
-              value: value,
-              child: Text("$value"),
+              value: item,
+              child: Text("$item"),
             );
           }).toList(),
-          hint: const Text(
-            "Select",
-            style: TextStyle(
-                color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
-          ),
+          hint:const NormalText(text: "Select",size: 15,color: Colors.black,),
           onChanged: (value) {
             setState(() {
-              commodityValue = value;
+             commodityValue=value;
             });
           },
         ),
