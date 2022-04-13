@@ -216,15 +216,16 @@ class _LoadingListState extends State<LoadingList> {
                     itemBuilder: (context, index) {
                       return ExpansionTile(
                         title: Text(
-                          'Port : ${snapshot.data[index].port}' +
-                              "   " +
-                              'Size : ${snapshot.data[index].size}',
+                          'Port : ${snapshot.data[index].port}'
+                          "   "
+                          'Size : ${snapshot.data[index].size}',
                           style: const TextStyle(fontSize: 18.0),
                         ),
                         subtitle: Text(
-                          'FPOD: ${snapshot.data[index].fpod}' +
-                              "   " "   " +
-                              'Type: ${snapshot.data[index].type}',
+                          'FPOD : ${snapshot.data[index].fpod}'
+                          "   "
+                          "   "
+                          'Type: ${snapshot.data[index].type}',
                           style: const TextStyle(fontSize: 15.0),
                         ),
                         leading: IconButton(
