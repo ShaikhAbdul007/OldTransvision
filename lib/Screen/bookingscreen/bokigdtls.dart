@@ -1,22 +1,22 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:transvision_app1/Model/IcdTo.dart';
-import 'package:transvision_app1/MyComponent/DropDown/Commodity.dart';
+import 'package:transvision_app1/Model/Icdto.dart';
+import 'package:transvision_app1/MyComponent/DropDown/commodity.dart';
 import 'package:transvision_app1/MyComponent/colors.dart';
-import 'package:transvision_app1/MyComponent/DropDown/DestinationOfPort.dart';
-import 'package:transvision_app1/MyComponent/DropDown/IcdFrom.dart';
-import 'package:transvision_app1/MyComponent/DropDown/IcdTo.dart';
-import 'package:transvision_app1/MyComponent/DropDown/Size.dart';
+import 'package:transvision_app1/MyComponent/DropDown/destinationofport.dart';
+import 'package:transvision_app1/MyComponent/DropDown/Icdfrom.dart';
+import 'package:transvision_app1/MyComponent/DropDown/Icdto.dart';
+import 'package:transvision_app1/MyComponent/DropDown/size.dart';
 import 'package:transvision_app1/MyComponent/sizedbox.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 import 'package:transvision_app1/MyComponent/textfeild.dart';
-import 'package:transvision_app1/MyComponent/DropDown/Type.dart';
+import 'package:transvision_app1/MyComponent/DropDown/type.dart';
 import 'package:transvision_app1/utils/routes.dart';
-import '../../Model/DestinationPort.dart';
-import '../../Model/IcdFrom.dart';
-import '../../Model/LoadingPort.dart';
-import '../../Model/SizedModel.dart';
-import '../../MyComponent/DropDown/Loading.dart';
+import '../../Model/destinationport.dart';
+import '../../Model/Icdfrom.dart';
+import '../../Model/loadingport.dart';
+import '../../Model/sizedmodel.dart';
+import '../../MyComponent/DropDown/loading.dart';
 import 'package:http/http.dart' as http;
 
 class BookingDetails extends StatefulWidget {
@@ -27,6 +27,7 @@ class BookingDetails extends StatefulWidget {
 }
 
 class _BookingDetails extends State<BookingDetails> {
+  bool isVisible = false;
   final item = [20, 40];
   final items = ['General', 'Hazardous', "ODC"];
   dynamic idcFromPortValue = "";
@@ -40,11 +41,10 @@ class _BookingDetails extends State<BookingDetails> {
   List<IcdTo> icdToPort = [];
   List<DestinationPort> destinationPort = [];
   List<SizedModel> sizeModel = [];
-  // List<SizeTwentyModel> sizeTwentyList = [];
 
   Future<List<LoadingPort>> getLoadingPortApi() async {
     final response = await http.get(
-        Uri.parse("http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/pol/"));
+        Uri.parse("http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/pol/"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       loadingPort = [];
@@ -59,7 +59,7 @@ class _BookingDetails extends State<BookingDetails> {
 
   Future<List<DestinationPort>> getDestinationPortApi(dynamic value) async {
     final response = await http.get(Uri.parse(
-        "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/pod?port=$value"));
+        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/pod?port=$value"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       for (Map i in data) {
@@ -80,7 +80,7 @@ class _BookingDetails extends State<BookingDetails> {
 
   Future<List<IcdFrom>> getIcdFromPortApi() async {
     final response = await http.get(Uri.parse(
-        "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/icdfrom/"));
+        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/icdfrom/"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       idcFromPort = [];
@@ -96,7 +96,7 @@ class _BookingDetails extends State<BookingDetails> {
 
   Future<List<IcdTo>> getIcdToApi(dynamic value) async {
     final response = await http.get(Uri.parse(
-        "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/icdto?icd=$value"));
+        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/icdto?icd=$value"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       for (Map i in data) {
@@ -117,7 +117,7 @@ class _BookingDetails extends State<BookingDetails> {
 
   Future<List<SizedModel>> getSizeApi(dynamic value) async {
     final response = await http.get(Uri.parse(
-        "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/contType?contSize=$value"));
+        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/contType?contSize=$value"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       sizeModel = [];
@@ -139,7 +139,6 @@ class _BookingDetails extends State<BookingDetails> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getLoadingPortApi();
     getIcdFromPortApi();
@@ -150,10 +149,15 @@ class _BookingDetails extends State<BookingDetails> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColor.bgColor,
-          title: NormalText(
-              text: "Booking Details", size: 20.0, color: AppColor.black),
           centerTitle: true,
           elevation: 0.0,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.popAndPushNamed(context, MyRoutes.myNavigationRoute);
+              },
+              icon: const Icon(Icons.arrow_back)),
+          title: NormalText(
+              text: "Booking Details", size: 20.0, color: AppColor.black),
         ),
         body: Padding(
           padding: const EdgeInsets.only(top: 10.0, left: 8.0, right: 8.0),
@@ -333,25 +337,69 @@ class _BookingDetails extends State<BookingDetails> {
                                       text: "Commodity",
                                       size: 18.0,
                                       color: AppColor.black),
-                                  CommodityDropDownButton(listItems: items),
+                                  const CommodityDropDownButton(),
                                   const SizedBox(
                                     height: 4.0,
                                   ),
                                 ],
                               ),
                             ),
-
                           ],
                         ),
+                        Visibility(
+                          visible: isVisible,
+                          child: Row(
+                            children: [
+                              if (isVisible)
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      BoldText(
+                                          text: "Class",
+                                          size: 18.0,
+                                          color: AppColor.black),
+                                      const CustomTextField(
+                                          hint: "Enter Quantity"),
+                                      const SizedBox(
+                                        height: 4.0,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              const CustomWidth(),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    BoldText(
+                                        text: "UN No",
+                                        size: 18.0,
+                                        color: AppColor.black),
+                                    const CustomTextField(hint: "Enter UN No"),
+                                    const SizedBox(
+                                      height: 4.0,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                         Padding(
-                          padding:
-                              const EdgeInsets.only(bottom: 15.0, top: 5.0),
+                          padding: const EdgeInsets.only(
+                              right: 20, left: 20, bottom: 10.0),
                           child: Center(
                             child: Container(
                                 padding: const EdgeInsets.all(1),
                                 height: 50,
-                                width: 120,
+                                width: MediaQuery.of(context).size.width,
                                 child: ElevatedButton(
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                Colors.orange[400])),
                                     onPressed: () {
                                       Navigator.pushNamed(context,
                                           MyRoutes.bookingDetailsRoute2);

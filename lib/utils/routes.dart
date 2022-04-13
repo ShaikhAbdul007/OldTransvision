@@ -15,4 +15,5 @@ class MyRoutes {
   static String bookingDetailsRoute2 = "/bd2";
   static String rateRoute = "/rate";
   static String ddbRoutes = "/ddb";
+
 }

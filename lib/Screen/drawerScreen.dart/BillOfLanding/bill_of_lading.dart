@@ -1,12 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:transvision_app1/MyComponent/colors.dart';
-import 'package:transvision_app1/MyComponent/text.dart';
-import 'package:transvision_app1/MyComponent/textFeild.dart';
-import 'package:transvision_app1/Screen/drawerScreen.dart/BillOfLanding/%20BlDetailsScreen.dart';
-import 'package:transvision_app1/Screen/drawerScreen.dart/BillOfLanding/BlHomeScreen.dart';
-
-import '../../../MyComponent/DropDown/Loading.dart';
+import 'package:transvision_app1/Screen/drawerScreen.dart/BillOfLanding/detailscreen.dart';
+import 'package:transvision_app1/Screen/drawerScreen.dart/BillOfLanding/homescreen.dart';
 
 class BillOfLading extends StatefulWidget {
   const BillOfLading({Key? key}) : super(key: key);
@@ -18,20 +14,19 @@ class BillOfLading extends StatefulWidget {
 class _BillOfLadingState extends State<BillOfLading> {
   @override
   Widget build(BuildContext context) {
+    // final dynamic tabController = TextEditingController();
 
-    final dynamic tabController = TextEditingController();
-
-    final item = [
-      'BL No',
-      'Place Of Discharge',
-      'Booking No',
-      'Place Of Loading',
-      'Vassel/Voyage',
-      'Place'
-    ];
+    // final item = [
+    //   'BL No',
+    //   'Place Of Discharge',
+    //   'Booking No',
+    //   'Place Of Loading',
+    //   'Vassel/Voyage',
+    //   'Place'
+    // ];
 
     return DefaultTabController(
-      initialIndex: 1,
+      initialIndex: 0,
       length: 2,
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -55,15 +50,11 @@ class _BillOfLadingState extends State<BillOfLading> {
         ),
         body: const TabBarView(
           children: [
-            Center(
-                child: BlHomeScreen()),
-            Center(
-                child: BlDetailScreen()),
+            Center(child: BlHomeScreen()),
+            Center(child: BlDetailScreen()),
           ],
           dragStartBehavior: DragStartBehavior.start,
           physics: ScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-
-
         ),
       ),
     );

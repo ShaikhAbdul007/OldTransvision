@@ -1,6 +1,8 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 import 'package:transvision_app1/MyComponent/sizedbox.dart';
+import 'package:transvision_app1/MyComponent/text.dart';
 
 class BlDetailScreen extends StatefulWidget {
   const BlDetailScreen({Key? key}) : super(key: key);
@@ -14,7 +16,10 @@ class _BlDetailScreenState extends State<BlDetailScreen> {
   Widget build(BuildContext context) {
     return ListView(children: [
       ExpansionTile(
-        title: const Text('Enter Shipper/Consignee details'),
+        title: const NormalText(
+            text: "Enter Shipper/Consignee details",
+            size: 18.0,
+            color: Colors.black),
         children: [
           Padding(
             padding:
@@ -89,11 +94,11 @@ class _BlDetailScreenState extends State<BlDetailScreen> {
           ),
         ],
       ),
-      const SizedBox(
-        height: 10.0,
-      ),
       ExpansionTile(
-          title: const Text('Enter the Notify/Marks No Details'),
+          title: const NormalText(
+              text: "Enter the Notify/Marks No Details",
+              size: 18.0,
+              color: Colors.black),
           children: [
             Padding(
               padding:
@@ -147,11 +152,11 @@ class _BlDetailScreenState extends State<BlDetailScreen> {
               ),
             ),
           ]),
-      const SizedBox(
-        height: 10.0,
-      ),
       ExpansionTile(
-        title: const Text("Enter the Emails of Shipper/Notify"),
+        title: const NormalText(
+            text: "Enter the Emails of Shipper/Notify",
+            size: 18.0,
+            color: Colors.black),
         iconColor: Colors.blueAccent,
         children: [
           Padding(
@@ -207,11 +212,11 @@ class _BlDetailScreenState extends State<BlDetailScreen> {
           ),
         ],
       ),
-      const SizedBox(
-        height: 10.0,
-      ),
       ExpansionTile(
-        title: const Text("Enter the Details of Port/Place"),
+        title: const NormalText(
+            text: "Enter the Details of Port/Place",
+            size: 18.0,
+            color: Colors.black),
         children: [
           Padding(
             padding:
@@ -308,11 +313,11 @@ class _BlDetailScreenState extends State<BlDetailScreen> {
           ),
         ],
       ),
-      const SizedBox(
-        height: 10.0,
-      ),
       ExpansionTile(
-        title: const Text("Enter the Details of Vessel/Routes"),
+        title: const NormalText(
+            text: "Enter the Details of Vessel/Routes",
+            size: 18.0,
+            color: Colors.black),
         children: [
           Padding(
             padding:
@@ -361,11 +366,11 @@ class _BlDetailScreenState extends State<BlDetailScreen> {
           ),
         ],
       ),
-      const SizedBox(
-        height: 10.0,
-      ),
       ExpansionTile(
-        title: const Text("Enter the Details of Mode/Package/Weight"),
+        title: const NormalText(
+            text: "Enter the Details of Mode/Package/Weight",
+            size: 18.0,
+            color: Colors.black),
         children: [
           Padding(
             padding:
@@ -463,8 +468,12 @@ class _BlDetailScreenState extends State<BlDetailScreen> {
         ],
       ),
       ExpansionTile(
-        title: const Text("Enter the Details of Measurement"),
-        subtitle: const Text("BL's Qty/Freight Payable"),
+        title: const NormalText(
+            text: "Enter the Details of Measurement",
+            size: 18.0,
+            color: Colors.black),
+        subtitle: const NormalText(
+            text: "BL's Qty/Freight Payable", size: 15.0, color: Colors.black),
         children: [
           Padding(
             padding:
@@ -533,8 +542,12 @@ class _BlDetailScreenState extends State<BlDetailScreen> {
         ],
       ),
       ExpansionTile(
-        title: const Text("Enter the Details of FreeDay"),
-        subtitle: const Text("Place/Freight Amount"),
+        title: const NormalText(
+            text: "Enter the Details of FreeDay",
+            size: 18.0,
+            color: Colors.black),
+        subtitle: const NormalText(
+            text: "Place/Freight Amount", size: 15.0, color: Colors.black),
         children: [
           Padding(
             padding:
@@ -603,8 +616,12 @@ class _BlDetailScreenState extends State<BlDetailScreen> {
         ],
       ),
       ExpansionTile(
-        title: const Text("Enter the Details of Date of Issue"),
-        subtitle: const Text("Date/Type"),
+        title: const NormalText(
+            text: "Enter the Details of Date of Issue",
+            size: 18.0,
+            color: Colors.black),
+        subtitle: const NormalText(
+            text: "Date/Type", size: 15.0, color: Colors.black),
         children: [
           Padding(
             padding:
@@ -672,6 +689,156 @@ class _BlDetailScreenState extends State<BlDetailScreen> {
           )
         ],
       ),
+      ExpansionTile(
+        title: const NormalText(
+            text: "Enter the Description of Good",
+            size: 18.0,
+            color: Colors.black),
+        children: [
+          Padding(
+            padding:
+                const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 8.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Description of Good",
+                        style: TextStyle(fontSize: 18.0, color: Colors.black),
+                      ),
+                      const CustomHeight(),
+                      TextField(
+                          keyboardType: TextInputType.multiline,
+                          maxLines: 7,
+                          minLines: 1,
+                          decoration: InputDecoration(
+                            hintText: "Enter Description of Good",
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(9)),
+                          )),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+      Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            NormalText(
+                text: "Documents Upload", size: 25.0, color: Colors.blueGrey)
+          ],
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(left: 8.0, right: 10.0, top: 10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
+              children: [
+                const NormalText(
+                    text: "VGM", size: 20.0, color: Colors.blueGrey),
+                Row(
+                  children: [
+                    Expanded(
+                        child: ElevatedButton(
+                      onPressed: () {
+                        pickFile();
+                      },
+                      child: const NormalText(
+                          text: "Choose File", size: 12.0, color: Colors.black),
+                    )),
+                    const SizedBox(
+                      width: 5.0,
+                    ),
+                    Expanded(
+                        child: ElevatedButton(
+                            onPressed: () {},
+                            child: const NormalText(
+                                text: "Save",
+                                size: 12.0,
+                                color: Colors.black))),
+                    const SizedBox(
+                      width: 5.0,
+                    ),
+                    Expanded(
+                        child: ElevatedButton(
+                            onPressed: () {},
+                            child: const NormalText(
+                                text: "Download",
+                                size: 12.0,
+                                color: Colors.black))),
+                  ],
+                ),
+                const NormalText(
+                    text: "Shipping Instruction (SI)",
+                    size: 20.0,
+                    color: Colors.blueGrey),
+                Row(
+                  children: [
+                    Expanded(
+                        child: ElevatedButton(
+                      onPressed: () {
+                        pickFile();
+                      },
+                      child: const NormalText(
+                          text: "Choose File", size: 12.0, color: Colors.black),
+                    )),
+                    const SizedBox(
+                      width: 5.0,
+                    ),
+                    Expanded(
+                        child: ElevatedButton(
+                            onPressed: () {},
+                            child: const NormalText(
+                                text: "Save",
+                                size: 12.0,
+                                color: Colors.black))),
+                    const SizedBox(
+                      width: 5.0,
+                    ),
+                    Expanded(
+                        child: ElevatedButton(
+                            onPressed: () {},
+                            child: const NormalText(
+                                text: "Download",
+                                size: 12.0,
+                                color: Colors.black))),
+                  ],
+                ),
+                Column(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: const NormalText(
+                          text: "Save", size: 18.0, color: Colors.black),
+                    )
+                  ],
+                )
+              ],
+            )
+          ],
+        ),
+      )
     ]);
   }
+
+  void pickFile() async {
+    FilePickerResult? result = await FilePicker.platform
+        .pickFiles(allowMultiple: true, dialogTitle: "FilePath");
+    if (result == null) return;
+
+    // PlatformFile file = result.files.first;
+    // viewFile(file);
+  }
+
+  // void viewFile(PlatformFile file) {
+  //   OpenFile.open(file.path);
+  // }
 }

@@ -1,8 +1,17 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-class MyDrawer extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import '../Model/usersdetails.dart';
+
+class MyDrawer extends StatefulWidget {
   const MyDrawer({Key? key}) : super(key: key);
 
+  @override
+  State<MyDrawer> createState() => _MyDrawerState();
+}
+
+class _MyDrawerState extends State<MyDrawer> {
   @override
   Widget build(BuildContext context) {
     Map<String, dynamic> screen = {
@@ -56,6 +65,25 @@ class MyDrawer extends StatelessWidget {
       },
     };
 
+    late Future<UserDetails> drawerUserDetails;
+
+    Future<UserDetails> getDrawerApi() async {
+      final response = await http.get(Uri.parse(
+          "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/consigneedata?username=c1001"));
+      var data = jsonDecode(response.body.toString());
+      if (response.statusCode == 200) {
+        return UserDetails.fromJson(data);
+      } else {
+        throw Exception('Failed to API');
+      }
+    }
+
+    @override
+    void initState() {
+      super.initState();
+      drawerUserDetails = getDrawerApi();
+    }
+
     return Drawer(
       child: Container(
         padding: EdgeInsets.zero,
@@ -63,21 +91,31 @@ class MyDrawer extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
+            DrawerHeader(
                 padding: EdgeInsets.zero,
-                child: UserAccountsDrawerHeader(
-                  margin: EdgeInsets.zero,
-                  accountName: Text("Customer Name",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                  accountEmail: Text(
-                    "Customer Email Id",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                  currentAccountPicture: CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/profile.png"),
-                  ),
-                )),
+                child: FutureBuilder(
+                    future: getDrawerApi(),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      if (snapshot.hasData) {
+                        return UserAccountsDrawerHeader(
+                          margin: EdgeInsets.zero,
+                          accountName: Text(snapshot.data.contactperson,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 16)),
+                          accountEmail: Text(
+                            snapshot.data.email,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16),
+                          ),
+                          currentAccountPicture: const CircleAvatar(
+                            backgroundImage:
+                                AssetImage("assets/images/profile.png"),
+                          ),
+                        );
+                      } else {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                    })),
             ...screen.entries.map((screen) {
               return ListTile(
                 leading: screen.value['icon'],

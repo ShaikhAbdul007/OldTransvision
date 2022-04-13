@@ -25,22 +25,25 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height / 10;
+    final width = MediaQuery.of(context).size.width;
     return Container(
         padding: const EdgeInsets.all(5.0),
         margin: const EdgeInsets.all(5.0),
-        height: 77,
-        width: 220,
+        height: height,
+        width: width,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             border: Border.all(
                 color: AppColor.black, style: BorderStyle.solid, width: 2.0)),
-        child: const TextField(
+        child: TextField(
+          expands: false,
             cursorColor: Colors.black,
             decoration: InputDecoration(
-              hintText: "Enter the Quantity",
-              hintStyle:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
-              border: OutlineInputBorder(borderSide: BorderSide.none),
+              hintText: hint,
+              hintStyle: const TextStyle(
+                  color: Colors.black, fontWeight: FontWeight.w500),
+              border: const OutlineInputBorder(borderSide: BorderSide.none),
             )));
   }
 }

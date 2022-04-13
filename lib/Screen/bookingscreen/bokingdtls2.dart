@@ -38,33 +38,26 @@ class BookingDetails2 extends StatelessWidget {
                 const CustomTextField(hint: "Weight/Cont in kgs."),
                 const CustomHeight(),
                 WeightText(
-                    text: "Rate Aggred by", size: 18.0, color: AppColor.black),
+                    text: "Rate Agreed", size: 18.0, color: AppColor.black),
                 const CustomHeight(),
-                const CustomTextField(hint: "Rate Aggred by"),
+                const CustomTextField(hint: "Enter the Rate"),
                 const CustomHeight(),
-                Center(
-                  child: InkWell(
-                    onTap: () {},
+                InkWell(
+                  onTap: () {},
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 50.0, right: 50.0),
                     child: Container(
-                      height: 50,
-                      width: 150,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Colors.orange[300]),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: const [
-                          Icon(Icons.add_circle, color: Colors.black),
-                          SizedBox(
-                            width: 5.0,
-                          ),
-                          Text("Add Record",
-                              style: TextStyle(
-                                  fontSize: 18.0, fontWeight: FontWeight.w700)),
-                        ],
-                      ),
-                    ),
+                        height: 50,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: Colors.orange[300]),
+                        child: const Center(
+                          child: WeightText(
+                              text: "All Record",
+                              size: 20.0,
+                              color: Colors.black),
+                        )),
                   ),
                 ),
                 const CustomHeight(),
@@ -86,18 +79,21 @@ class BookingDetails2 extends StatelessWidget {
                 ),
                 const CustomHeight(),
                 Padding(
-                  padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                  padding: const EdgeInsets.only(
+                      left: 10.0, right: 10.0, bottom: 10.0),
                   child: Row(
                     children: [
                       Expanded(
                           child: InkWell(
                         onTap: (() {}),
                         child: Container(
-                          padding: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.only(
+                            left: 40.0,
+                          ),
                           height: 50,
-                          width: 100,
+                          width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(9),
                               color: Colors.green[300]),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
@@ -106,27 +102,28 @@ class BookingDetails2 extends StatelessWidget {
                               SizedBox(
                                 width: 5.0,
                               ),
-                              Text("Submit",
-                                  style: TextStyle(
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.w700)),
+                              WeightText(
+                                  text: "Submit",
+                                  size: 18.0,
+                                  color: Colors.black),
                             ],
                           ),
                         ),
                       )),
-                      Expanded(
-                          child: Container(
-                        width: 0.0,
-                      )),
+                      const SizedBox(
+                        width: 20.0,
+                      ),
                       Expanded(
                           child: InkWell(
                         onTap: () {},
                         child: Container(
-                          padding: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.only(
+                            left: 40.0,
+                          ),
                           height: 50,
-                          width: 100,
+                          width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(9),
                               color: Colors.red[900]),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
@@ -135,10 +132,10 @@ class BookingDetails2 extends StatelessWidget {
                               SizedBox(
                                 width: 5.0,
                               ),
-                              Text("Cancel",
-                                  style: TextStyle(
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.w700)),
+                              WeightText(
+                                  text: "Cancel",
+                                  size: 18.0,
+                                  color: Colors.black),
                             ],
                           ),
                         ),

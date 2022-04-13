@@ -16,21 +16,22 @@
 
 class LoadingData {
   LoadingData({
-      String? container, 
-      String? fpod, 
-      String? imco, 
-      String? pod, 
-      String? pod1, 
-      String? pod2, 
-      String? remark, 
-      String? stow, 
-      String? status, 
-      String? trans, 
-      int? bookingno, 
-      String? port, 
-      int? size, 
-      String? type, 
-      int? weight,}){
+    String? container,
+    String? fpod,
+    String? imco,
+    String? pod,
+    String? pod1,
+    String? pod2,
+    String? remark,
+    String? stow,
+    String? status,
+    String? trans,
+    int? bookingno,
+    String? port,
+    int? size,
+    String? type,
+    int? weight,
+  }) {
     _container = container;
     _fpod = fpod;
     _imco = imco;
@@ -46,7 +47,7 @@ class LoadingData {
     _size = size;
     _type = type;
     _weight = weight;
-}
+  }
 
   LoadingData.fromJson(dynamic json) {
     _container = json['Container'];
@@ -65,6 +66,7 @@ class LoadingData {
     _type = json['type'];
     _weight = json['weight'];
   }
+
   String? _container;
   String? _fpod;
   String? _imco;
@@ -80,51 +82,70 @@ class LoadingData {
   int? _size;
   String? _type;
   int? _weight;
-LoadingData copyWith({  String? container,
-  String? fpod,
-  String? imco,
-  String? pod,
-  String? pod1,
-  String? pod2,
-  String? remark,
-  String? stow,
-  String? status,
-  String? trans,
-  int? bookingno,
-  String? port,
-  int? size,
-  String? type,
-  int? weight,
-}) => LoadingData(  container: container ?? _container,
-  fpod: fpod ?? _fpod,
-  imco: imco ?? _imco,
-  pod: pod ?? _pod,
-  pod1: pod1 ?? _pod1,
-  pod2: pod2 ?? _pod2,
-  remark: remark ?? _remark,
-  stow: stow ?? _stow,
-  status: status ?? _status,
-  trans: trans ?? _trans,
-  bookingno: bookingno ?? _bookingno,
-  port: port ?? _port,
-  size: size ?? _size,
-  type: type ?? _type,
-  weight: weight ?? _weight,
-);
+
+  LoadingData copyWith({
+    String? container,
+    String? fpod,
+    String? imco,
+    String? pod,
+    String? pod1,
+    String? pod2,
+    String? remark,
+    String? stow,
+    String? status,
+    String? trans,
+    int? bookingno,
+    String? port,
+    int? size,
+    String? type,
+    int? weight,
+  }) =>
+      LoadingData(
+        container: container ?? _container,
+        fpod: fpod ?? _fpod,
+        imco: imco ?? _imco,
+        pod: pod ?? _pod,
+        pod1: pod1 ?? _pod1,
+        pod2: pod2 ?? _pod2,
+        remark: remark ?? _remark,
+        stow: stow ?? _stow,
+        status: status ?? _status,
+        trans: trans ?? _trans,
+        bookingno: bookingno ?? _bookingno,
+        port: port ?? _port,
+        size: size ?? _size,
+        type: type ?? _type,
+        weight: weight ?? _weight,
+      );
+
   String? get container => _container;
+
   String? get fpod => _fpod;
+
   String? get imco => _imco;
+
   String? get pod => _pod;
+
   String? get pod1 => _pod1;
+
   String? get pod2 => _pod2;
+
   String? get remark => _remark;
+
   String? get stow => _stow;
+
   String? get status => _status;
+
   String? get trans => _trans;
+
   int? get bookingno => _bookingno;
+
   String? get port => _port;
+
   int? get size => _size;
+
   String? get type => _type;
+
   int? get weight => _weight;
 
   Map<String, dynamic> toJson() {
@@ -147,4 +168,8 @@ LoadingData copyWith({  String? container,
     return map;
   }
 
+  @override
+  String toString() {
+    return toJson().toString();
+  }
 }

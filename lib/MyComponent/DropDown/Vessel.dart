@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class VesselDropDown extends StatefulWidget {
   final List<dynamic> listItems;
-  // final Function(dynamic value) notifyParent;
+  final Function(dynamic value) notifyParent;
   const VesselDropDown(
-      {Key? key, required this.listItems})
+      {Key? key, required this.listItems, required this.notifyParent})
       : super(key: key);
 
   @override
@@ -41,8 +41,8 @@ class _VesselDropDownState extends State<VesselDropDown> {
           ),
           onChanged: (vesselSelectedValue) {
             setState(() {
-              // widget.notifyParent(vesselSelectedValue);
-              vesselSelected= vesselSelectedValue;
+              widget.notifyParent(vesselSelectedValue);
+              // vesselSelected= vesselSelectedValue;
             });
           },
         ),

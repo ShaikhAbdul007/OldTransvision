@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:transvision_app1/utils/routes.dart';
+import '../../MyComponent/text.dart';
 
 class Reports extends StatefulWidget {
   const Reports({Key? key}) : super(key: key);
@@ -88,30 +88,13 @@ class _ReportsState extends State<Reports> {
     );
   }
 
-  Widget getButton() {
-    return SizedBox(
-      height: 50,
-      width: 200,
-      child: ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, MyRoutes.loginRoute);
-          },
-          child: const Text(
-            "Refersh",
-            style: TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.w600,
-                color: Colors.black),
-          )),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("Reports"),
+        title:
+            const WeightText(text: "Reports", size: 20.0, color: Colors.black),
         centerTitle: false,
         shadowColor: Colors.black,
         backgroundColor: Colors.orange[300],
@@ -126,16 +109,11 @@ class _ReportsState extends State<Reports> {
                 "assets/images/reports.png",
                 fit: BoxFit.fill,
               ),
-              const Text(
-                "Reports",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 30.0,
-                    fontStyle: FontStyle.italic),
-              ),
+              const WeightText(
+                  text: "Reports", size: 25.0, color: Colors.black),
               Padding(
                 padding:
-                    const EdgeInsets.only(top: 10.0, left: 15.0, right: 15.0),
+                    const EdgeInsets.only(top: 15.0, left: 15.0, right: 15.0),
                 child: Column(
                   children: [
                     getTextField("Select Date"),
@@ -146,7 +124,33 @@ class _ReportsState extends State<Reports> {
                     const SizedBox(
                       height: 20.0,
                     ),
-                    getButton()
+                    InkWell(
+                      onTap: (() {}),
+                      child: Container(
+                        padding: const EdgeInsets.only(
+                          left: 20.0,
+                        ),
+                        height: 50,
+                        width: MediaQuery.of(context).size.width / 1.5,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(9),
+                            color: Colors.orange[300]),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: const [
+                            Icon(Icons.refresh_outlined, color: Colors.black),
+                            SizedBox(
+                              width: 5.0,
+                            ),
+                            WeightText(
+                                text: "Refresh",
+                                size: 18.0,
+                                color: Colors.black),
+                          ],
+                        ),
+                      ),
+                    )
                   ],
                 ),
               )

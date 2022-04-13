@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:transvision_app1/Model/UsersDetails.dart';
-import 'package:transvision_app1/utils/routes.dart';
+import 'package:transvision_app1/Model/usersdetails.dart';
 import 'package:http/http.dart' as http;
+
+import '../MyComponent/text.dart';
 
 class AddressPage extends StatefulWidget {
   const AddressPage({Key? key}) : super(key: key);
@@ -17,7 +18,6 @@ class _AddressPageState extends State<AddressPage> {
   var add2 = "";
   var add3 = "";
   var city = "";
-  var contNo = "";
   var country = "";
   var email = "";
   var email1 = "";
@@ -37,7 +37,7 @@ class _AddressPageState extends State<AddressPage> {
         "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/consigneedata?username=c1001"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
-      return UserDetails.fromJson(data[0]);
+      return UserDetails.fromJson(data);
     } else {
       throw Exception('Failed to API');
     }
@@ -45,7 +45,6 @@ class _AddressPageState extends State<AddressPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     userDetails = getUserApi();
   }
@@ -55,7 +54,11 @@ class _AddressPageState extends State<AddressPage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.orange[300],
-          title: const Text("Address"),
+          title: const WeightText(
+            text: "Address",
+            size: 20.0,
+            color: Colors.black,
+          ),
           centerTitle: true,
           elevation: 0.0,
         ),
@@ -85,7 +88,8 @@ class _AddressPageState extends State<AddressPage> {
                                       )),
                                 );
                               } else {
-                                return const CircularProgressIndicator();
+                                return const Center(
+                                    child: CircularProgressIndicator());
                               }
                             }),
                         const SizedBox(
@@ -111,7 +115,8 @@ class _AddressPageState extends State<AddressPage> {
                                             )),
                                       );
                                     } else {
-                                      return const CircularProgressIndicator();
+                                      return const Center(
+                                          child: CircularProgressIndicator());
                                     }
                                   }),
                             ),
@@ -136,7 +141,8 @@ class _AddressPageState extends State<AddressPage> {
                                             )),
                                       );
                                     } else {
-                                      return const CircularProgressIndicator();
+                                      return const Center(
+                                          child: CircularProgressIndicator());
                                     }
                                   }),
                             )
@@ -166,7 +172,8 @@ class _AddressPageState extends State<AddressPage> {
                                             )),
                                       );
                                     } else {
-                                      return const CircularProgressIndicator();
+                                      return const Center(
+                                          child: CircularProgressIndicator());
                                     }
                                   }),
                             ),
@@ -191,7 +198,8 @@ class _AddressPageState extends State<AddressPage> {
                                             )),
                                       );
                                     } else {
-                                      return const CircularProgressIndicator();
+                                      return const Center(
+                                          child: CircularProgressIndicator());
                                     }
                                   }),
                             ),
@@ -223,7 +231,8 @@ class _AddressPageState extends State<AddressPage> {
                                         )),
                                   );
                                 } else {
-                                  return const CircularProgressIndicator();
+                                  return const Center(
+                                      child: CircularProgressIndicator());
                                 }
                               }),
                         ),
@@ -248,7 +257,8 @@ class _AddressPageState extends State<AddressPage> {
                                         )),
                                   );
                                 } else {
-                                  return const CircularProgressIndicator();
+                                  return const Center(
+                                      child: CircularProgressIndicator());
                                 }
                               }),
                         ),
@@ -277,7 +287,8 @@ class _AddressPageState extends State<AddressPage> {
                                         )),
                                   );
                                 } else {
-                                  return const CircularProgressIndicator();
+                                  return const Center(
+                                      child: CircularProgressIndicator());
                                 }
                               }),
                         )
@@ -307,7 +318,8 @@ class _AddressPageState extends State<AddressPage> {
                                         )),
                                   );
                                 } else {
-                                  return const CircularProgressIndicator();
+                                  return const Center(
+                                      child: CircularProgressIndicator());
                                 }
                               }),
                         ),
@@ -336,7 +348,8 @@ class _AddressPageState extends State<AddressPage> {
                                         )),
                                   );
                                 } else {
-                                  return const CircularProgressIndicator();
+                                  return const Center(
+                                      child: CircularProgressIndicator());
                                 }
                               }),
                         )
@@ -365,84 +378,76 @@ class _AddressPageState extends State<AddressPage> {
                                         )),
                                   );
                                 } else {
-                                  return const CircularProgressIndicator();
+                                  return const Center(
+                                      child: CircularProgressIndicator());
                                 }
                               }),
                         )
                       ],
                     ),
-                    const SizedBox(height: 15.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, MyRoutes.bookingDetailsRoute);
-                          },
-                          child: Center(
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 25.0, right: 25.0, bottom: 10.0, top: 20.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                              child: InkWell(
+                            onTap: (() {}),
                             child: Container(
-                              height: 50.0,
-                              width: 150,
+                              padding: const EdgeInsets.only(
+                                left: 40.0,
+                              ),
+                              height: 50,
+                              width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
-                                  color: Colors.orange[400],
-                                  borderRadius: BorderRadius.circular(15)),
+                                  borderRadius: BorderRadius.circular(9),
+                                  color: Colors.orange[300]),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: const [
-                                  Icon(
-                                    Icons.save_sharp,
-                                    size: 25.0,
-                                  ),
+                                  Icon(Icons.save_sharp, color: Colors.black),
                                   SizedBox(
-                                    width: 10.0,
+                                    width: 5.0,
                                   ),
-                                  Text(
-                                    "Save",
-                                    style: TextStyle(fontSize: 20.0),
-                                  ),
+                                  WeightText(
+                                      text: "Save",
+                                      size: 18.0,
+                                      color: Colors.black),
                                 ],
                               ),
                             ),
+                          )),
+                          const SizedBox(
+                            width: 20.0,
                           ),
-                        ),
-                        const SizedBox(
-                          width: 8.0,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, MyRoutes.bookingDetailsRoute);
-                          },
-                          child: Center(
+                          Expanded(
+                              child: InkWell(
+                            onTap: () {},
                             child: Container(
-                              height: 50.0,
-                              width: 150,
+                              padding: const EdgeInsets.only(
+                                left: 50.0,
+                              ),
+                              height: 50,
+                              width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
-                                  color: Colors.green[200],
-                                  borderRadius: BorderRadius.circular(15)),
+                                  borderRadius: BorderRadius.circular(9),
+                                  color: Colors.green[400]),
                               child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: const [
-                                  Icon(
-                                    Icons.edit_outlined,
-                                    size: 25.0,
-                                  ),
+                                  Icon(Icons.edit, color: Colors.black),
                                   SizedBox(
-                                    width: 10.0,
+                                    width: 5.0,
                                   ),
-                                  Text(
-                                    "Edit",
-                                    style: TextStyle(fontSize: 20.0),
-                                  ),
+                                  WeightText(
+                                      text: "Edit",
+                                      size: 18.0,
+                                      color: Colors.black),
                                 ],
                               ),
                             ),
-                          ),
-                        )
-                      ],
+                          )),
+                        ],
+                      ),
                     )
                   ],
                 ),

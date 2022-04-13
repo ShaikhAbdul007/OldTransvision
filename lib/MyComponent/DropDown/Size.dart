@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../text.dart';
+
 class SizeDropDownButton extends StatefulWidget {
   final List<dynamic> listItems;
   final Function(dynamic value) notifyParent;
@@ -33,14 +35,9 @@ class _SizeDropDownButtonState extends State<SizeDropDownButton> {
               child: Text("$item"),
             );
           }).toList(),
-          hint: const Text(
-            "Select",
-            style: TextStyle(
-                color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
-          ),
+          hint: const NormalText(text: "Select",size: 15,color: Colors.black,),
           onChanged: (sizedSelectedValue) {
            widget.notifyParent(sizedSelectedValue);
-           print(sizedSelectedValue);
           },
         ),
       ),

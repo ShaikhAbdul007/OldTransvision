@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:transvision_app1/utils/routes.dart';
+import '../../MyComponent/text.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({Key? key}) : super(key: key);
@@ -23,20 +23,24 @@ class _ResetPasswordState extends State<ResetPassword> {
 
   @override
   Widget build(BuildContext context) {
-    moveTohome(BuildContext context) {
-      if (_keyfrom.currentState!.validate()) {
-        setState(() async {
-          await Future.delayed(const Duration(seconds: 1));
-          await Navigator.pushNamed(context, MyRoutes.bookingDetailsRoute);
-        });
-      }
-    }
+    // moveToHome(BuildContext context) {
+    //   if (_keyfrom.currentState!.validate()) {
+    //     setState(() async {
+    //       await Future.delayed(const Duration(seconds: 1));
+    //       await Navigator.pushNamed(context, MyRoutes.bookingDetailsRoute);
+    //     });
+    //   }
+    // }
 
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.orange[300],
-        title: const Text("Change Password"),
+        title: const WeightText(
+          text: "Change Password",
+          size: 20.0,
+          color: Colors.black,
+        ),
         centerTitle: true,
         elevation: 0.0,
       ),
@@ -44,16 +48,13 @@ class _ResetPasswordState extends State<ResetPassword> {
         child: Column(
           children: [
             Image.asset("assets/images/forgetpass.png"),
-            const SizedBox(
-              height: 15.0,
-            ),
-            const Text("Change Your Password",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            const WeightText(
+                text: "Change Your Password", size: 25.0, color: Colors.black),
             const SizedBox(
               height: 15.0,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+              padding: const EdgeInsets.only(left: 20.0, right: 20.0),
               child: Form(
                 key: _keyfrom,
                 child: Column(
@@ -112,34 +113,36 @@ class _ResetPasswordState extends State<ResetPassword> {
                     const SizedBox(
                       height: 30,
                     ),
-                    InkWell(
-                      onTap: () => moveTohome(context),
-                      child: Container(
-                        height: 50,
-                        width: 120,
-                        alignment: Alignment.center,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          mainAxisSize: MainAxisSize.min,
-                          children: const [
-                            Icon(Icons.restart_alt_rounded),
-                            SizedBox(
-                              width: 8.0,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () {},
+                          child: Container(
+                            height: 50,
+                            width: MediaQuery.of(context).size.width / 1.5,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                Icon(
+                                  Icons.restart_alt_rounded,
+                                ),
+                                SizedBox(
+                                  width: 8.0,
+                                ),
+                                WeightText(
+                                    text: "Reset",
+                                    size: 18.0,
+                                    color: Colors.black),
+                              ],
                             ),
-                            Text(
-                              "Reset",
-                              style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
-                            ),
-                          ],
+                            decoration: BoxDecoration(
+                                color: Colors.orange[300],
+                                borderRadius: BorderRadius.circular(7)),
+                          ),
                         ),
-                        decoration: BoxDecoration(
-                            color: Colors.orange[400],
-                            borderRadius: BorderRadius.circular(9)),
-                      ),
-                    ),
+                      ],
+                    )
                   ],
                 ),
               ),

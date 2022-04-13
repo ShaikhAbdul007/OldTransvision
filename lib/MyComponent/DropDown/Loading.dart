@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
 class LoadingPortDropDownButton extends StatefulWidget {
@@ -45,7 +43,6 @@ class _LoadingPortDropDownButtonState extends State<LoadingPortDropDownButton> {
           onChanged: (_loadingPortSelectedValue) {
             setState(() {
               widget.notifyParent(_loadingPortSelectedValue);
-              print(_loadingPortSelectedValue);
             });
           },
         ),

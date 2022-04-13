@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:transvision_app1/MyComponent/colors.dart';
 import 'package:transvision_app1/MyComponent/sizedbox.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
-import '../../MyComponent/DropDown/Loading.dart';
 
 class RatePage extends StatelessWidget {
   const RatePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final export = ["Import", "Export"];
-    final port = ["Dubai", "Ajman", "Berut"];
-    final size = [20, 40];
-    final type = ["OT", "FR", "HD"];
-    final commodity = ["General", "Hazardous"];
+    // final export = ["Import", "Export"];
+    // final port = ["Dubai", "Ajman", "Berut"];
+    // final size = [20, 40];
+    // final type = ["OT", "FR", "HD"];
+    // final commodity = ["General", "Hazardous"];
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -53,13 +52,13 @@ class RatePage extends StatelessWidget {
                   Expanded(
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text("Size",
+                    children: const [
+                      Text("Size",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 18.0,
                               fontWeight: FontWeight.w600)),
-                      const SizedBox(height: 10.0),
+                      SizedBox(height: 10.0),
                       // DropDownButton(listItems: size)
                     ],
                   )),
@@ -69,13 +68,13 @@ class RatePage extends StatelessWidget {
                   Expanded(
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text("Type",
+                    children: const [
+                      Text("Type",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 18.0,
                               fontWeight: FontWeight.w600)),
-                      const SizedBox(height: 10.0),
+                      SizedBox(height: 10.0),
                       // DropDownButton(listItems: type)
                     ],
                   )),

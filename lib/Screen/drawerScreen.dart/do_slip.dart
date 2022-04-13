@@ -101,8 +101,7 @@ class _DoSlipState extends State<DoSlip> {
           backgroundColor: Colors.orange[300],
           centerTitle: true,
         ),
-        body: Center(
-            child: ListView(children: [
+        body: ListView(children: [
           Container(
             color: Colors.white,
             child: SafeArea(
@@ -170,16 +169,15 @@ class _DoSlipState extends State<DoSlip> {
                           height: 18.0,
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             InkWell(
                               onTap: () {},
                               child: Container(
                                 height: 50,
-                                width: 150,
-                                alignment: Alignment.center,
+                                width: MediaQuery.of(context).size.width / 1.5,
                                 child: Row(
-                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: const [
                                     Icon(
                                       Icons.refresh_outlined,
@@ -187,47 +185,15 @@ class _DoSlipState extends State<DoSlip> {
                                     SizedBox(
                                       width: 8.0,
                                     ),
-                                    Text(
-                                      "Refresh",
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                      ),
-                                    ),
+                                    WeightText(
+                                        text: "Refresh",
+                                        size: 18.0,
+                                        color: Colors.black),
                                   ],
                                 ),
                                 decoration: BoxDecoration(
-                                    color: Colors.orange,
-                                    borderRadius: BorderRadius.circular(9)),
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {},
-                              child: Container(
-                                height: 50,
-                                width: 150,
-                                alignment: Alignment.center,
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: const [
-                                    Icon(Icons.print),
-                                    SizedBox(
-                                      width: 10.0,
-                                    ),
-                                    Text(
-                                      "Print",
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                decoration: BoxDecoration(
-                                    color: Colors.greenAccent,
-                                    borderRadius: BorderRadius.circular(9)),
+                                    color: Colors.orange[300],
+                                    borderRadius: BorderRadius.circular(7)),
                               ),
                             ),
                           ],
@@ -239,6 +205,6 @@ class _DoSlipState extends State<DoSlip> {
               ),
             ),
           )
-        ])));
+        ]));
   }
 }

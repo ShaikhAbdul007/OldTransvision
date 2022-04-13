@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../Model/LoadingPort.dart';
-
 class DestinationPortDropDownButton extends StatefulWidget {
   final List<dynamic> listItems;
   const DestinationPortDropDownButton({Key? key, required this.listItems})

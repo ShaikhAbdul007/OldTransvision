@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:transvision_app1/Screen/bookingscreen/bokigdtls.dart';
+import 'package:transvision_app1/utils/routes.dart';
 
+import '../MyComponent/text.dart';
 import '../widgets/drawer.dart';
 
 class Home extends StatefulWidget {
@@ -19,15 +21,29 @@ class _HomeState extends State<Home> {
         actions: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.notifications)),
           IconButton(
-              onPressed: () {}, icon: const Icon(Icons.power_settings_new)),
+              onPressed: () async{
+                await Future.delayed(const Duration(seconds: 1));
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: NormalText(
+                        text: "Please Wait while we are Logout",
+                        size: 12.0,
+                        color: Colors.black)));
+                Navigator.popAndPushNamed(context, MyRoutes.loginRoute);
+              },
+              icon: const Icon(Icons.power_settings_new)),
         ],
         backgroundColor: Colors.orange[300],
-        title: const Text("All Records"),
+        title: const WeightText(
+          text: "All Records",
+          size: 20.0,
+          color: Colors.black,
+        ),
         centerTitle: true,
         elevation: 0.5,
       ),
       body: SafeArea(child:
-          ListView.builder(itemBuilder: (BuildContext context, int index) {
+          ListView.builder(
+              itemCount:8,itemBuilder: (BuildContext context, int index) {
         return const Card(
           child: ListTile(
             title: Text("Abdul"),
@@ -36,38 +52,23 @@ class _HomeState extends State<Home> {
               "All record",
               style: TextStyle(color: Colors.green, fontSize: 15),
             ),
+            style: ListTileStyle.list,
           ),
         );
       })),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: Container(
-        margin: const EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0),
-        height: 50,
-        width: 120,
-        child: FloatingActionButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          const BookingDetails()));
-            },
-            child: Row(
-              // mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                Icon(Icons.add_box_rounded),
-                SizedBox(
-                  width: 5.0,
-                ),
-                Text(
-                  "Booking",
-                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),
-                )
-              ],
-            ),
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(15.0)))),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => const BookingDetails()));
+        },
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: const [
+            Icon(Icons.library_books),
+          ],
+        ),
       ),
       drawer: const MyDrawer(),
     );

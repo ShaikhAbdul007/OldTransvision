@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:transvision_app1/MyComponent/text.dart';
 
 class BillSummary extends StatefulWidget {
   const BillSummary({Key? key}) : super(key: key);
@@ -87,45 +88,6 @@ class _BillSummaryState extends State<BillSummary> {
     );
   }
 
-  Widget getButton() {
-    return SizedBox(
-        height: 50,
-        width: 200,
-        child: ElevatedButton(
-          onPressed: () {},
-          child: const Text(
-            "Refresh",
-            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),
-          ),
-        ));
-  }
-
-  Widget getButton1() {
-    return SizedBox(
-        height: 50,
-        width: 200,
-        child: ElevatedButton(
-          onPressed: () {},
-          child: const Text(
-            "All Record",
-            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),
-          ),
-        ));
-  }
-
-  Widget getButton2() {
-    return SizedBox(
-        height: 50,
-        width: 200,
-        child: ElevatedButton(
-          onPressed: () {},
-          child: const Text(
-            "Print",
-            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),
-          ),
-        ));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -180,25 +142,62 @@ class _BillSummaryState extends State<BillSummary> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 15.0, left: 15.0),
+                padding: const EdgeInsets.only(
+                    left: 25.0, right: 25.0, bottom: 10.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: getButton(),
-                    ),
+                        child: InkWell(
+                          onTap: (() {}),
+                          child: Container(
+                            padding: const EdgeInsets.only(
+                              left: 40.0,
+                            ),
+                            height: 50,
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(9),
+                                color: Colors.orange[300]),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: const [
+                                Icon(Icons.refresh_outlined, color: Colors.black),
+                                SizedBox(
+                                  width: 5.0,
+                                ),
+                                WeightText(text: "Refresh", size: 18.0, color: Colors.black),
+
+                              ],
+                            ),
+                          ),
+                        )),
                     const SizedBox(
-                      width: 5.0,
+                      width: 20.0,
                     ),
                     Expanded(
-                      child: getButton1(),
-                    ),
-                    const SizedBox(
-                      width: 5.0,
-                    ),
-                    Expanded(
-                      child: getButton2(),
-                    )
+                        child: InkWell(
+                          onTap: () {},
+                          child: Container(
+                            padding: const EdgeInsets.only(
+                              left: 30.0,
+                            ),
+                            height: 50,
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(9),
+                                color: Colors.orange[300]),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: const [
+                                Icon(Icons.edit_attributes_outlined, color: Colors.black),
+                                SizedBox(
+                                  width: 5.0,
+                                ),
+                               WeightText(text: "All Records", size: 18.0, color: Colors.black),
+                              ],
+                            ),
+                          ),
+                        )),
                   ],
                 ),
               )
