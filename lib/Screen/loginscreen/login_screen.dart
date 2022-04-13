@@ -6,6 +6,7 @@ import 'package:transvision_app1/MyComponent/colors.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 import 'package:http/http.dart' as http;
 import '../../widgets/bottom_nav.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -55,11 +56,11 @@ class _LoginPageState extends State<LoginPage> {
               MaterialPageRoute(builder: (context) => const MyNavigation()),
               (route) => false);
         });
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: NormalText(
-                text: "Login Failed", size: 12.0, color: Colors.black)));
       }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: NormalText(
+              text: "Login Failed", size: 12.0, color: Colors.black)));
     }
   }
 
