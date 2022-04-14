@@ -13,6 +13,7 @@ import 'BottomScreen/contacted_person.dart';
 import 'Screen/bookingscreen/bokigdtls.dart';
 import 'Screen/loginscreen/login_screen.dart';
 import 'Screen/loginscreen/resetpassword.dart';
+import 'Screen/loginscreen/spash_screen.dart';
 import 'widgets/bottom_nav.dart';
 
 void main() {
@@ -31,9 +32,10 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             primarySwatch: Colors.orange, primaryColor: AppColor.primaryColor),
         darkTheme: ThemeData(brightness: Brightness.dark),
-        initialRoute: '/navigation',
+        initialRoute: '/bs',
         routes: {
           "/login": (context) => const LoginPage(),
+          "/splash": (context) => const SplashScreen(),
           "/address": (context) => const AddressPage(),
           "/reset": (context) => const ResetPassword(),
           "/ds": (context) => const DoSlip(),

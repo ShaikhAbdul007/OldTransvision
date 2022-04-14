@@ -101,5 +101,9 @@ Listofsum copyWith({  int? balamt,
     map['voyage'] = _voyage;
     return map;
   }
+  @override
+  String toString() {
+    return toJson().toString();
+  }
 
 }

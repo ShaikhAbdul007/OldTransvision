@@ -24,6 +24,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<dynamic> callLoginAPI(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
+      checkUserLoggedIn();
       var uri =
           "http://192.168.68.144:9999/TSVAPI/SqlInterface.svc/login?username=" +
               username.text +
@@ -32,6 +33,7 @@ class _LoginPageState extends State<LoginPage> {
       final response = await http.get(Uri.parse(uri));
       if (response.statusCode == 200) {
         if (jsonDecode(response.body)["loginResult"] == "Consignee Login") {
+          save();
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: NormalText(
                 text: "Consignee login Successfully",
@@ -81,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     super.initState();
     username.addListener(() => setState(() {}));
-    checkUserLoggedIn();
+    // checkUserLoggedIn();
   }
 
   @override
