@@ -22,8 +22,8 @@ class _BillSummaryState extends State<BillSummary> {
         "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/BillSummaryOnLoad?partycode=P1697"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
+      myList = [];
       for (Map i in data) {
-        myList = [];
         myList.add(Listofsum.fromJson(i));
       }
       return myList;
@@ -119,368 +119,214 @@ class _BillSummaryState extends State<BillSummary> {
           centerTitle: true,
         ),
         body: SafeArea(
-          child: ListView(
-            children: [
-              Image.asset(
-                "assets/images/bill.png",
-                fit: BoxFit.cover,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 15.0, left: 15.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "From Date",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.w500),
-                    ),
-                    const SizedBox(
-                      height: 8.0,
-                    ),
-                    getTextField("Select Date"),
-                    const SizedBox(
-                      height: 20.0,
-                    ),
-                    const Text("To Date",
+            child: Column(
+          children: [
+            ListView(
+              shrinkWrap: true,
+              children: [
+                Image.asset(
+                  "assets/images/bill.png",
+                  fit: BoxFit.cover,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 15.0, left: 15.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "From Date",
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 18.0,
-                            fontWeight: FontWeight.w500)),
-                    const SizedBox(
-                      height: 8.0,
-                    ),
-                    getTextField1("Select Date"),
-                    const SizedBox(
-                      height: 30.0,
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    left: 25.0, right: 25.0, bottom: 10.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                        child: InkWell(
-                      onTap: (() {
-                        showModalBottomSheet(
-                            context: context,
-                            builder: (context) => buildSheet());
-                      }),
-                      child: Container(
-                        padding: const EdgeInsets.only(
-                          left: 40.0,
-                        ),
-                        height: 50,
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(9),
-                            color: Colors.orange[300]),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: const [
-                            Icon(Icons.refresh_outlined, color: Colors.black),
-                            SizedBox(
-                              width: 5.0,
-                            ),
-                            WeightText(
-                                text: "Refresh",
-                                size: 18.0,
-                                color: Colors.black),
-                          ],
-                        ),
+                            fontWeight: FontWeight.w500),
                       ),
-                    )),
-                    const SizedBox(
-                      width: 20.0,
-                    ),
-                    Expanded(
-                        child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        padding: const EdgeInsets.only(
-                          left: 30.0,
-                        ),
-                        height: 50,
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(9),
-                            color: Colors.orange[300]),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: const [
-                            Icon(Icons.edit_attributes_outlined,
-                                color: Colors.black),
-                            SizedBox(
-                              width: 5.0,
-                            ),
-                            WeightText(
-                                text: "All Records",
-                                size: 18.0,
-                                color: Colors.black),
-                          ],
-                        ),
+                      const SizedBox(
+                        height: 8.0,
                       ),
-                    )),
-                  ],
+                      getTextField("Select Date"),
+                      const SizedBox(
+                        height: 20.0,
+                      ),
+                      const Text("To Date",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w500)),
+                      const SizedBox(
+                        height: 8.0,
+                      ),
+                      getTextField1("Select Date"),
+                      const SizedBox(
+                        height: 30.0,
+                      ),
+                    ],
+                  ),
                 ),
-              )
-            ],
-          ),
-        ));
-  }
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 25.0, right: 25.0, bottom: 10.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                          child: InkWell(
+                        onTap: (() {
+                          // showModalBottomSheet(
+                          //     context: context,
+                          //     builder: (context) => buildSheet());
+                        }),
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 50,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(9),
+                              color: Colors.orange[300]),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              Icon(Icons.refresh_outlined,
+                                  color: Colors.black),
+                              SizedBox(
+                                width: 5.0,
+                              ),
+                              WeightText(
+                                  text: "Refresh",
+                                  size: 18.0,
+                                  color: Colors.black),
+                            ],
+                          ),
+                        ),
+                      )),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height,
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(9),
+                      ),
 
-  buildSheet() => Container(
-      padding: const EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(9),
-      ),
-      height: MediaQuery.of(context).size.height,
-      child: FutureBuilder(
-          future: getApi(),
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
-            if (snapshot.hasData) {
-              return Card(
-                child: ListView.builder(
-                    itemCount: myList.length,
-                    itemBuilder: (context, index) {
-                      return ExpansionTile(
-                        title: Text(
-                          'Port : ${snapshot.data[index].balamt.toString()}'
-                          "   "
-                          'Size : ${snapshot.data[index].billdate}',
-                          style: const TextStyle(fontSize: 18.0),
-                        ),
-                        subtitle: Text(
-                          'FPOD : ${snapshot.data[index].billno.toString()}'
-                          "   "
-                          "   "
-                          'Type: ${snapshot.data[index].billtotals.toString()}',
-                          style: const TextStyle(fontSize: 15.0),
-                        ),
-                        leading: IconButton(
-                          icon: const Icon(Icons.edit),
-                          onPressed: () {},
-                        ),
-                        backgroundColor: Colors.orange[50],
-                        // controlAffinity: ListTileControlAffinity.leading,
-                        // trailing: Text(snapshot.data[index].container,
-                        //     style: const TextStyle(fontSize: 15.0)),
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 8.0, horizontal: 8),
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: Column(
-                                        children: [
-                                          const NormalText(
-                                            text: "Weight",
-                                            size: 12.0,
-                                            color: Colors.black,
-                                          ),
-                                          TextField(
-                                            expands: false,
-                                            decoration: InputDecoration(
-                                                hintText: snapshot
-                                                    .data[index].bldate
-                                                    .toString(),
-                                                border: OutlineInputBorder(
-                                                    borderSide:
-                                                        const BorderSide(
-                                                            width: 2.0,
-                                                            style: BorderStyle
-                                                                .solid,
-                                                            color:
-                                                                Colors.black),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            9))),
-                                          ),
-                                        ],
+                      child: FutureBuilder(
+                          future: getApi(),
+                          builder:
+                              (BuildContext context, AsyncSnapshot snapshot) {
+                            if (snapshot.hasData) {
+                              return ListView.builder(
+                                  itemCount: myList.length,
+                                  itemBuilder: (context, index) {
+                                    return Card(
+                                      shadowColor: Colors.black,
+                                      borderOnForeground: true,
+                                      color: Colors.white,
+                                      clipBehavior: Clip.none,
+                                      elevation: 8.0,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 8.0, left: 8, bottom: 5.0),
+                                        child: Column(
+                                          children: [
+                                            Row(
+                                              children: [
+                                                NormalText(
+                                                    text:
+                                                        'Vessel : ${snapshot.data[index].vesselname}',
+                                                    size: 15.0,
+                                                    color: Colors.black),
+                                                const Icon(Icons
+                                                    .arrow_right_alt_outlined),
+                                                NormalText(
+                                                    text:
+                                                        'Voyage : ${snapshot.data[index].voyage}',
+                                                    size: 15.0,
+                                                    color: Colors.black),
+                                              ],
+                                            ),
+                                            Row(
+                                              children: [
+                                                NormalText(
+                                                    text:
+                                                        'Invoice No : ${snapshot.data[index].billno.toString()}',
+                                                    size: 15.0,
+                                                    color: Colors.black),
+                                                const Icon(Icons
+                                                    .arrow_right_alt_outlined),
+                                                NormalText(
+                                                    text:
+                                                        'Invoice Date : ${snapshot.data[index].billdate}',
+                                                    size: 15.0,
+                                                    color: Colors.black),
+                                              ],
+                                            ),
+                                            Row(
+                                              children: [
+                                                NormalText(
+                                                    text:
+                                                        'BL No : ${snapshot.data[index].blno.toString()}',
+                                                    size: 15.0,
+                                                    color: Colors.black),
+                                                const Icon(Icons
+                                                    .arrow_right_alt_outlined),
+                                                NormalText(
+                                                    text:
+                                                        'Bl Date: ${snapshot.data[index].bldate.toString()}',
+                                                    size: 15.0,
+                                                    color: Colors.black),
+                                              ],
+                                            ),
+                                            Row(
+                                              children: [
+                                                NormalText(
+                                                    text:
+                                                        'Total Amount : ${snapshot.data[index].billtotals.toString()}',
+                                                    size: 15.0,
+                                                    color: Colors.black),
+                                                const Icon(Icons
+                                                    .arrow_right_alt_outlined),
+                                                NormalText(
+                                                    text:
+                                                        'Payment Amount : ${snapshot.data[index].payamt.toString()}',
+                                                    size: 15.0,
+                                                    color: Colors.black),
+                                              ],
+                                            ),
+                                            Row(
+                                              children: [
+                                                NormalText(
+                                                    text:
+                                                        'TDS Amount : ${snapshot.data[index].tdsamt.toString()}',
+                                                    size: 15.0,
+                                                    color: Colors.black),
+                                                const Icon(Icons
+                                                    .arrow_right_alt_outlined),
+                                                NormalText(
+                                                    text:
+                                                        'Balance Amount : ${snapshot.data[index].balamt.toString()}',
+                                                    size: 15.0,
+                                                    color: Colors.black),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Expanded(
-                                      child: Column(
-                                        children: [
-                                          const NormalText(
-                                            text: "IMCO",
-                                            size: 12.0,
-                                            color: Colors.black,
-                                          ),
-                                          TextField(
-                                            expands: false,
-                                            decoration: InputDecoration(
-                                                hintText: snapshot
-                                                    .data[index].blno
-                                                    .toString(),
-                                                border: OutlineInputBorder(
-                                                    borderSide:
-                                                        const BorderSide(
-                                                            width: 2.0,
-                                                            style: BorderStyle
-                                                                .solid,
-                                                            color:
-                                                                Colors.black),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            9))),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Expanded(
-                                      child: Column(
-                                        children: [
-                                          const NormalText(
-                                            text: "Status",
-                                            size: 12.0,
-                                            color: Colors.black,
-                                          ),
-                                          TextField(
-                                            expands: false,
-                                            decoration: InputDecoration(
-                                                hintText: snapshot
-                                                    .data[index].payamt
-                                                    .toString(),
-                                                border: OutlineInputBorder(
-                                                    borderSide:
-                                                        const BorderSide(
-                                                            width: 2.0,
-                                                            style: BorderStyle
-                                                                .solid,
-                                                            color:
-                                                                Colors.black),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            9))),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: Column(
-                                        children: [
-                                          const NormalText(
-                                            text: "STOW",
-                                            size: 12.0,
-                                            color: Colors.black,
-                                          ),
-                                          TextField(
-                                            expands: false,
-                                            decoration: InputDecoration(
-                                                hintText: snapshot
-                                                    .data[index].tdsamt
-                                                    .toString(),
-                                                border: OutlineInputBorder(
-                                                    borderSide:
-                                                        const BorderSide(
-                                                            width: 2.0,
-                                                            style: BorderStyle
-                                                                .solid,
-                                                            color:
-                                                                Colors.black),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            9))),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Expanded(
-                                      child: Column(
-                                        children: [
-                                          const NormalText(
-                                            text: "Remark",
-                                            size: 12.0,
-                                            color: Colors.black,
-                                          ),
-                                          TextField(
-                                            expands: false,
-                                            decoration: InputDecoration(
-                                                hintText: snapshot
-                                                    .data[index].vesselname,
-                                                border: OutlineInputBorder(
-                                                    borderSide:
-                                                        const BorderSide(
-                                                            width: 2.0,
-                                                            style: BorderStyle
-                                                                .solid,
-                                                            color:
-                                                                Colors.black),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            9))),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Expanded(
-                                      child: Column(
-                                        children: [
-                                          const NormalText(
-                                            text: "Transportation",
-                                            size: 12.0,
-                                            color: Colors.black,
-                                          ),
-                                          TextField(
-                                            expands: false,
-                                            decoration: InputDecoration(
-                                                hintText: snapshot
-                                                    .data[index].voyage,
-                                                border: OutlineInputBorder(
-                                                    borderSide:
-                                                        const BorderSide(
-                                                            width: 2.0,
-                                                            style: BorderStyle
-                                                                .solid,
-                                                            color:
-                                                                Colors.black),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            9))),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      );
-                    }),
-              );
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          }));
+                                    );
+                                  });
+                            } else {
+                              return const Center(
+                                  child: CircularProgressIndicator());
+                            }
+                          })),
+                ],
+              ),
+            )
+          ],
+        )));
+  }
 }
