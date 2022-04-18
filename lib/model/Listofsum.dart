@@ -11,16 +11,17 @@
 
 class Listofsum {
   Listofsum({
-      int? balamt, 
-      String? billdate, 
-      int? billno, 
-      int? billtotals, 
-      String? bldate, 
-      int? blno, 
-      int? payamt, 
-      int? tdsamt, 
-      String? vesselname, 
-      String? voyage,}){
+    int? balamt,
+    String? billdate,
+    int? billno,
+    num? billtotals,
+    String? bldate,
+    int? blno,
+    num? payamt,
+    int? tdsamt,
+    String? vesselname,
+    String? voyage,
+  }) {
     _balamt = balamt;
     _billdate = billdate;
     _billno = billno;
@@ -31,7 +32,7 @@ class Listofsum {
     _tdsamt = tdsamt;
     _vesselname = vesselname;
     _voyage = voyage;
-}
+  }
 
   Listofsum.fromJson(dynamic json) {
     _balamt = json['balamt'];
@@ -48,41 +49,44 @@ class Listofsum {
   int? _balamt;
   String? _billdate;
   int? _billno;
-  int? _billtotals;
+  num? _billtotals;
   String? _bldate;
   int? _blno;
-  int? _payamt;
+  num? _payamt;
   int? _tdsamt;
   String? _vesselname;
   String? _voyage;
-Listofsum copyWith({  int? balamt,
-  String? billdate,
-  int? billno,
-  int? billtotals,
-  String? bldate,
-  int? blno,
-  int? payamt,
-  int? tdsamt,
-  String? vesselname,
-  String? voyage,
-}) => Listofsum(  balamt: balamt ?? _balamt,
-  billdate: billdate ?? _billdate,
-  billno: billno ?? _billno,
-  billtotals: billtotals ?? _billtotals,
-  bldate: bldate ?? _bldate,
-  blno: blno ?? _blno,
-  payamt: payamt ?? _payamt,
-  tdsamt: tdsamt ?? _tdsamt,
-  vesselname: vesselname ?? _vesselname,
-  voyage: voyage ?? _voyage,
-);
+  Listofsum copyWith({
+    int? balamt,
+    String? billdate,
+    int? billno,
+    num? billtotals,
+    String? bldate,
+    int? blno,
+    num? payamt,
+    int? tdsamt,
+    String? vesselname,
+    String? voyage,
+  }) =>
+      Listofsum(
+        balamt: balamt ?? _balamt,
+        billdate: billdate ?? _billdate,
+        billno: billno ?? _billno,
+        billtotals: billtotals ?? _billtotals,
+        bldate: bldate ?? _bldate,
+        blno: blno ?? _blno,
+        payamt: payamt ?? _payamt,
+        tdsamt: tdsamt ?? _tdsamt,
+        vesselname: vesselname ?? _vesselname,
+        voyage: voyage ?? _voyage,
+      );
   int? get balamt => _balamt;
   String? get billdate => _billdate;
   int? get billno => _billno;
-  int? get billtotals => _billtotals;
+  num? get billtotals => _billtotals;
   String? get bldate => _bldate;
   int? get blno => _blno;
-  int? get payamt => _payamt;
+  num? get payamt => _payamt;
   int? get tdsamt => _tdsamt;
   String? get vesselname => _vesselname;
   String? get voyage => _voyage;
@@ -101,9 +105,9 @@ Listofsum copyWith({  int? balamt,
     map['voyage'] = _voyage;
     return map;
   }
+
   @override
   String toString() {
     return toJson().toString();
   }
-
 }
