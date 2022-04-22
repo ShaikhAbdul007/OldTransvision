@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:transvision_app1/MyComponent/colors.dart';
-import 'package:transvision_app1/MyComponent/sizedbox.dart';
+import 'package:transvision_app1/MyComponent/constant/colors.dart';
+import 'package:transvision_app1/MyComponent/constant/sizedbox.dart';
+import 'package:transvision_app1/MyComponent/constant/textfeild.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
-import 'package:transvision_app1/MyComponent/textfeild.dart';
+
 
 class BookingDetails2 extends StatelessWidget {
   const BookingDetails2({Key? key}) : super(key: key);

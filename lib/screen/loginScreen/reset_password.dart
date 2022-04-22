@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../MyComponent/text.dart';
+import 'package:transvision_app1/MyComponent/text.dart';
+
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({Key? key}) : super(key: key);

@@ -1,23 +1,24 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:transvision_app1/Model/Icdto.dart';
+import 'package:transvision_app1/Model/destinationport.dart';
+import 'package:transvision_app1/Model/icdFrom.dart';
+import 'package:transvision_app1/Model/loadingport.dart';
+import 'package:transvision_app1/Model/sizedmodel.dart';
 import 'package:transvision_app1/MyComponent/DropDown/commodity.dart';
-import 'package:transvision_app1/MyComponent/colors.dart';
+import 'package:transvision_app1/MyComponent/DropDown/loading.dart';
+import 'package:transvision_app1/MyComponent/constant/colors.dart';
 import 'package:transvision_app1/MyComponent/DropDown/destinationofport.dart';
 import 'package:transvision_app1/MyComponent/DropDown/Icdfrom.dart';
-import 'package:transvision_app1/MyComponent/DropDown/Icdto.dart';
+import 'package:transvision_app1/MyComponent/DropDown/icd_To.dart';
 import 'package:transvision_app1/MyComponent/DropDown/size.dart';
-import 'package:transvision_app1/MyComponent/sizedbox.dart';
-import 'package:transvision_app1/MyComponent/text.dart';
-import 'package:transvision_app1/MyComponent/textfeild.dart';
+import 'package:transvision_app1/MyComponent/constant/sizedbox.dart';
+import 'package:transvision_app1/MyComponent/constant/textfeild.dart';
 import 'package:transvision_app1/MyComponent/DropDown/type.dart';
 import 'package:transvision_app1/utils/routes.dart';
-import '../../Model/destinationport.dart';
-import '../../Model/Icdfrom.dart';
-import '../../Model/loadingport.dart';
-import '../../Model/sizedmodel.dart';
-import '../../MyComponent/DropDown/loading.dart';
 import 'package:http/http.dart' as http;
+
+import '../../MyComponent/text.dart';
 
 class BookingDetails extends StatefulWidget {
   const BookingDetails({Key? key}) : super(key: key);
