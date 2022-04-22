@@ -9,18 +9,19 @@
 /// vesselname : "LUCIA"
 /// voyage : "046"
 
-class Billsummarywithdate {
-  Billsummarywithdate({
-      int? balamt, 
-      String? billdate, 
-      int? billno, 
-      double? billtotals, 
-      String? bldate, 
-      int? blno, 
-      double? payamt, 
-      int? tdsamt, 
-      String? vesselname, 
-      String? voyage,}){
+class BillSummaryWithDate {
+  BillSummaryWithDate({
+    int? balamt,
+    String? billdate,
+    int? billno,
+    num? billtotals,
+    String? bldate,
+    int? blno,
+    num? payamt,
+    int? tdsamt,
+    String? vesselname,
+    String? voyage,
+  }) {
     _balamt = balamt;
     _billdate = billdate;
     _billno = billno;
@@ -31,9 +32,9 @@ class Billsummarywithdate {
     _tdsamt = tdsamt;
     _vesselname = vesselname;
     _voyage = voyage;
-}
+  }
 
-  Billsummarywithdate.fromJson(dynamic json) {
+  BillSummaryWithDate.fromJson(dynamic json) {
     _balamt = json['balamt'];
     _billdate = json['billdate'];
     _billno = json['billno'];
@@ -48,41 +49,44 @@ class Billsummarywithdate {
   int? _balamt;
   String? _billdate;
   int? _billno;
-  double? _billtotals;
+  num? _billtotals;
   String? _bldate;
   int? _blno;
-  double? _payamt;
+  num? _payamt;
   int? _tdsamt;
   String? _vesselname;
   String? _voyage;
-Billsummarywithdate copyWith({  int? balamt,
-  String? billdate,
-  int? billno,
-  double? billtotals,
-  String? bldate,
-  int? blno,
-  double? payamt,
-  int? tdsamt,
-  String? vesselname,
-  String? voyage,
-}) => Billsummarywithdate(  balamt: balamt ?? _balamt,
-  billdate: billdate ?? _billdate,
-  billno: billno ?? _billno,
-  billtotals: billtotals ?? _billtotals,
-  bldate: bldate ?? _bldate,
-  blno: blno ?? _blno,
-  payamt: payamt ?? _payamt,
-  tdsamt: tdsamt ?? _tdsamt,
-  vesselname: vesselname ?? _vesselname,
-  voyage: voyage ?? _voyage,
-);
+  BillSummaryWithDate copyWith({
+    int? balamt,
+    String? billdate,
+    int? billno,
+    double? billtotals,
+    String? bldate,
+    int? blno,
+    double? payamt,
+    int? tdsamt,
+    String? vesselname,
+    String? voyage,
+  }) =>
+      BillSummaryWithDate(
+        balamt: balamt ?? _balamt,
+        billdate: billdate ?? _billdate,
+        billno: billno ?? _billno,
+        billtotals: billtotals ?? _billtotals,
+        bldate: bldate ?? _bldate,
+        blno: blno ?? _blno,
+        payamt: payamt ?? _payamt,
+        tdsamt: tdsamt ?? _tdsamt,
+        vesselname: vesselname ?? _vesselname,
+        voyage: voyage ?? _voyage,
+      );
   int? get balamt => _balamt;
   String? get billdate => _billdate;
   int? get billno => _billno;
-  double? get billtotals => _billtotals;
+  num? get billtotals => _billtotals;
   String? get bldate => _bldate;
   int? get blno => _blno;
-  double? get payamt => _payamt;
+  num? get payamt => _payamt;
   int? get tdsamt => _tdsamt;
   String? get vesselname => _vesselname;
   String? get voyage => _voyage;
@@ -102,4 +106,8 @@ Billsummarywithdate copyWith({  int? balamt,
     return map;
   }
 
+  @override
+  String toString() {
+    return toJson().toString();
+  }
 }

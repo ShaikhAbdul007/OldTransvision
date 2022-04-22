@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:transvision_app1/MyComponent/colors.dart';
-import 'package:transvision_app1/MyComponent/sizedbox.dart';
+import 'package:transvision_app1/MyComponent/constant/colors.dart';
+import 'package:transvision_app1/MyComponent/constant/sizedBox.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 
 class RatePage extends StatelessWidget {

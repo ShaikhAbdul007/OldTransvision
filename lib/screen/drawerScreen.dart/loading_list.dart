@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:transvision_app1/Model/loadingData.dart';
 import 'package:transvision_app1/Model/vessel.dart';
 import 'package:transvision_app1/Model/voyage.dart';
 import 'package:transvision_app1/MyComponent/DropDown/vessel.dart';
 import 'package:transvision_app1/MyComponent/DropDown/voyage.dart';
-import 'package:transvision_app1/MyComponent/colors.dart';
-import 'package:transvision_app1/MyComponent/text.dart';
+import 'package:transvision_app1/MyComponent/constant/colors.dart';
 import 'package:http/http.dart' as http;
-import '../../Model/loadingdata.dart';
+import 'package:transvision_app1/MyComponent/text.dart';
 
 class LoadingList extends StatefulWidget {
   const LoadingList({Key? key}) : super(key: key);
@@ -17,17 +17,6 @@ class LoadingList extends StatefulWidget {
 }
 
 class _LoadingListState extends State<LoadingList> {
-  var container = "";
-  var port = "";
-  var size = "";
-  var weight = "";
-  var fPOD = "";
-  var iMCO = "";
-  var status = "";
-  var sTOW = "";
-  var remark = "";
-  var trans = "";
-
   dynamic voyageValue = "";
   List<Vessel> vesselList = [];
   List<Voyage> voyageList = [];
@@ -35,7 +24,7 @@ class _LoadingListState extends State<LoadingList> {
 
   Future<List<Vessel>> getVesselApi() async {
     final response = await http.get(Uri.parse(
-        "http://192.168.1.143:9999/TSVAPI/sqlinterface.svc/vesselname?partycode=P1697"));
+        "http://192.168.1.143:9999/TSVAPI/sqlinterface.svc/vesselname?partycode=P1210"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       vesselList = [];
@@ -50,7 +39,7 @@ class _LoadingListState extends State<LoadingList> {
 
   Future<List<Voyage>> getVoyageApi(dynamic value) async {
     final response = await http.get(Uri.parse(
-        "http://192.168.1.143:9999/TSVAPI/sqlinterface.svc/voyagename?partycode=P1697&vesselname=$value"));
+        "http://192.168.1.143:9999/TSVAPI/sqlinterface.svc/voyagename?partycode=P1210&vesselname=$value"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       voyageList = [];
@@ -69,14 +58,17 @@ class _LoadingListState extends State<LoadingList> {
     getVoyageApi(value);
   }
 
-  Future<List<LoadingData>> getLoadingDataApi() async {
+  Future<Object> getLoadingDataApi() async {
     final response = await http.get(Uri.parse(
-        "http://192.168.1.143:9999/TSVAPI/sqlinterface.svc/LoadingList?vesselname=D ANGELS&voyagename=0012A&partycode=P1697"));
+        "http://192.168.1.143:9999/TSVAPI/sqlinterface.svc/LoadingList?vesselname=D ANGELS&voyagename=0012A&partycode=P1210"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       loadingDataList = [];
       for (Map i in data) {
         loadingDataList.add(LoadingData.fromJson(i));
+      }
+      if (loadingDataList.isEmpty) {
+        return "List is Empty";
       }
       return loadingDataList;
     } else {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:transvision_app1/MyComponent/constant/colors.dart';
+import 'package:transvision_app1/MyComponent/constant/textField.dart';
+import 'package:transvision_app1/MyComponent/text.dart';
 
-import '../../../MyComponent/colors.dart';
-import '../../../MyComponent/text.dart';
-import '../../../MyComponent/textFeild.dart';
 
 class BlHomeScreen extends StatefulWidget {
   const BlHomeScreen({Key? key}) : super(key: key);

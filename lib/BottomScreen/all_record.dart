@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:transvision_app1/Screen/bookingscreen/bokigdtls.dart';
+import 'package:transvision_app1/MyComponent/text.dart';
+import 'package:transvision_app1/Screen/bookingScreen/booking_details.dart';
 import 'package:transvision_app1/utils/routes.dart';
+import 'package:transvision_app1/widgets/drawer.dart';
 
-import '../MyComponent/text.dart';
-import '../widgets/drawer.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
         actions: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.notifications)),
           IconButton(
-              onPressed: () async{
+              onPressed: () async {
                 await Future.delayed(const Duration(seconds: 1));
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: NormalText(
@@ -41,21 +41,22 @@ class _HomeState extends State<Home> {
         centerTitle: true,
         elevation: 0.5,
       ),
-      body: SafeArea(child:
-          ListView.builder(
-              itemCount:8,itemBuilder: (BuildContext context, int index) {
-        return const Card(
-          child: ListTile(
-            title: Text("Abdul"),
-            leading: Icon(Icons.list),
-            trailing: Text(
-              "All record",
-              style: TextStyle(color: Colors.green, fontSize: 15),
-            ),
-            style: ListTileStyle.list,
-          ),
-        );
-      })),
+      body: SafeArea(
+          child: ListView.builder(
+              itemCount: 8,
+              itemBuilder: (BuildContext context, int index) {
+                return const Card(
+                  child: ListTile(
+                    title: Text("Abdul"),
+                    leading: Icon(Icons.list),
+                    trailing: Text(
+                      "All record",
+                      style: TextStyle(color: Colors.green, fontSize: 15),
+                    ),
+                    style: ListTileStyle.list,
+                  ),
+                );
+              })),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushReplacement(

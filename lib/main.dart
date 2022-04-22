@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:transvision_app1/BottomScreen/all_record.dart';
-import 'package:transvision_app1/MyComponent/colors.dart';
-import 'package:transvision_app1/Screen/bookingscreen/bokingdtls2.dart';
+import 'package:transvision_app1/MyComponent/constant/colors.dart';
+import 'package:transvision_app1/Screen/bookingScreen/booking_details.dart';
 import 'package:transvision_app1/BottomScreen/address.dart';
+import 'package:transvision_app1/Screen/bookingScreen/booking_details2.dart';
+import 'package:transvision_app1/Screen/loginScreen/login_screen.dart';
+import 'package:transvision_app1/Screen/loginScreen/reset_password.dart';
+import 'package:transvision_app1/Screen/loginScreen/splash_screen.dart';
 import 'Screen/drawerScreen.dart/BillOfLanding/bill_of_lading.dart';
 import 'Screen/drawerScreen.dart/bill_summary.dart';
 import 'Screen/drawerScreen.dart/do_slip.dart';
@@ -10,10 +14,7 @@ import 'Screen/drawerScreen.dart/loading_list.dart';
 import 'Screen/drawerScreen.dart/rate_page.dart';
 import 'Screen/drawerScreen.dart/reports.dart';
 import 'BottomScreen/contacted_person.dart';
-import 'Screen/bookingscreen/bokigdtls.dart';
-import 'Screen/loginscreen/login_screen.dart';
-import 'Screen/loginscreen/resetpassword.dart';
-import 'Screen/loginscreen/spash_screen.dart';
+
 import 'widgets/bottom_nav.dart';
 
 void main() {
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             primarySwatch: Colors.orange, primaryColor: AppColor.primaryColor),
         darkTheme: ThemeData(brightness: Brightness.dark),
-        initialRoute: '/bs',
+        initialRoute: '/ll',
         routes: {
           "/login": (context) => const LoginPage(),
           "/splash": (context) => const SplashScreen(),
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
           "/bd": (context) => const BookingDetails(),
           "/bd2": (context) => const BookingDetails2(),
           "/contact": (context) => const ContactedPerson(),
-          "/record": (context) => const Home(),
+          "/home": (context) => const Home(),
           "/navigation": (context) => const MyNavigation(),
           "/rate": (context) => const RatePage(),
         });

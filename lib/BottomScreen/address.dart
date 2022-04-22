@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:transvision_app1/Model/usersdetails.dart';
+import 'package:transvision_app1/Model/users_details.dart';
 import 'package:http/http.dart' as http;
+import 'package:transvision_app1/MyComponent/text.dart';
 
-import '../MyComponent/text.dart';
 
 class AddressPage extends StatefulWidget {
   const AddressPage({Key? key}) : super(key: key);

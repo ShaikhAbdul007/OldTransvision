@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:transvision_app1/MyComponent/colors.dart';
+import 'package:transvision_app1/MyComponent/constant/colors.dart';
+import 'package:transvision_app1/MyComponent/constant/textField.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
-import 'package:transvision_app1/MyComponent/textFeild.dart';
+
 
 class DoSlip extends StatefulWidget {
   const DoSlip({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:transvision_app1/MyComponent/constant/colors.dart';
-import 'package:transvision_app1/MyComponent/constant/sizedbox.dart';
-import 'package:transvision_app1/MyComponent/constant/textfeild.dart';
+import 'package:transvision_app1/MyComponent/constant/sizedBox.dart';
+import 'package:transvision_app1/MyComponent/constant/textField.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 
 

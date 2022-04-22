@@ -2,10 +2,11 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:transvision_app1/MyComponent/colors.dart';
+import 'package:transvision_app1/MyComponent/constant/colors.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 import 'package:http/http.dart' as http;
-import '../../widgets/bottom_nav.dart';
+import 'package:transvision_app1/utils/routes.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -24,16 +25,15 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<dynamic> callLoginAPI(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
-      checkUserLoggedIn();
+      // checkUserLoggedIn();
       var uri =
-          "http://192.168.68.144:9999/TSVAPI/SqlInterface.svc/login?username=" +
+          "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/login?username=" +
               username.text +
               "&password=" +
               password;
       final response = await http.get(Uri.parse(uri));
       if (response.statusCode == 200) {
         if (jsonDecode(response.body)["loginResult"] == "Consignee Login") {
-          save();
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: NormalText(
                 text: "Consignee login Successfully",
@@ -41,41 +41,25 @@ class _LoginPageState extends State<LoginPage> {
                 color: Colors.black),
             backgroundColor: Colors.white,
           ));
-          setState(() async {
-            Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => const MyNavigation()),
-                (route) => false);
+          setState(() {
+            Navigator.pushNamed(context, MyRoutes.myNavigationRoute);
           });
+        } else if (jsonDecode(response.body)["loginResult"] ==
+            "Shipper Login") {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: NormalText(
+                  text: "Shipper login Successfully",
+                  size: 12.0,
+                  color: Colors.black)));
+          setState(() {
+            Navigator.pushNamed(context, MyRoutes.myNavigationRoute);
+          });
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: NormalText(
+                  text: "Login Failed", size: 12.0, color: Colors.black)));
         }
-      } else if (jsonDecode(response.body)["loginResult"] == "Shipper Login") {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: NormalText(
-                text: "Shipper login Successfully",
-                size: 12.0,
-                color: Colors.black)));
-        setState(() {
-          Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => const MyNavigation()),
-              (route) => false);
-        });
       }
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: NormalText(
-              text: "Login Failed", size: 12.0, color: Colors.black)));
-    }
-  }
-
-  void checkUserLoggedIn() async {
-    prefs = await SharedPreferences.getInstance();
-    String? val = prefs.getString("user");
-    if (val != null) {
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => const MyNavigation()),
-          (route) => false);
-    } else {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => const LoginPage()));
     }
   }
 
@@ -83,7 +67,12 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     super.initState();
     username.addListener(() => setState(() {}));
-    // checkUserLoggedIn();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    username.dispose();
   }
 
   @override
@@ -201,15 +190,28 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  save() async {
-    prefs = await SharedPreferences.getInstance();
-    prefs.setString('user', username.text);
-  }
+  // save() async {
+  //   prefs = await SharedPreferences.getInstance();
+  //   prefs.setString('user', username.text);
+  // }
+  //
+  // retrieve() async {
+  //   prefs = await SharedPreferences.getInstance();
+  //   setState(() {
+  //     userCred = prefs.getString('user')!;
+  //   });
+  // }
 
-  retrieve() async {
-    prefs = await SharedPreferences.getInstance();
-    setState(() {
-      userCred = prefs.getString('user')!;
-    });
-  }
+// void checkUserLoggedIn() async {
+//   prefs = await SharedPreferences.getInstance();
+//   String? val = prefs.getString("user");
+//   if (val != null) {
+//     Navigator.of(context).pushAndRemoveUntil(
+//         MaterialPageRoute(builder: (context) => const MyNavigation()),
+//         (route) => false);
+//   } else {
+//     Navigator.of(context)
+//         .push(MaterialPageRoute(builder: (context) => const LoginPage()));
+//   }
+// }
 }

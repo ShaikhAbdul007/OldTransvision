@@ -1,9 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../Model/usersdetails.dart';
-import '../MyComponent/text.dart';
+import 'package:transvision_app1/Model/users_details.dart';
+import 'package:transvision_app1/MyComponent/text.dart';
 
 class ContactedPerson extends StatefulWidget {
   const ContactedPerson({Key? key}) : super(key: key);
@@ -15,9 +14,6 @@ class ContactedPerson extends StatefulWidget {
 class _ContactedPersonState extends State<ContactedPerson> {
   @override
   Widget build(BuildContext context) {
-    // var contactperson = "";
-    // var contno = "";
-    late Future<UserDetails> contactedUserDetails;
 
     Future<UserDetails> getContactedPersonApi() async {
       final response = await http.get(Uri.parse(
@@ -28,12 +24,6 @@ class _ContactedPersonState extends State<ContactedPerson> {
       } else {
         throw Exception('Failed to API');
       }
-    }
-
-    @override
-    void initState() {
-      super.initState();
-      contactedUserDetails = getContactedPersonApi();
     }
 
     return Scaffold(

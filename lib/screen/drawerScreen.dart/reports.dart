@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../../MyComponent/text.dart';
+import 'package:transvision_app1/MyComponent/text.dart';
+
 
 class Reports extends StatefulWidget {
   const Reports({Key? key}) : super(key: key);

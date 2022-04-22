@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:transvision_app1/MyComponent/colors.dart';
+import 'package:transvision_app1/MyComponent/constant/colors.dart';
 import 'package:transvision_app1/Screen/drawerScreen.dart/BillOfLanding/detailscreen.dart';
 import 'package:transvision_app1/Screen/drawerScreen.dart/BillOfLanding/homescreen.dart';
 

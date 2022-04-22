@@ -1,8 +1,9 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-
-import 'package:transvision_app1/MyComponent/sizedbox.dart';
+import 'package:transvision_app1/MyComponent/constant/sizedBox.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
+
+
 
 class BlDetailScreen extends StatefulWidget {
   const BlDetailScreen({Key? key}) : super(key: key);

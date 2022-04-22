@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:transvision_app1/MyComponent/constant/colors.dart';
+import 'package:transvision_app1/MyComponent/constant/sizedBox.dart';
+import 'package:transvision_app1/MyComponent/constant/textField.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 
-import '../colors.dart';
-import '../sizedbox.dart';
-import '../textFeild.dart';
 
 class CommodityDropDownButton extends StatefulWidget {
   // final List<dynamic> listItems;
@@ -47,17 +47,12 @@ class _CommodityDropDownButtonState extends State<CommodityDropDownButton> {
             onChanged: (value) {
               commodityValue = value;
             },
-            onTap: () => setState(() {
-              if (commodityValue.value[0] != null) {
-                return visibilityShow();
-              }
-            }),
           ),
         ));
   }
 
-  void  visibilityShow() {
-     Visibility(
+  void visibilityShow() {
+    Visibility(
       child: Row(
         children: [
           Expanded(
