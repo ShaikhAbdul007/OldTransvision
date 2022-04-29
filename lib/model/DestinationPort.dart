@@ -1,39 +1,39 @@
 /// port : "AEAUH"
-/// portname : "ABU DHABI PORT"
+/// portName : "ABU DHABI PORT"
 
 class DestinationPort {
   DestinationPort({
     String? port,
-    String? portname,
+    String? portName,
   }) {
     _port = port;
-    _portname = portname;
+    _portName = portName;
   }
 
   DestinationPort.fromJson(dynamic json) {
     _port = json['port'];
-    _portname = json['portname'];
+    _portName = json['portName'];
   }
   String? _port;
-  String? _portname;
+  String? _portName;
   DestinationPort copyWith({
     String? port,
-    String? portname,
+    String? portName,
   }) =>
       DestinationPort(
         port: port ?? _port,
-        portname: portname ?? _portname,
+        portName: portName ?? _portName,
       );
   String? get port => _port;
-  String? get portname => _portname;
+  String? get portName => _portName;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['port'] = _port;
-    map['portname'] = _portname;
+    map['portName'] = _portName;
     return map;
   }
 
   @override
-  toString() => '$_portname';
+  toString() => '$_portName';
 }

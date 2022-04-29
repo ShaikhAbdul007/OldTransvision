@@ -1,29 +1,29 @@
 /// port : "AEAUH"
-/// portname : "ABU DHABI PORT"
+/// portName : "ABU DHABI PORT"
 
 class LoadingPort {
   LoadingPort({
     String? port,
-    String? portname,
+    String? portName,
   }) {
     _port = port;
-    _portname = portname;
+    _portName = portName;
   }
 
   LoadingPort.fromJson(Map<dynamic, dynamic> json) {
     _port = json['port'];
-    _portname = json['portname'];
+    _portName = json['portName'];
   }
   String? _port;
-  String? _portname;
+  String? _portName;
 
   String? get port => _port;
-  String? get portname => _portname;
+  String? get portName => _portName;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['port'] = _port;
-    map['portname'] = _portname;
+    map['portName'] = _portName;
     return map;
   }
 }

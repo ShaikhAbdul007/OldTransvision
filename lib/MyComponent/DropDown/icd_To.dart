@@ -22,21 +22,14 @@ class _IcdDropDownButtonState extends State<IcdToDropDownButton> {
           border: Border.all(width: 2.0, style: BorderStyle.solid)),
       child: DropdownButtonHideUnderline(
         child: DropdownButtonFormField<dynamic>(
-          validator: (value) {
-            if (value!.isEmpty) {
-              return "Field Cannot be Empty";
-            } else {
-              return null;
-            }
-          },
           isExpanded: true,
           value: _selectedValue,
           style: const TextStyle(color: Colors.black),
           items:
-              widget.listItems.map<DropdownMenuItem<dynamic>>((dynamic value) {
+              widget.listItems.map<DropdownMenuItem<dynamic>>((dynamic item) {
             return DropdownMenuItem<dynamic>(
-              value: value,
-              child: Text("$value"),
+              value: item.icd,
+              child: Text(item.icdname),
             );
           }).toList(),
           hint: const Text(
@@ -47,7 +40,6 @@ class _IcdDropDownButtonState extends State<IcdToDropDownButton> {
           onChanged: (value) {
             setState(() {
               _selectedValue = value;
-
             });
           },
         ),

@@ -38,10 +38,9 @@ class _TypeDropDownButtonState extends State<TypeDropDownButton> {
                 color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
           ),
           onChanged: (value) {
-           setState(() {
-             selectedValue=value;
-           });
-
+            setState(() {
+              selectedValue = value;
+            });
           },
         ),
       ),

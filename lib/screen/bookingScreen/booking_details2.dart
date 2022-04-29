@@ -4,7 +4,6 @@ import 'package:transvision_app1/MyComponent/constant/sizedBox.dart';
 import 'package:transvision_app1/MyComponent/constant/textField.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 
-
 class BookingDetails2 extends StatelessWidget {
   const BookingDetails2({Key? key}) : super(key: key);
 
@@ -13,7 +12,8 @@ class BookingDetails2 extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.orange[300],
-        title: const Text("Booking Details"),
+        title: WeightText(
+            text: "Booking Details", size: 20.0, color: AppColor.black),
         centerTitle: true,
         elevation: 0.0,
       ),

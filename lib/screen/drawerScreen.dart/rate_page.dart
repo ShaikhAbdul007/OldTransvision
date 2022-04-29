@@ -17,9 +17,10 @@ class RatePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text(
-          "Local Charges",
-          style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w600),
+        title: const WeightText(
+          text: "Local Charges",
+          size: 20.0,
+          color: Colors.black,
         ),
       ),
       body: SafeArea(

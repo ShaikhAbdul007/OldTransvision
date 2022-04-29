@@ -8,12 +8,8 @@ class ConsigneeBottom extends StatefulWidget {
 }
 
 class _ConsigneeBottomState extends State<ConsigneeBottom> {
-  int currentIndex= 0;
-  final consigneeScreen=[
-
-  ];
-
-
+  int currentIndex = 0;
+  final consigneeScreen = [];
 
   @override
   Widget build(BuildContext context) {

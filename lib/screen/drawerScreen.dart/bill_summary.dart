@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
-import 'package:transvision_app1/Model/listOfSum.dart';
+import 'package:transvision_app1/Model/ListOfSum.dart';
 import 'package:transvision_app1/Model/billSummaryWithDate.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 
@@ -14,20 +14,20 @@ class BillSummary extends StatefulWidget {
 }
 
 class _BillSummaryState extends State<BillSummary> {
-  TextEditingController date = TextEditingController();
-  TextEditingController date1 = TextEditingController();
-  List<Listofsum> myList = [];
+  TextEditingController billSummaryToDate = TextEditingController();
+  TextEditingController billSummaryFromDate = TextEditingController();
+  List<ListOfSum> myList = [];
   List<BillSummaryWithDate> summaryWithDate = [];
   final _billFromKey = GlobalKey<FormState>();
 
-  Future<List<Listofsum>> getApi() async {
+  Future<List<ListOfSum>> getApi() async {
     final response = await http.get(Uri.parse(
         "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/BillSummaryOnLoad?partycode=P1210"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       myList = [];
       for (Map i in data) {
-        myList.add(Listofsum.fromJson(i));
+        myList.add(ListOfSum.fromJson(i));
       }
       return myList;
     }
@@ -38,9 +38,9 @@ class _BillSummaryState extends State<BillSummary> {
     try {
       final response = await http.get(Uri.parse(
           "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/BillSummarywithdate?partycode=P1210&fromdate=" +
-              date1.text +
+              billSummaryFromDate.text +
               "&todate=" +
-              date.text));
+              billSummaryToDate.text));
       var data = jsonDecode(response.body.toString());
       if (response.statusCode == 200) {
         summaryWithDate = [];
@@ -57,8 +57,8 @@ class _BillSummaryState extends State<BillSummary> {
   @override
   void initState() {
     super.initState();
-    date.text = "";
-    date1.text = "";
+    billSummaryToDate.text = "";
+    billSummaryFromDate.text = "";
     getApi();
   }
 
@@ -66,9 +66,10 @@ class _BillSummaryState extends State<BillSummary> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text(
-            "Bill Summary",
-            style: TextStyle(color: Colors.black),
+          title: const WeightText(
+            text: "Bill Summary",
+            size: 20.0,
+            color: Colors.black,
           ),
           backgroundColor: Colors.orange[300],
           centerTitle: true,
@@ -107,7 +108,7 @@ class _BillSummaryState extends State<BillSummary> {
                             return null;
                           }
                         },
-                        controller: date1,
+                        controller: billSummaryFromDate,
                         onTap: () async {
                           DateTime? pickedDate = await showDatePicker(
                               context: context,
@@ -119,7 +120,7 @@ class _BillSummaryState extends State<BillSummary> {
                             String formattedDate =
                                 DateFormat('yyyy-MM-dd').format(pickedDate);
                             setState(() {
-                              date1.text = formattedDate;
+                              billSummaryFromDate.text = formattedDate;
                             });
                           } else {
                             debugPrint("Date is not selected");
@@ -153,7 +154,7 @@ class _BillSummaryState extends State<BillSummary> {
                             return null;
                           }
                         },
-                        controller: date,
+                        controller: billSummaryToDate,
                         onTap: () async {
                           DateTime? pickedDate = await showDatePicker(
                               context: context,
@@ -165,7 +166,7 @@ class _BillSummaryState extends State<BillSummary> {
                             String formattedDate =
                                 DateFormat('yyyy-MM-dd').format(pickedDate);
                             setState(() {
-                              date.text =
+                              billSummaryToDate.text =
                                   formattedDate; //set output date to TextField value.
                             });
                           } else {
@@ -248,7 +249,6 @@ class _BillSummaryState extends State<BillSummary> {
                                   String invoiceDate =
                                       snapshot.data[index].billdate;
                                   String billDate = snapshot.data[index].bldate;
-
                                   return Padding(
                                     padding: const EdgeInsets.all(5.0),
                                     child: Card(
@@ -405,7 +405,6 @@ class _BillSummaryState extends State<BillSummary> {
                     itemBuilder: (context, index) {
                       String invoiceDate = snapshot.data[index].billdate;
                       String billDate = snapshot.data[index].bldate;
-
                       return Padding(
                         padding: const EdgeInsets.all(5.0),
                         child: Card(

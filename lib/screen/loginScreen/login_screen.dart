@@ -7,7 +7,6 @@ import 'package:transvision_app1/MyComponent/text.dart';
 import 'package:http/http.dart' as http;
 import 'package:transvision_app1/utils/routes.dart';
 
-
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -22,46 +21,6 @@ class _LoginPageState extends State<LoginPage> {
   bool isPasswordVisible = false;
   late SharedPreferences prefs;
   String userCred = "";
-
-  Future<dynamic> callLoginAPI(BuildContext context) async {
-    if (_formKey.currentState!.validate()) {
-      // checkUserLoggedIn();
-      var uri =
-          "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/login?username=" +
-              username.text +
-              "&password=" +
-              password;
-      final response = await http.get(Uri.parse(uri));
-      if (response.statusCode == 200) {
-        if (jsonDecode(response.body)["loginResult"] == "Consignee Login") {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: NormalText(
-                text: "Consignee login Successfully",
-                size: 12.0,
-                color: Colors.black),
-            backgroundColor: Colors.white,
-          ));
-          setState(() {
-            Navigator.pushNamed(context, MyRoutes.myNavigationRoute);
-          });
-        } else if (jsonDecode(response.body)["loginResult"] ==
-            "Shipper Login") {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: NormalText(
-                  text: "Shipper login Successfully",
-                  size: 12.0,
-                  color: Colors.black)));
-          setState(() {
-            Navigator.pushNamed(context, MyRoutes.myNavigationRoute);
-          });
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: NormalText(
-                  text: "Login Failed", size: 12.0, color: Colors.black)));
-        }
-      }
-    }
-  }
 
   @override
   void initState() {
@@ -190,17 +149,17 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  // save() async {
-  //   prefs = await SharedPreferences.getInstance();
-  //   prefs.setString('user', username.text);
-  // }
-  //
-  // retrieve() async {
-  //   prefs = await SharedPreferences.getInstance();
-  //   setState(() {
-  //     userCred = prefs.getString('user')!;
-  //   });
-  // }
+  save() async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setString('user', username.text);
+  }
+
+  retrieve() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userCred = prefs.getString('user')!;
+    });
+  }
 
 // void checkUserLoggedIn() async {
 //   prefs = await SharedPreferences.getInstance();
@@ -214,4 +173,46 @@ class _LoginPageState extends State<LoginPage> {
 //         .push(MaterialPageRoute(builder: (context) => const LoginPage()));
 //   }
 // }
+
+  Future<dynamic> callLoginAPI(BuildContext context) async {
+    if (_formKey.currentState!.validate()) {
+      var uri =
+          "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/login?username=" +
+              username.text +
+              "&password=" +
+              password;
+      final response = await http.get(Uri.parse(uri));
+      if (response.statusCode == 200) {
+        if (jsonDecode(response.body)["loginResult"] == "Consignee Login") {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: NormalText(
+                text: "Consignee login Successfully",
+                size: 12.0,
+                color: Colors.black),
+            backgroundColor: Colors.white,
+          ));
+          save();
+          setState(() {
+            Navigator.pushNamed(context, MyRoutes.myNavigationRoute);
+          });
+        } else if (jsonDecode(response.body)["loginResult"] ==
+            "Shipper Login") {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: NormalText(
+                  text: "Shipper login Successfully",
+                  size: 12.0,
+                  color: Colors.black)));
+          save();
+          setState(() {
+            Navigator.pushNamed(context, MyRoutes.myNavigationRoute);
+          });
+        } else {
+          print("error");
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: NormalText(
+                  text: "Login Failed", size: 12.0, color: Colors.black)));
+        }
+      }
+    }
+  }
 }

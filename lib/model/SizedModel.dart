@@ -3,11 +3,12 @@
 
 class SizedModel {
   SizedModel({
-      String? code, 
-      String? containerType,}){
+    String? code,
+    String? containerType,
+  }) {
     _code = code;
     _containerType = containerType;
-}
+  }
 
   SizedModel.fromJson(dynamic json) {
     _code = json['code'];
@@ -15,11 +16,14 @@ class SizedModel {
   }
   String? _code;
   String? _containerType;
-SizedModel copyWith({  String? code,
-  String? containerType,
-}) => SizedModel(  code: code ?? _code,
-  containerType: containerType ?? _containerType,
-);
+  SizedModel copyWith({
+    String? code,
+    String? containerType,
+  }) =>
+      SizedModel(
+        code: code ?? _code,
+        containerType: containerType ?? _containerType,
+      );
   String? get code => _code;
   String? get containerType => _containerType;
 
@@ -29,5 +33,7 @@ SizedModel copyWith({  String? code,
     map['containerType'] = _containerType;
     return map;
   }
-  @override toString()=> '$_containerType';
+
+  @override
+  toString() => '$_containerType';
 }

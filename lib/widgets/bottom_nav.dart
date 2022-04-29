@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:transvision_app1/BottomScreen/address.dart';
 import 'package:transvision_app1/BottomScreen/all_record.dart';
 import 'package:transvision_app1/BottomScreen/contacted_person.dart';
-import 'package:transvision_app1/Screen/loginscreen/reset_password.dart';
-
+import 'package:transvision_app1/Screen/loginScreen/reset_password.dart';
 
 class MyNavigation extends StatefulWidget {
   const MyNavigation({Key? key}) : super(key: key);

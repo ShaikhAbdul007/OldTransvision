@@ -63,6 +63,7 @@ class _BookingDetails extends State<BookingDetails> {
         "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/pod?port=$value"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
+      destinationPort = [];
       for (Map i in data) {
         destinationPort.add(DestinationPort.fromJson(i));
       }
@@ -88,7 +89,6 @@ class _BookingDetails extends State<BookingDetails> {
       for (Map i in data) {
         idcFromPort.add(IcdFrom.fromJson(i));
       }
-
       return idcFromPort;
     } else {
       return idcFromPort;
@@ -98,8 +98,9 @@ class _BookingDetails extends State<BookingDetails> {
   Future<List<IcdTo>> getIcdToApi(dynamic value) async {
     final response = await http.get(Uri.parse(
         "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/icdto?icd=$value"));
-    var data = jsonDecode(response.body.toString());
+    var data = newMethod(response);
     if (response.statusCode == 200) {
+      icdToPort = [];
       for (Map i in data) {
         icdToPort.add(IcdTo.fromJson(i));
       }
@@ -109,6 +110,8 @@ class _BookingDetails extends State<BookingDetails> {
     }
   }
 
+  newMethod(http.Response response) => jsonDecode(response.body.toString());
+
   icdFromUpdated(dynamic value) {
     setState(() {
       idcFromPortValue = value;
@@ -116,7 +119,7 @@ class _BookingDetails extends State<BookingDetails> {
     getIcdToApi(value);
   }
 
-  Future<List<SizedModel>> getSizeApi(dynamic value) async {
+  Future<List<SizedModel>> getTypeApi(dynamic value) async {
     final response = await http.get(Uri.parse(
         "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/contType?contSize=$value"));
     var data = jsonDecode(response.body.toString());
@@ -135,7 +138,7 @@ class _BookingDetails extends State<BookingDetails> {
     setState(() {
       sizedUpdate = value;
     });
-    getSizeApi(value);
+    getTypeApi(value);
   }
 
   @override
@@ -143,6 +146,7 @@ class _BookingDetails extends State<BookingDetails> {
     super.initState();
     getLoadingPortApi();
     getIcdFromPortApi();
+    getTypeApi(sizedUpdate);
   }
 
   @override
@@ -157,7 +161,7 @@ class _BookingDetails extends State<BookingDetails> {
                 Navigator.popAndPushNamed(context, MyRoutes.myNavigationRoute);
               },
               icon: const Icon(Icons.arrow_back)),
-          title: NormalText(
+          title: WeightText(
               text: "Booking Details", size: 20.0, color: AppColor.black),
         ),
         body: Padding(
@@ -313,7 +317,7 @@ class _BookingDetails extends State<BookingDetails> {
                                       size: 18.0,
                                       color: AppColor.black),
                                   FutureBuilder(
-                                      future: getSizeApi(sizedUpdate),
+                                      future: getTypeApi(sizedUpdate),
                                       builder: (BuildContext context,
                                           AsyncSnapshot snapshot) {
                                         if (snapshot.hasData) {

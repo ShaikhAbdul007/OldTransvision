@@ -1,6 +1,6 @@
 /// Container : "GESU5579409"
-/// FPOD : "INCCU"
-/// IMCO : ""
+/// fPod : "INCCU"
+/// imCo : ""
 /// POD : "INCOK"
 /// POD1 : ""
 /// POD2 : ""
@@ -8,7 +8,7 @@
 /// STOW : ""
 /// Status : ""
 /// Trans : ""
-/// bookingno : 4217
+/// bookingNo : 4217
 /// port : "AEJEA"
 /// size : 40
 /// type : "HQ"
@@ -17,8 +17,8 @@
 class LoadingData {
   LoadingData({
     String? container,
-    String? fpod,
-    String? imco,
+    String? fPod,
+    String? imCo,
     String? pod,
     String? pod1,
     String? pod2,
@@ -26,15 +26,15 @@ class LoadingData {
     String? stow,
     String? status,
     String? trans,
-    int? bookingno,
+    int? bookingNo,
     String? port,
     int? size,
     String? type,
     int? weight,
   }) {
     _container = container;
-    _fpod = fpod;
-    _imco = imco;
+    _fPod = fPod;
+    _imCo = imCo;
     _pod = pod;
     _pod1 = pod1;
     _pod2 = pod2;
@@ -42,7 +42,7 @@ class LoadingData {
     _stow = stow;
     _status = status;
     _trans = trans;
-    _bookingno = bookingno;
+    _bookingNo = bookingNo;
     _port = port;
     _size = size;
     _type = type;
@@ -51,8 +51,8 @@ class LoadingData {
 
   LoadingData.fromJson(dynamic json) {
     _container = json['Container'];
-    _fpod = json['FPOD'];
-    _imco = json['IMCO'];
+    _fPod = json['fPod'];
+    _imCo = json['imCo'];
     _pod = json['POD'];
     _pod1 = json['POD1'];
     _pod2 = json['POD2'];
@@ -60,7 +60,7 @@ class LoadingData {
     _stow = json['STOW'];
     _status = json['Status'];
     _trans = json['Trans'];
-    _bookingno = json['bookingno'];
+    _bookingNo = json['bookingNo'];
     _port = json['port'];
     _size = json['size'];
     _type = json['type'];
@@ -68,8 +68,8 @@ class LoadingData {
   }
 
   String? _container;
-  String? _fpod;
-  String? _imco;
+  String? _fPod;
+  String? _imCo;
   String? _pod;
   String? _pod1;
   String? _pod2;
@@ -77,7 +77,7 @@ class LoadingData {
   String? _stow;
   String? _status;
   String? _trans;
-  int? _bookingno;
+  int? _bookingNo;
   String? _port;
   int? _size;
   String? _type;
@@ -85,8 +85,8 @@ class LoadingData {
 
   LoadingData copyWith({
     String? container,
-    String? fpod,
-    String? imco,
+    String? fPod,
+    String? imCo,
     String? pod,
     String? pod1,
     String? pod2,
@@ -94,7 +94,7 @@ class LoadingData {
     String? stow,
     String? status,
     String? trans,
-    int? bookingno,
+    int? bookingNo,
     String? port,
     int? size,
     String? type,
@@ -102,8 +102,8 @@ class LoadingData {
   }) =>
       LoadingData(
         container: container ?? _container,
-        fpod: fpod ?? _fpod,
-        imco: imco ?? _imco,
+        fPod: fPod ?? _fPod,
+        imCo: imCo ?? _imCo,
         pod: pod ?? _pod,
         pod1: pod1 ?? _pod1,
         pod2: pod2 ?? _pod2,
@@ -111,7 +111,7 @@ class LoadingData {
         stow: stow ?? _stow,
         status: status ?? _status,
         trans: trans ?? _trans,
-        bookingno: bookingno ?? _bookingno,
+        bookingNo: bookingNo ?? _bookingNo,
         port: port ?? _port,
         size: size ?? _size,
         type: type ?? _type,
@@ -120,9 +120,9 @@ class LoadingData {
 
   String? get container => _container;
 
-  String? get fpod => _fpod;
+  String? get fPod => _fPod;
 
-  String? get imco => _imco;
+  String? get imCo => _imCo;
 
   String? get pod => _pod;
 
@@ -138,7 +138,7 @@ class LoadingData {
 
   String? get trans => _trans;
 
-  int? get bookingno => _bookingno;
+  int? get bookingNo => _bookingNo;
 
   String? get port => _port;
 
@@ -151,8 +151,8 @@ class LoadingData {
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['Container'] = _container;
-    map['FPOD'] = _fpod;
-    map['IMCO'] = _imco;
+    map['fPod'] = _fPod;
+    map['imCo'] = _imCo;
     map['POD'] = _pod;
     map['POD1'] = _pod1;
     map['POD2'] = _pod2;
@@ -160,7 +160,7 @@ class LoadingData {
     map['STOW'] = _stow;
     map['Status'] = _status;
     map['Trans'] = _trans;
-    map['bookingno'] = _bookingno;
+    map['bookingNo'] = _bookingNo;
     map['port'] = _port;
     map['size'] = _size;
     map['type'] = _type;

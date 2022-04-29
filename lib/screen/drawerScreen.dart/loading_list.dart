@@ -58,17 +58,14 @@ class _LoadingListState extends State<LoadingList> {
     getVoyageApi(value);
   }
 
-  Future<Object> getLoadingDataApi() async {
+  Future<List<LoadingData>> getLoadingDataApi() async {
     final response = await http.get(Uri.parse(
-        "http://192.168.1.143:9999/TSVAPI/sqlinterface.svc/LoadingList?vesselname=D ANGELS&voyagename=0012A&partycode=P1210"));
+        "http://192.168.1.143:9999/TSVAPI/sqlinterface.svc/LoadingList?vesselname=DELTA&voyagename=D048&partycode=P1210"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       loadingDataList = [];
       for (Map i in data) {
         loadingDataList.add(LoadingData.fromJson(i));
-      }
-      if (loadingDataList.isEmpty) {
-        return "List is Empty";
       }
       return loadingDataList;
     } else {
@@ -89,7 +86,11 @@ class _LoadingListState extends State<LoadingList> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.orange[300],
-          title: const Text("Loading List"),
+          title: const WeightText(
+            text: "Loading List",
+            size: 20.0,
+            color: Colors.black,
+          ),
           centerTitle: true,
         ),
         body: ListView(

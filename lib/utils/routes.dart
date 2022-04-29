@@ -15,5 +15,10 @@ class MyRoutes {
   static String bookingDetailsRoute2 = "/bd2";
   static String rateRoute = "/rate";
   static String ddbRoutes = "/ddb";
-
+  static String consigneeDoSlipRoute = "/consigneeDoSlip";
+  static String damageInvoiceRoute = "/damageInvoice";
+  static String detentionInvoiceRoute = "/detentionInvoice";
+  static String importInvoiceRoute = "importInvoice";
+  static String securityInvoiceRoute = "/securityInvoice";
+  static String consigneeBottomRoute = "/consigneeBottom";
 }

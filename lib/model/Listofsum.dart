@@ -1,107 +1,107 @@
-/// balamt : 0
-/// billdate : "24-08-2021 00:00:00"
-/// billno : 10287
-/// billtotals : 1585
-/// bldate : "15-08-2021 00:00:00"
-/// blno : 4257
-/// payamt : 1585
-/// tdsamt : 0
-/// vesselname : "PSL EAGLE"
+/// balAmt : 0
+/// billDate : "24-08-2021 00:00:00"
+/// billNo : 10287
+/// billTotals : 1585
+/// blDate : "15-08-2021 00:00:00"
+/// blNo : 4257
+/// payAmt : 1585
+/// tdsAmt : 0
+/// vesselName : "PSL EAGLE"
 /// voyage : "PLE111"
 
-class Listofsum {
-  Listofsum({
-    int? balamt,
-    String? billdate,
-    int? billno,
-    num? billtotals,
-    String? bldate,
-    int? blno,
-    num? payamt,
-    int? tdsamt,
-    String? vesselname,
+class ListOfSum {
+  ListOfSum({
+    int? balAmt,
+    String? billDate,
+    int? billNo,
+    num? billTotals,
+    String? blDate,
+    int? blNo,
+    num? payAmt,
+    int? tdsAmt,
+    String? vesselName,
     String? voyage,
   }) {
-    _balamt = balamt;
-    _billdate = billdate;
-    _billno = billno;
-    _billtotals = billtotals;
-    _bldate = bldate;
-    _blno = blno;
-    _payamt = payamt;
-    _tdsamt = tdsamt;
-    _vesselname = vesselname;
+    _balAmt = balAmt;
+    _billDate = billDate;
+    _billNo = billNo;
+    _billTotals = billTotals;
+    _blDate = blDate;
+    _blNo = blNo;
+    _payAmt = payAmt;
+    _tdsAmt = tdsAmt;
+    _vesselName = vesselName;
     _voyage = voyage;
   }
 
-  Listofsum.fromJson(dynamic json) {
-    _balamt = json['balamt'];
-    _billdate = json['billdate'];
-    _billno = json['billno'];
-    _billtotals = json['billtotals'];
-    _bldate = json['bldate'];
-    _blno = json['blno'];
-    _payamt = json['payamt'];
-    _tdsamt = json['tdsamt'];
-    _vesselname = json['vesselname'];
+  ListOfSum.fromJson(dynamic json) {
+    _balAmt = json['balAmt'];
+    _billDate = json['billDate'];
+    _billNo = json['billNo'];
+    _billTotals = json['billTotals'];
+    _blDate = json['blDate'];
+    _blNo = json['blNo'];
+    _payAmt = json['payAmt'];
+    _tdsAmt = json['tdsAmt'];
+    _vesselName = json['vesselName'];
     _voyage = json['voyage'];
   }
-  int? _balamt;
-  String? _billdate;
-  int? _billno;
-  num? _billtotals;
-  String? _bldate;
-  int? _blno;
-  num? _payamt;
-  int? _tdsamt;
-  String? _vesselname;
+  int? _balAmt;
+  String? _billDate;
+  int? _billNo;
+  num? _billTotals;
+  String? _blDate;
+  int? _blNo;
+  num? _payAmt;
+  int? _tdsAmt;
+  String? _vesselName;
   String? _voyage;
-  Listofsum copyWith({
-    int? balamt,
-    String? billdate,
-    int? billno,
-    num? billtotals,
-    String? bldate,
-    int? blno,
-    num? payamt,
-    int? tdsamt,
-    String? vesselname,
+  ListOfSum copyWith({
+    int? balAmt,
+    String? billDate,
+    int? billNo,
+    num? billTotals,
+    String? blDate,
+    int? blNo,
+    num? payAmt,
+    int? tdsAmt,
+    String? vesselName,
     String? voyage,
   }) =>
-      Listofsum(
-        balamt: balamt ?? _balamt,
-        billdate: billdate ?? _billdate,
-        billno: billno ?? _billno,
-        billtotals: billtotals ?? _billtotals,
-        bldate: bldate ?? _bldate,
-        blno: blno ?? _blno,
-        payamt: payamt ?? _payamt,
-        tdsamt: tdsamt ?? _tdsamt,
-        vesselname: vesselname ?? _vesselname,
+      ListOfSum(
+        balAmt: balAmt ?? _balAmt,
+        billDate: billDate ?? _billDate,
+        billNo: billNo ?? _billNo,
+        billTotals: billTotals ?? _billTotals,
+        blDate: blDate ?? _blDate,
+        blNo: blNo ?? _blNo,
+        payAmt: payAmt ?? _payAmt,
+        tdsAmt: tdsAmt ?? _tdsAmt,
+        vesselName: vesselName ?? _vesselName,
         voyage: voyage ?? _voyage,
       );
-  int? get balamt => _balamt;
-  String? get billdate => _billdate;
-  int? get billno => _billno;
-  num? get billtotals => _billtotals;
-  String? get bldate => _bldate;
-  int? get blno => _blno;
-  num? get payamt => _payamt;
-  int? get tdsamt => _tdsamt;
-  String? get vesselname => _vesselname;
+  int? get balAmt => _balAmt;
+  String? get billDate => _billDate;
+  int? get billNo => _billNo;
+  num? get billTotals => _billTotals;
+  String? get blDate => _blDate;
+  int? get blNo => _blNo;
+  num? get payAmt => _payAmt;
+  int? get tdsAmt => _tdsAmt;
+  String? get vesselName => _vesselName;
   String? get voyage => _voyage;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['balamt'] = _balamt;
-    map['billdate'] = _billdate;
-    map['billno'] = _billno;
-    map['billtotals'] = _billtotals;
-    map['bldate'] = _bldate;
-    map['blno'] = _blno;
-    map['payamt'] = _payamt;
-    map['tdsamt'] = _tdsamt;
-    map['vesselname'] = _vesselname;
+    map['balAmt'] = _balAmt;
+    map['billDate'] = _billDate;
+    map['billNo'] = _billNo;
+    map['billTotals'] = _billTotals;
+    map['blDate'] = _blDate;
+    map['blNo'] = _blNo;
+    map['payAmt'] = _payAmt;
+    map['tdsAmt'] = _tdsAmt;
+    map['vesselName'] = _vesselName;
     map['voyage'] = _voyage;
     return map;
   }

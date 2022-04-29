@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:transvision_app1/MyComponent/constant/colors.dart';
+import 'package:transvision_app1/MyComponent/text.dart';
 import 'package:transvision_app1/Screen/drawerScreen.dart/BillOfLanding/detailscreen.dart';
 import 'package:transvision_app1/Screen/drawerScreen.dart/BillOfLanding/homescreen.dart';
 
@@ -32,7 +33,11 @@ class _BillOfLadingState extends State<BillOfLading> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: AppColor.bgColor,
-          title: const Text("Bill Of Lading"),
+          title: const WeightText(
+            text: "Bill Of Lading",
+            size: 20.0,
+            color: Colors.black,
+          ),
           centerTitle: true,
           elevation: 0.0,
           bottom: const TabBar(
