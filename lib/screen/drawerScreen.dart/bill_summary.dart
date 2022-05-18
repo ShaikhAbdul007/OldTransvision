@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
-import 'package:transvision_app1/Model/ListOfSum.dart';
-import 'package:transvision_app1/Model/billSummaryWithDate.dart';
+import 'package:transvision_app1/Model/bSummarywithdate.dart';
+import 'package:transvision_app1/Model/listOfSumData.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 
 class BillSummary extends StatefulWidget {
@@ -16,25 +16,26 @@ class BillSummary extends StatefulWidget {
 class _BillSummaryState extends State<BillSummary> {
   TextEditingController billSummaryToDate = TextEditingController();
   TextEditingController billSummaryFromDate = TextEditingController();
-  List<ListOfSum> myList = [];
-  List<BillSummaryWithDate> summaryWithDate = [];
+  List<ListOfSumData> myList = [];
+  List<BSummarywithdate> summaryWithDate = [];
   final _billFromKey = GlobalKey<FormState>();
 
-  Future<List<ListOfSum>> getApi() async {
+  Future<List<ListOfSumData>> getApi() async {
     final response = await http.get(Uri.parse(
         "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/BillSummaryOnLoad?partycode=P1210"));
     var data = jsonDecode(response.body.toString());
+    print(response.body);
     if (response.statusCode == 200) {
       myList = [];
       for (Map i in data) {
-        myList.add(ListOfSum.fromJson(i));
+        myList.add(ListOfSumData.fromJson(i));
       }
       return myList;
     }
     return myList;
   }
 
-  Future<List<BillSummaryWithDate>> getBillSumDateAPi() async {
+  Future<List<BSummarywithdate>> getBillSumDateAPi() async {
     try {
       final response = await http.get(Uri.parse(
           "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/BillSummarywithdate?partycode=P1210&fromdate=" +
@@ -45,7 +46,7 @@ class _BillSummaryState extends State<BillSummary> {
       if (response.statusCode == 200) {
         summaryWithDate = [];
         for (Map i in data) {
-          summaryWithDate.add(BillSummaryWithDate.fromJson(i));
+          summaryWithDate.add(BSummarywithdate.fromJson(i));
         }
       }
     } catch (e) {
@@ -252,10 +253,11 @@ class _BillSummaryState extends State<BillSummary> {
                                   return Padding(
                                     padding: const EdgeInsets.all(5.0),
                                     child: Card(
-                                      shadowColor: Colors.black,
-                                      borderOnForeground: true,
-                                      color: Colors.white,
-                                      elevation: 8.0,
+                                      shadowColor: Colors.orange,
+                                      elevation: 5,
+                                      shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(15))),
                                       child: Padding(
                                         padding: const EdgeInsets.only(
                                             top: 15.0, left: 10, bottom: 5.0),
@@ -408,10 +410,11 @@ class _BillSummaryState extends State<BillSummary> {
                       return Padding(
                         padding: const EdgeInsets.all(5.0),
                         child: Card(
-                          shadowColor: Colors.black,
-                          borderOnForeground: true,
-                          color: Colors.white,
-                          elevation: 8.0,
+                          shadowColor: Colors.orange,
+                          elevation: 5,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15))),
                           child: Padding(
                             padding: const EdgeInsets.only(
                                 top: 15.0, left: 10, bottom: 5.0),

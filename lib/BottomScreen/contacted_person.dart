@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:transvision_app1/Model/users_details.dart';
+import 'package:transvision_app1/Model/userDetails.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
+import 'package:transvision_app1/SharedPrefernce/sharedpreferences.dart';
 
 class ContactedPerson extends StatefulWidget {
   const ContactedPerson({Key? key}) : super(key: key);
@@ -14,10 +15,11 @@ class ContactedPerson extends StatefulWidget {
 class _ContactedPersonState extends State<ContactedPerson> {
   @override
   Widget build(BuildContext context) {
-
     Future<UserDetails> getContactedPersonApi() async {
+      Shared shared = Shared();
+      var username = shared.retrieveUserName();
       final response = await http.get(Uri.parse(
-          "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/consigneedata?username=c1001"));
+          "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/consigneedata?username=$username"));
       var data = jsonDecode(response.body.toString());
       if (response.statusCode == 200) {
         return UserDetails.fromJson(data);

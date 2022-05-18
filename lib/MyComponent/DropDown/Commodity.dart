@@ -4,11 +4,13 @@ import 'package:transvision_app1/MyComponent/constant/sizedBox.dart';
 import 'package:transvision_app1/MyComponent/constant/textField.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 
-
 class CommodityDropDownButton extends StatefulWidget {
-  // final List<dynamic> listItems;
+  final List<dynamic> listItems;
+  final Function(dynamic value) notifyParent;
   const CommodityDropDownButton({
     Key? key,
+    required this.listItems,
+    required this.notifyParent,
   }) : super(key: key);
 
   @override
@@ -17,8 +19,8 @@ class CommodityDropDownButton extends StatefulWidget {
 }
 
 class _CommodityDropDownButtonState extends State<CommodityDropDownButton> {
-  final items = ['General', 'Hazardous', "ODC"];
   dynamic commodityValue;
+  bool isVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,8 @@ class _CommodityDropDownButtonState extends State<CommodityDropDownButton> {
             isExpanded: true,
             value: commodityValue,
             style: const TextStyle(color: Colors.black),
-            items: items.map<DropdownMenuItem<dynamic>>((dynamic item) {
+            items:
+                widget.listItems.map<DropdownMenuItem<dynamic>>((dynamic item) {
               return DropdownMenuItem<dynamic>(
                 value: item,
                 child: Text("$item"),
@@ -45,43 +48,48 @@ class _CommodityDropDownButtonState extends State<CommodityDropDownButton> {
               color: Colors.black,
             ),
             onChanged: (value) {
-              commodityValue = value;
+              // commodityValue = value;
+              // if (value == "Hazardous") {
+              //   isVisible = true;
+              // }
+              widget.notifyParent(value);
             },
           ),
         ));
   }
 
-  void visibilityShow() {
-    Visibility(
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                BoldText(text: "Class", size: 18.0, color: AppColor.black),
-                const CustomTextField(hint: "Enter Quantity"),
-                const SizedBox(
-                  height: 4.0,
-                ),
-              ],
-            ),
-          ),
-          const CustomWidth(),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                BoldText(text: "UN No", size: 18.0, color: AppColor.black),
-                const CustomTextField(hint: "Enter UN No"),
-                const SizedBox(
-                  height: 4.0,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+//   void visibilityShow() {
+//     Visibility(
+//       child: Row(
+//         children: [
+//           Expanded(
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 BoldText(text: "Class", size: 18.0, color: AppColor.black),
+//                 const CustomTextField(hint: "Enter Quantity"),
+//                 const SizedBox(
+//                   height: 4.0,
+//                 ),
+//               ],
+//             ),
+//           ),
+//           const CustomWidth(),
+//           Expanded(
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 BoldText(text: "UN No", size: 18.0, color: AppColor.black),
+//                 const CustomTextField(hint: "Enter UN No"),
+//                 const SizedBox(
+//                   height: 4.0,
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 }

@@ -13,22 +13,23 @@
 /// sailing : "31-12-2999 00:00:00"
 /// vessel : "NORTHERN DEDICATION 2217E"
 
-class BillOfLadingnew {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             class BillOfLadingnew {
   BillOfLadingnew({
-      String? br, 
-      String? etd, 
-      String? fpod, 
-      String? blact, 
-      String? blno, 
-      String? bookingno, 
-      String? fpodbr, 
-      String? issuedate, 
-      String? partyname, 
-      String? place, 
-      String? podis, 
-      String? pol, 
-      String? sailing, 
-      String? vessel,}){
+    String? br,
+    String? etd,
+    String? fpod,
+    String? blact,
+    String? blno,
+    String? bookingno,
+    String? fpodbr,
+    String? issuedate,
+    String? partyname,
+    String? place,
+    String? podis,
+    String? pol,
+    String? sailing,
+    String? vessel,
+  }) {
     _br = br;
     _etd = etd;
     _fpod = fpod;
@@ -43,7 +44,7 @@ class BillOfLadingnew {
     _pol = pol;
     _sailing = sailing;
     _vessel = vessel;
-}
+  }
 
   BillOfLadingnew.fromJson(dynamic json) {
     _br = json['Br'];
@@ -75,35 +76,38 @@ class BillOfLadingnew {
   String? _pol;
   String? _sailing;
   String? _vessel;
-BillOfLadingnew copyWith({  String? br,
-  String? etd,
-  String? fpod,
-  String? blact,
-  String? blno,
-  String? bookingno,
-  String? fpodbr,
-  String? issuedate,
-  String? partyname,
-  String? place,
-  String? podis,
-  String? pol,
-  String? sailing,
-  String? vessel,
-}) => BillOfLadingnew(  br: br ?? _br,
-  etd: etd ?? _etd,
-  fpod: fpod ?? _fpod,
-  blact: blact ?? _blact,
-  blno: blno ?? _blno,
-  bookingno: bookingno ?? _bookingno,
-  fpodbr: fpodbr ?? _fpodbr,
-  issuedate: issuedate ?? _issuedate,
-  partyname: partyname ?? _partyname,
-  place: place ?? _place,
-  podis: podis ?? _podis,
-  pol: pol ?? _pol,
-  sailing: sailing ?? _sailing,
-  vessel: vessel ?? _vessel,
-);
+  BillOfLadingnew copyWith({
+    String? br,
+    String? etd,
+    String? fpod,
+    String? blact,
+    String? blno,
+    String? bookingno,
+    String? fpodbr,
+    String? issuedate,
+    String? partyname,
+    String? place,
+    String? podis,
+    String? pol,
+    String? sailing,
+    String? vessel,
+  }) =>
+      BillOfLadingnew(
+        br: br ?? _br,
+        etd: etd ?? _etd,
+        fpod: fpod ?? _fpod,
+        blact: blact ?? _blact,
+        blno: blno ?? _blno,
+        bookingno: bookingno ?? _bookingno,
+        fpodbr: fpodbr ?? _fpodbr,
+        issuedate: issuedate ?? _issuedate,
+        partyname: partyname ?? _partyname,
+        place: place ?? _place,
+        podis: podis ?? _podis,
+        pol: pol ?? _pol,
+        sailing: sailing ?? _sailing,
+        vessel: vessel ?? _vessel,
+      );
   String? get br => _br;
   String? get etd => _etd;
   String? get fpod => _fpod;
@@ -137,5 +141,4 @@ BillOfLadingnew copyWith({  String? br,
     map['vessel'] = _vessel;
     return map;
   }
-
 }

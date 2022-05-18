@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:transvision_app1/MyComponent/constant/colors.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 import 'package:http/http.dart' as http;
+import 'package:transvision_app1/SharedPrefernce/sharedpreferences.dart';
 import 'package:transvision_app1/utils/routes.dart';
 
 class LoginPage extends StatefulWidget {
@@ -21,6 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   bool isPasswordVisible = false;
   late SharedPreferences prefs;
   String userCred = "";
+  Shared shared = Shared();
 
   @override
   void initState() {
@@ -36,9 +38,9 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      child: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
         child: Form(
           key: _formKey,
           child: Column(
@@ -149,49 +151,25 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  save() async {
-    prefs = await SharedPreferences.getInstance();
-    prefs.setString('user', username.text);
-  }
-
-  retrieve() async {
-    prefs = await SharedPreferences.getInstance();
-    setState(() {
-      userCred = prefs.getString('user')!;
-    });
-  }
-
-// void checkUserLoggedIn() async {
-//   prefs = await SharedPreferences.getInstance();
-//   String? val = prefs.getString("user");
-//   if (val != null) {
-//     Navigator.of(context).pushAndRemoveUntil(
-//         MaterialPageRoute(builder: (context) => const MyNavigation()),
-//         (route) => false);
-//   } else {
-//     Navigator.of(context)
-//         .push(MaterialPageRoute(builder: (context) => const LoginPage()));
-//   }
-// }
-
   Future<dynamic> callLoginAPI(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       var uri =
-          "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/login?username=" +
+          "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/login?username=" +
               username.text +
               "&password=" +
               password;
       final response = await http.get(Uri.parse(uri));
       if (response.statusCode == 200) {
+        shared.save(username.text);
         if (jsonDecode(response.body)["loginResult"] == "Consignee Login") {
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: NormalText(
                 text: "Consignee login Successfully",
-                size: 12.0,
+                size: 15.0,
                 color: Colors.black),
             backgroundColor: Colors.white,
           ));
-          save();
+
           setState(() {
             Navigator.pushNamed(context, MyRoutes.myNavigationRoute);
           });
@@ -200,17 +178,18 @@ class _LoginPageState extends State<LoginPage> {
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
               content: NormalText(
                   text: "Shipper login Successfully",
-                  size: 12.0,
-                  color: Colors.black)));
-          save();
+                  size: 15.0,
+                  color: Colors.white)));
+          shared.save(username.text);
           setState(() {
             Navigator.pushNamed(context, MyRoutes.myNavigationRoute);
           });
         } else {
-          print("error");
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
               content: NormalText(
-                  text: "Login Failed", size: 12.0, color: Colors.black)));
+                  text: "Username & Password is Incorrect",
+                  size: 15.0,
+                  color: Colors.white)));
         }
       }
     }

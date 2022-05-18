@@ -29,7 +29,8 @@ class _BlHomeScreenState extends State<BlHomeScreen> {
   List<BillOfLading> billofladingOnLoad = [];
   List<BlOfLadingOnRefresh> billofladingOnRefresh = [];
 
-  get value => updatedBillOfLandingValue;
+  // ignore: recursive_getters
+  get value => value;
 
   Future<List<BillOfLading>> getBillOfLandingOnLoadApi() async {
     final response = await http.get(Uri.parse(
@@ -53,7 +54,7 @@ class _BlHomeScreenState extends State<BlHomeScreen> {
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       billofladingOnRefresh = [];
-      for (Map i in data) {
+      for (Map i in data) { 
         billofladingOnRefresh.add(BlOfLadingOnRefresh.fromJson(i));
       }
       return billofladingOnRefresh;
@@ -90,7 +91,11 @@ class _BlHomeScreenState extends State<BlHomeScreen> {
                 ),
                 const SizedBox(height: 5.0),
                 BillOfLandingDropDown(
-                    listItems: item, notifyParent: updatedBillOfLandingValue),
+                  listItems: item,
+                  notifyParent: (value) {
+                    updatedBillOfLandingValue = value;
+                  },
+                ),
               ],
             ),
             const SizedBox(
@@ -149,7 +154,6 @@ class _BlHomeScreenState extends State<BlHomeScreen> {
           height: 10,
         ),
         Container(
-            color: Colors.amber,
             height: 500,
             child: FutureBuilder(
                 future: getBillOfLandingOnLoadApi(),
@@ -162,6 +166,11 @@ class _BlHomeScreenState extends State<BlHomeScreen> {
                           String issuedate = snapshot.data[index].issuedate;
                           String etddate = snapshot.data[index].etd;
                           return Card(
+                            shadowColor: Colors.orange,
+                            elevation: 5,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15))),
                             child: Padding(
                               padding: const EdgeInsets.only(
                                   top: 15.0, left: 10, bottom: 5.0),
@@ -285,7 +294,6 @@ class _BlHomeScreenState extends State<BlHomeScreen> {
   }
 
   builsheet() => Container(
-      color: Colors.grey,
       height: 500,
       child: FutureBuilder(
           future: getBillOfLandingRefresh(value, blTextController),
@@ -298,6 +306,10 @@ class _BlHomeScreenState extends State<BlHomeScreen> {
                     String issueDate = snapshot.data[index].issuedate;
                     String etdDate = snapshot.data[index].etd;
                     return Card(
+                      shadowColor: Colors.orange,
+                      elevation: 5,
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Padding(
                         padding: const EdgeInsets.only(
                             top: 15.0, left: 10, bottom: 5.0),

@@ -31,26 +31,31 @@ class _BookingDetails extends State<BookingDetails> {
   bool isVisible = false;
   final item = [20, 40];
   final items = ['General', 'Hazardous', "ODC"];
-  dynamic idcFromPortValue = "";
+  dynamic idcFromPortValue;
   dynamic loadingPortValue = "";
   dynamic sizedUpdate = "";
 
   // var d= "http://portal.transvisionshipping.com:"
   final icdForm = TextEditingController();
-  List<LoadingPort> loadingPort = [];
-  List<IcdFrom> idcFromPort = [];
-  List<IcdTo> icdToPort = [];
+  List<Loadingport> loadingPort = [];
+  List<Icdfrom> idcFromPort = [];
+  List<Icdto> icdToPort = [];
   List<DestinationPort> destinationPort = [];
   List<SizedModel> sizeModel = [];
+  dynamic newIcdTovalue;
 
-  Future<List<LoadingPort>> getLoadingPortApi() async {
-    final response = await http.get(
-        Uri.parse("http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/pol/"));
+  var url =
+      "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/pol/";
+  var uri = "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/pol/";
+
+  Future<List<Loadingport>> getLoadingPortApi() async {
+    final response = await http.get(Uri.parse(
+        "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/pol/"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       loadingPort = [];
       for (Map i in data) {
-        loadingPort.add(LoadingPort.fromJson(i));
+        loadingPort.add(Loadingport.fromJson(i));
       }
       return loadingPort;
     } else {
@@ -60,7 +65,7 @@ class _BookingDetails extends State<BookingDetails> {
 
   Future<List<DestinationPort>> getDestinationPortApi(dynamic value) async {
     final response = await http.get(Uri.parse(
-        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/pod?port=$value"));
+        "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/pod?port=$value"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       destinationPort = [];
@@ -80,14 +85,14 @@ class _BookingDetails extends State<BookingDetails> {
     getDestinationPortApi(value);
   }
 
-  Future<List<IcdFrom>> getIcdFromPortApi() async {
+  Future<List<Icdfrom>> getIcdFromPortApi() async {
     final response = await http.get(Uri.parse(
-        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/icdfrom/"));
+        "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/icdfrom/"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       idcFromPort = [];
       for (Map i in data) {
-        idcFromPort.add(IcdFrom.fromJson(i));
+        idcFromPort.add(Icdfrom.fromJson(i));
       }
       return idcFromPort;
     } else {
@@ -95,14 +100,16 @@ class _BookingDetails extends State<BookingDetails> {
     }
   }
 
-  Future<List<IcdTo>> getIcdToApi(dynamic value) async {
+  Future<List<Icdto>> getIcdToApi(dynamic value) async {
     final response = await http.get(Uri.parse(
-        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/icdto?icd=$value"));
+        "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/icdto?icd=$value"));
     var data = newMethod(response);
     if (response.statusCode == 200) {
-      icdToPort = [];
+      setState(() {
+        icdToPort = [];
+      });
       for (Map i in data) {
-        icdToPort.add(IcdTo.fromJson(i));
+        icdToPort.add(Icdto.fromJson(i));
       }
       return icdToPort;
     } else {
@@ -121,7 +128,7 @@ class _BookingDetails extends State<BookingDetails> {
 
   Future<List<SizedModel>> getTypeApi(dynamic value) async {
     final response = await http.get(Uri.parse(
-        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/contType?contSize=$value"));
+        "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/contType?contSize=$value"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       sizeModel = [];
@@ -182,6 +189,7 @@ class _BookingDetails extends State<BookingDetails> {
                           return IcdFromDropDownButton(
                             listItems: idcFromPort,
                             notifyParent: icdFromUpdated,
+                            icdValue: idcFromPortValue,
                           );
                         } else {
                           return const Text("Loading Item");
@@ -259,7 +267,14 @@ class _BookingDetails extends State<BookingDetails> {
                                 (BuildContext context, AsyncSnapshot snapshot) {
                               if (snapshot.hasData) {
                                 return IcdToDropDownButton(
-                                    listItems: icdToPort);
+                                  listItems: icdToPort,
+                                  notifyparent: (value) {
+                                    setState(() {
+                                      newIcdTovalue = value;
+                                    });
+                                  },
+                                  icdValue: newIcdTovalue,
+                                );
                               } else {
                                 return const Text("Loading Item");
                               }
@@ -342,7 +357,20 @@ class _BookingDetails extends State<BookingDetails> {
                                       text: "Commodity",
                                       size: 18.0,
                                       color: AppColor.black),
-                                  const CommodityDropDownButton(),
+                                  CommodityDropDownButton(
+                                    listItems: items,
+                                    notifyParent: (value) {
+                                      if (value == "Hazardous") {
+                                        setState(() {
+                                          isVisible = true;
+                                        });
+                                      } else {
+                                        setState(() {
+                                          isVisible = false;
+                                        });
+                                      }
+                                    },
+                                  ),
                                   const SizedBox(
                                     height: 4.0,
                                   ),

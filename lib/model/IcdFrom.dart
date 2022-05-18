@@ -1,29 +1,36 @@
 /// icd : "INAMG"
-/// icdName : "AMINGAON"
+/// icdname : "AMINGAON"
 
-class IcdFrom {
-  IcdFrom({
+class Icdfrom {
+  Icdfrom({
     String? icd,
-    String? icdName,
+    String? icdname,
   }) {
     _icd = icd;
-    _icdName = icdName;
+    _icdname = icdname;
   }
 
-  IcdFrom.fromJson(Map<dynamic, dynamic> json) {
+  Icdfrom.fromJson(dynamic json) {
     _icd = json['icd'];
-    _icdName = json['icdName'];
+    _icdname = json['icdname'];
   }
   String? _icd;
-  String? _icdName;
-
+  String? _icdname;
+  Icdfrom copyWith({
+    String? icd,
+    String? icdname,
+  }) =>
+      Icdfrom(
+        icd: icd ?? _icd,
+        icdname: icdname ?? _icdname,
+      );
   String? get icd => _icd;
-  String? get icdName => _icdName;
+  String? get icdname => _icdname;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['icd'] = _icd;
-    map['icdName'] = _icdName;
+    map['icdname'] = _icdname;
     return map;
   }
 }

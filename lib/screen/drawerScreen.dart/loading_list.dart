@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:transvision_app1/Model/loadingData.dart';
+
 import 'package:transvision_app1/Model/vessel.dart';
 import 'package:transvision_app1/Model/voyage.dart';
 import 'package:transvision_app1/MyComponent/DropDown/vessel.dart';
@@ -20,7 +21,7 @@ class _LoadingListState extends State<LoadingList> {
   dynamic voyageValue = "";
   List<Vessel> vesselList = [];
   List<Voyage> voyageList = [];
-  List<LoadingData> loadingDataList = [];
+  List<MyLoadingList> loadingDataList = [];
 
   Future<List<Vessel>> getVesselApi() async {
     final response = await http.get(Uri.parse(
@@ -58,14 +59,14 @@ class _LoadingListState extends State<LoadingList> {
     getVoyageApi(value);
   }
 
-  Future<List<LoadingData>> getLoadingDataApi() async {
+  Future<List<MyLoadingList>> getLoadingDataApi() async {
     final response = await http.get(Uri.parse(
         "http://192.168.1.143:9999/TSVAPI/sqlinterface.svc/LoadingList?vesselname=DELTA&voyagename=D048&partycode=P1210"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       loadingDataList = [];
       for (Map i in data) {
-        loadingDataList.add(LoadingData.fromJson(i));
+        loadingDataList.add(MyLoadingList.fromJson(i));
       }
       return loadingDataList;
     } else {
@@ -204,6 +205,10 @@ class _LoadingListState extends State<LoadingList> {
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.hasData) {
               return Card(
+                shadowColor: Colors.orange,
+                elevation: 5,
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15))),
                 child: ListView.builder(
                     itemCount: loadingDataList.length,
                     itemBuilder: (context, index) {
@@ -225,7 +230,6 @@ class _LoadingListState extends State<LoadingList> {
                           icon: const Icon(Icons.edit),
                           onPressed: () {},
                         ),
-                        backgroundColor: Colors.orange[50],
                         controlAffinity: ListTileControlAffinity.leading,
                         trailing: Text(snapshot.data[index].container,
                             style: const TextStyle(fontSize: 15.0)),

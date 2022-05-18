@@ -237,13 +237,19 @@ class _DoSlipState extends State<DoSlip> {
                                       scrollDirection: Axis.vertical,
                                       itemCount: myDoList.length,
                                       itemBuilder: (context, index) {
-                                        String bDate=snapshot.data[index].bookingdate;
-                                        String dValidity=snapshot.data[index].dovalidity;
+                                        String bDate =
+                                            snapshot.data[index].bookingdate;
+                                        String dValidity =
+                                            snapshot.data[index].dovalidity;
                                         return Card(
-                                          elevation: 5.0,
-                                          color: Colors.white,
+                                          shadowColor: Colors.orange,
+                                          elevation: 5,
+                                          shape: const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(15))),
                                           child: Padding(
-                                            padding: const EdgeInsets.only(top: 12,left: 10,bottom: 5),
+                                            padding: const EdgeInsets.only(
+                                                top: 12, left: 10, bottom: 5),
                                             child: Column(
                                               children: [
                                                 Row(
@@ -253,10 +259,14 @@ class _DoSlipState extends State<DoSlip> {
                                                             'DO No : ${snapshot.data[index].doNo}',
                                                         size: 15.0,
                                                         color: Colors.black),
-                                                    const  SizedBox(width: 5,),
+                                                    const SizedBox(
+                                                      width: 5,
+                                                    ),
                                                     const Icon(Icons
                                                         .arrow_right_alt_outlined),
-                                                   const  SizedBox(width: 5,),
+                                                    const SizedBox(
+                                                      width: 5,
+                                                    ),
                                                     NormalText(
                                                         text:
                                                             'Bar Code : ${snapshot.data[index].brcode}',
@@ -271,13 +281,17 @@ class _DoSlipState extends State<DoSlip> {
                                                             'Booking No : ${snapshot.data[index].bookingno}',
                                                         size: 15.0,
                                                         color: Colors.black),
-                                                    const  SizedBox(width: 5,),
+                                                    const SizedBox(
+                                                      width: 5,
+                                                    ),
                                                     const Icon(Icons
                                                         .arrow_right_alt_outlined),
-                                                   const  SizedBox(width: 5,),
+                                                    const SizedBox(
+                                                      width: 5,
+                                                    ),
                                                     NormalText(
                                                         text:
-                                                            'Booking Date : ${bDate.substring(0,10)}',
+                                                            'Booking Date : ${bDate.substring(0, 10)}',
                                                         size: 15.0,
                                                         color: Colors.black),
                                                   ],
@@ -289,13 +303,14 @@ class _DoSlipState extends State<DoSlip> {
                                                             'Port Of Loading :',
                                                         size: 15.0,
                                                         color: Colors.black),
-                                                    const  SizedBox(width: 5,),
+                                                    const SizedBox(
+                                                      width: 5,
+                                                    ),
                                                     const Icon(Icons
                                                         .arrow_right_alt_outlined),
-
                                                     NormalText(
-                                                        text:
-                                                        snapshot.data[index].pod,
+                                                        text: snapshot
+                                                            .data[index].pod,
                                                         size: 15.0,
                                                         color: Colors.black),
                                                   ],
@@ -304,15 +319,17 @@ class _DoSlipState extends State<DoSlip> {
                                                   children: [
                                                     const NormalText(
                                                         text:
-                                                        'Port Of Destination:',
+                                                            'Port Of Destination:',
                                                         size: 15.0,
                                                         color: Colors.black),
-                                                    const  SizedBox(width: 5,),
+                                                    const SizedBox(
+                                                      width: 5,
+                                                    ),
                                                     const Icon(Icons
                                                         .arrow_right_alt_outlined),
                                                     NormalText(
-                                                        text:
-                                                        snapshot.data[index].pol,
+                                                        text: snapshot
+                                                            .data[index].pol,
                                                         size: 15.0,
                                                         color: Colors.black),
                                                   ],
@@ -324,13 +341,17 @@ class _DoSlipState extends State<DoSlip> {
                                                             'Ref No: ${snapshot.data[index].refno}',
                                                         size: 15.0,
                                                         color: Colors.black),
-                                                    const  SizedBox(width: 5,),
+                                                    const SizedBox(
+                                                      width: 5,
+                                                    ),
                                                     const Icon(Icons
                                                         .arrow_right_alt_outlined),
-                                                    const  SizedBox(width: 5,),
+                                                    const SizedBox(
+                                                      width: 5,
+                                                    ),
                                                     NormalText(
                                                         text:
-                                                            'Do Validity : ${dValidity.substring(0,10)}',
+                                                            'Do Validity : ${dValidity.substring(0, 10)}',
                                                         size: 15.0,
                                                         color: Colors.black),
                                                   ],
