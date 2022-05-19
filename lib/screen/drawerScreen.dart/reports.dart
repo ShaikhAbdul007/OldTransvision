@@ -1,9 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:transvision_app1/Model/reportOnLoad.dart';
-import 'package:transvision_app1/Model/reportOnRefresh.dart';
+import 'package:transvision_app1/Model/report_model/reportOnLoad.dart';
+import 'package:transvision_app1/Model/report_model/reportOnRefresh.dart';
 import 'package:transvision_app1/MyComponent/constant/colors.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 import 'package:http/http.dart' as http;

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:transvision_app1/Model/userDetails.dart';
+import 'package:transvision_app1/Model/user_profile_model/userDetails.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 import 'package:transvision_app1/SharedPrefernce/sharedpreferences.dart';
 

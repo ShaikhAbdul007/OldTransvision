@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
-import 'package:transvision_app1/Model/bSummarywithdate.dart';
-import 'package:transvision_app1/Model/listOfSumData.dart';
+import 'package:transvision_app1/Model/bill_summary_model/bSummarywithdate.dart';
+import 'package:transvision_app1/Model/bill_summary_model/listOfSumData.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 
 class BillSummary extends StatefulWidget {
@@ -24,7 +24,6 @@ class _BillSummaryState extends State<BillSummary> {
     final response = await http.get(Uri.parse(
         "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/BillSummaryOnLoad?partycode=P1210"));
     var data = jsonDecode(response.body.toString());
-    print(response.body);
     if (response.statusCode == 200) {
       myList = [];
       for (Map i in data) {

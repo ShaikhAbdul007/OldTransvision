@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:transvision_app1/Model/billOfLading.dart';
-import 'package:transvision_app1/Model/blOfLadingOnReferesh.dart';
+import 'package:transvision_app1/Model/bill_of_landing_model/billOfLadingnew.dart';
+import 'package:transvision_app1/Model/bill_of_landing_model/blOfLadingOnReferesh.dart';
 import 'package:transvision_app1/MyComponent/DropDown/billOfLading.dart';
 import 'package:transvision_app1/MyComponent/constant/colors.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
@@ -26,20 +26,20 @@ class _BlHomeScreenState extends State<BlHomeScreen> {
   ];
   TextEditingController blTextController = TextEditingController();
 
-  List<BillOfLading> billofladingOnLoad = [];
+  List<BillOfLadingnew> billofladingOnLoad = [];
   List<BlOfLadingOnRefresh> billofladingOnRefresh = [];
 
   // ignore: recursive_getters
   get value => value;
 
-  Future<List<BillOfLading>> getBillOfLandingOnLoadApi() async {
+  Future<List<BillOfLadingnew>> getBillOfLandingOnLoadApi() async {
     final response = await http.get(Uri.parse(
         "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/blformonlload?partycode=P1210"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       billofladingOnLoad = [];
       for (Map i in data) {
-        billofladingOnLoad.add(BillOfLading.fromJson(i));
+        billofladingOnLoad.add(BillOfLadingnew.fromJson(i));
       }
       return billofladingOnLoad;
     }
@@ -54,7 +54,7 @@ class _BlHomeScreenState extends State<BlHomeScreen> {
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       billofladingOnRefresh = [];
-      for (Map i in data) { 
+      for (Map i in data) {
         billofladingOnRefresh.add(BlOfLadingOnRefresh.fromJson(i));
       }
       return billofladingOnRefresh;

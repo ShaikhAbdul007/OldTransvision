@@ -26,8 +26,6 @@ class _BillOfLandingDropDownState extends State<BillOfLandingDropDown> {
           border: Border.all(width: 2.0, style: BorderStyle.solid)),
       child: DropdownButtonHideUnderline(
         child: DropdownButtonFormField<dynamic>(
-          // autovalidateMode:AutovalidateMode.values[
-          // ]
           isExpanded: true,
           value: _billOfLandingSelectedValue,
           style: const TextStyle(color: Colors.black),

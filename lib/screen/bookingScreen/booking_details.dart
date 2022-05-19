@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:transvision_app1/Model/icdTo.dart';
-import 'package:transvision_app1/Model/destinationPort.dart';
-import 'package:transvision_app1/Model/icdFrom.dart';
-import 'package:transvision_app1/Model/loadingPort.dart';
-import 'package:transvision_app1/Model/sizedModel.dart';
+import 'package:transvision_app1/Model/icd_model/icdFrom.dart';
+import 'package:transvision_app1/Model/icd_model/icdTo.dart';
+import 'package:transvision_app1/Model/loading_model/destinationPort.dart';
+import 'package:transvision_app1/Model/loading_model/loadingPort.dart';
+import 'package:transvision_app1/Model/size_model/sizedModel.dart';
 import 'package:transvision_app1/MyComponent/DropDown/commodity.dart';
 import 'package:transvision_app1/MyComponent/DropDown/loading.dart';
 import 'package:transvision_app1/MyComponent/constant/colors.dart';
@@ -17,7 +17,6 @@ import 'package:transvision_app1/MyComponent/constant/textField.dart';
 import 'package:transvision_app1/MyComponent/DropDown/type.dart';
 import 'package:transvision_app1/utils/routes.dart';
 import 'package:http/http.dart' as http;
-
 import '../../MyComponent/text.dart';
 
 class BookingDetails extends StatefulWidget {
