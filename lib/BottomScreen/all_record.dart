@@ -4,7 +4,6 @@ import 'package:transvision_app1/Screen/bookingScreen/booking_details.dart';
 import 'package:transvision_app1/utils/routes.dart';
 import 'package:transvision_app1/widgets/drawer.dart';
 
-
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 

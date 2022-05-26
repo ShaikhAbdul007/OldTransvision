@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
 
-class IcdFromDropDownButton extends StatefulWidget {
+class TypeDropDownButton extends StatefulWidget {
   final List<dynamic> listItems;
-  final Function(dynamic value) notifyParent;
-  final dynamic icdValue;
-  const IcdFromDropDownButton(
-      {Key? key,
-      required this.listItems,
-      required this.notifyParent,
-      required this.icdValue})
+  const TypeDropDownButton({Key? key, required this.listItems})
       : super(key: key);
 
   @override
-  State<IcdFromDropDownButton> createState() => _IcdFromDropDownButtonState();
+  State<TypeDropDownButton> createState() => _TypeDropDownButtonState();
 }
 
-class _IcdFromDropDownButtonState extends State<IcdFromDropDownButton> {
+class _TypeDropDownButtonState extends State<TypeDropDownButton> {
   @override
   Widget build(BuildContext context) {
+    dynamic selectedValue;
+
     return Container(
       padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.all(10.0),
@@ -25,15 +21,15 @@ class _IcdFromDropDownButtonState extends State<IcdFromDropDownButton> {
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           border: Border.all(width: 2.0, style: BorderStyle.solid)),
       child: DropdownButtonHideUnderline(
-        child: DropdownButtonFormField<dynamic>(
+        child: DropdownButton<dynamic>(
           isExpanded: true,
-          value: widget.icdValue,
+          value: selectedValue,
           style: const TextStyle(color: Colors.black),
           items:
               widget.listItems.map<DropdownMenuItem<dynamic>>((dynamic item) {
             return DropdownMenuItem<dynamic>(
-              value: item.icd,
-              child: Text(item.icdname),
+              value: item.code,
+              child: Text(item.containerType),
             );
           }).toList(),
           hint: const Text(
@@ -41,8 +37,10 @@ class _IcdFromDropDownButtonState extends State<IcdFromDropDownButton> {
             style: TextStyle(
                 color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
           ),
-          onChanged: (_icdFromSelectedValue) {
-            widget.notifyParent(_icdFromSelectedValue);
+          onChanged: (value) {
+            setState(() {
+              selectedValue = value;
+            });
           },
         ),
       ),

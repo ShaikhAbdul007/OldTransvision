@@ -2,19 +2,19 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:transvision_app1/Model/icd_model/icdFrom.dart';
 import 'package:transvision_app1/Model/icd_model/icdTo.dart';
-import 'package:transvision_app1/Model/loading_model/destinationPort.dart';
-import 'package:transvision_app1/Model/loading_model/loadingPort.dart';
+import 'package:transvision_app1/Model/port_model/destinationPort.dart';
+import 'package:transvision_app1/Model/port_model/loadingPort.dart';
 import 'package:transvision_app1/Model/size_model/sizedModel.dart';
-import 'package:transvision_app1/MyComponent/DropDown/commodity.dart';
-import 'package:transvision_app1/MyComponent/DropDown/loading.dart';
+import 'package:transvision_app1/MyComponent/DropDown/other_booking_page/commodity.dart';
+import 'package:transvision_app1/MyComponent/DropDown/other_booking_page/type.dart';
+import 'package:transvision_app1/MyComponent/DropDown/ports/loading.dart';
 import 'package:transvision_app1/MyComponent/constant/colors.dart';
-import 'package:transvision_app1/MyComponent/DropDown/destinationOfPort.dart';
-import 'package:transvision_app1/MyComponent/DropDown/icdFrom.dart';
-import 'package:transvision_app1/MyComponent/DropDown/icd_To.dart';
-import 'package:transvision_app1/MyComponent/DropDown/size.dart';
+import 'package:transvision_app1/MyComponent/DropDown/ports/destinationOfPort.dart';
+import 'package:transvision_app1/MyComponent/DropDown/icd/icdFrom.dart';
+import 'package:transvision_app1/MyComponent/DropDown/icd/icd_To.dart';
+import 'package:transvision_app1/MyComponent/DropDown/other_booking_page/size.dart';
 import 'package:transvision_app1/MyComponent/constant/sizedBox.dart';
 import 'package:transvision_app1/MyComponent/constant/textField.dart';
-import 'package:transvision_app1/MyComponent/DropDown/type.dart';
 import 'package:transvision_app1/utils/routes.dart';
 import 'package:http/http.dart' as http;
 import '../../MyComponent/text.dart';
@@ -41,15 +41,15 @@ class _BookingDetails extends State<BookingDetails> {
   List<Icdto> icdToPort = [];
   List<DestinationPort> destinationPort = [];
   List<SizedModel> sizeModel = [];
-  dynamic newIcdTovalue;
+  dynamic newIcdToValue;
 
   var url =
       "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/pol/";
   var uri = "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/pol/";
 
   Future<List<Loadingport>> getLoadingPortApi() async {
-    final response = await http.get(Uri.parse(
-        "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/pol/"));
+    final response = await http.get(
+        Uri.parse("http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/pol/"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       loadingPort = [];
@@ -64,7 +64,7 @@ class _BookingDetails extends State<BookingDetails> {
 
   Future<List<DestinationPort>> getDestinationPortApi(dynamic value) async {
     final response = await http.get(Uri.parse(
-        "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/pod?port=$value"));
+        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/pod?port=$value"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       destinationPort = [];
@@ -86,7 +86,7 @@ class _BookingDetails extends State<BookingDetails> {
 
   Future<List<Icdfrom>> getIcdFromPortApi() async {
     final response = await http.get(Uri.parse(
-        "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/icdfrom/"));
+        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/icdfrom/"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       idcFromPort = [];
@@ -99,14 +99,23 @@ class _BookingDetails extends State<BookingDetails> {
     }
   }
 
+  icdFromUpdated(dynamic value) {
+    setState(() {
+      idcFromPortValue = value;
+    });
+    idcFromPortValue = value[0];
+    getIcdToApi(value);
+  }
+
   Future<List<Icdto>> getIcdToApi(dynamic value) async {
+    icdToPort = [];
+
     final response = await http.get(Uri.parse(
-        "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/icdto?icd=$value"));
-    var data = newMethod(response);
+        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/icdto?icd=$value"));
+    var data = [];
+    data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
-      setState(() {
-        icdToPort = [];
-      });
+      icdToPort = [];
       for (Map i in data) {
         icdToPort.add(Icdto.fromJson(i));
       }
@@ -116,18 +125,9 @@ class _BookingDetails extends State<BookingDetails> {
     }
   }
 
-  newMethod(http.Response response) => jsonDecode(response.body.toString());
-
-  icdFromUpdated(dynamic value) {
-    setState(() {
-      idcFromPortValue = value;
-    });
-    getIcdToApi(value);
-  }
-
   Future<List<SizedModel>> getTypeApi(dynamic value) async {
     final response = await http.get(Uri.parse(
-        "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/contType?contSize=$value"));
+        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/contType?contSize=$value"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       sizeModel = [];
@@ -188,7 +188,6 @@ class _BookingDetails extends State<BookingDetails> {
                           return IcdFromDropDownButton(
                             listItems: idcFromPort,
                             notifyParent: icdFromUpdated,
-                            icdValue: idcFromPortValue,
                           );
                         } else {
                           return const Text("Loading Item");
@@ -267,12 +266,6 @@ class _BookingDetails extends State<BookingDetails> {
                               if (snapshot.hasData) {
                                 return IcdToDropDownButton(
                                   listItems: icdToPort,
-                                  notifyparent: (value) {
-                                    setState(() {
-                                      newIcdTovalue = value;
-                                    });
-                                  },
-                                  icdValue: newIcdTovalue,
                                 );
                               } else {
                                 return const Text("Loading Item");

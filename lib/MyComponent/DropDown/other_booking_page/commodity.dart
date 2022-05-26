@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:transvision_app1/MyComponent/constant/colors.dart';
-import 'package:transvision_app1/MyComponent/constant/sizedBox.dart';
-import 'package:transvision_app1/MyComponent/constant/textField.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 
 class CommodityDropDownButton extends StatefulWidget {
@@ -20,7 +17,6 @@ class CommodityDropDownButton extends StatefulWidget {
 
 class _CommodityDropDownButtonState extends State<CommodityDropDownButton> {
   dynamic commodityValue;
-  bool isVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +27,7 @@ class _CommodityDropDownButtonState extends State<CommodityDropDownButton> {
             borderRadius: const BorderRadius.all(Radius.circular(10)),
             border: Border.all(width: 2.0, style: BorderStyle.solid)),
         child: DropdownButtonHideUnderline(
-          child: DropdownButtonFormField<dynamic>(
+          child: DropdownButton<dynamic>(
             isExpanded: true,
             value: commodityValue,
             style: const TextStyle(color: Colors.black),
@@ -57,39 +53,4 @@ class _CommodityDropDownButtonState extends State<CommodityDropDownButton> {
           ),
         ));
   }
-
-//   void visibilityShow() {
-//     Visibility(
-//       child: Row(
-//         children: [
-//           Expanded(
-//             child: Column(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: [
-//                 BoldText(text: "Class", size: 18.0, color: AppColor.black),
-//                 const CustomTextField(hint: "Enter Quantity"),
-//                 const SizedBox(
-//                   height: 4.0,
-//                 ),
-//               ],
-//             ),
-//           ),
-//           const CustomWidth(),
-//           Expanded(
-//             child: Column(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: [
-//                 BoldText(text: "UN No", size: 18.0, color: AppColor.black),
-//                 const CustomTextField(hint: "Enter UN No"),
-//                 const SizedBox(
-//                   height: 4.0,
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 
-
 class SizeDropDownButton extends StatefulWidget {
   final List<dynamic> listItems;
   final Function(dynamic value) notifyParent;
@@ -25,7 +24,7 @@ class _SizeDropDownButtonState extends State<SizeDropDownButton> {
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           border: Border.all(width: 2.0, style: BorderStyle.solid)),
       child: DropdownButtonHideUnderline(
-        child: DropdownButtonFormField<dynamic>(
+        child: DropdownButton<dynamic>(
           isExpanded: true,
           value: sizeSelected,
           style: const TextStyle(color: Colors.black),

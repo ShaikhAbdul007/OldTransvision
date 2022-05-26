@@ -23,7 +23,7 @@ class _VesselDropDownState extends State<VesselDropDown> {
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           border: Border.all(width: 2.0, style: BorderStyle.solid)),
       child: DropdownButtonHideUnderline(
-        child: DropdownButtonFormField<dynamic>(
+        child: DropdownButton<dynamic>(
           isExpanded: true,
           value: vesselSelected,
           style: const TextStyle(color: Colors.black),

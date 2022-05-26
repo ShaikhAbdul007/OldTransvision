@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 class IcdFromDropDownButton extends StatefulWidget {
   final List<dynamic> listItems;
   final Function(dynamic value) notifyParent;
-  final dynamic icdValue;
-  const IcdFromDropDownButton(
-      {Key? key,
-      required this.listItems,
-      required this.notifyParent,
-      required this.icdValue})
-      : super(key: key);
+
+  const IcdFromDropDownButton({
+    Key? key,
+    required this.listItems,
+    required this.notifyParent,
+  }) : super(key: key);
 
   @override
   State<IcdFromDropDownButton> createState() => _IcdFromDropDownButtonState();
@@ -18,6 +17,7 @@ class IcdFromDropDownButton extends StatefulWidget {
 class _IcdFromDropDownButtonState extends State<IcdFromDropDownButton> {
   @override
   Widget build(BuildContext context) {
+    dynamic icdSelectedValue;
     return Container(
       padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.all(10.0),
@@ -25,9 +25,9 @@ class _IcdFromDropDownButtonState extends State<IcdFromDropDownButton> {
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           border: Border.all(width: 2.0, style: BorderStyle.solid)),
       child: DropdownButtonHideUnderline(
-        child: DropdownButtonFormField<dynamic>(
+        child: DropdownButton<dynamic>(
           isExpanded: true,
-          value: widget.icdValue,
+          value: icdSelectedValue,
           style: const TextStyle(color: Colors.black),
           items:
               widget.listItems.map<DropdownMenuItem<dynamic>>((dynamic item) {

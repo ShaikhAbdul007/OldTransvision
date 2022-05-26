@@ -102,7 +102,7 @@ class _MyDrawerState extends State<MyDrawer> {
                       if (snapshot.hasData) {
                         return UserAccountsDrawerHeader(
                           margin: EdgeInsets.zero,
-                          accountName: Text(snapshot.data.contactperson,
+                          accountName: Text(snapshot.data.contactperson!,
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 16)),
                           accountEmail: Text(

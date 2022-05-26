@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:transvision_app1/Model/bill_of_landing_model/billOfLadingnew.dart';
 import 'package:transvision_app1/Model/bill_of_landing_model/blOfLadingOnReferesh.dart';
-import 'package:transvision_app1/MyComponent/DropDown/billOfLading.dart';
+import 'package:transvision_app1/MyComponent/DropDown/bill_of_lading/billOfLading.dart';
 import 'package:transvision_app1/MyComponent/constant/colors.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 import 'package:http/http.dart' as http;
