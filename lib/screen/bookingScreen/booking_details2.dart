@@ -1,3 +1,4 @@
+import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:transvision_app1/MyComponent/constant/colors.dart';
 import 'package:transvision_app1/MyComponent/constant/sizedBox.dart';
@@ -5,7 +6,30 @@ import 'package:transvision_app1/MyComponent/constant/textField.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 
 class BookingDetails2 extends StatelessWidget {
-  const BookingDetails2({Key? key}) : super(key: key);
+  final String icdFrom;
+  final String icdTo;
+  final String loadingport;
+  final String destinationport;
+  final int selectedQuantity;
+  final int size;
+  final int type;
+  final String commodity;
+  final int ourClass;
+  final int unNo;
+
+  const BookingDetails2(
+      {Key? key,
+      required this.icdFrom,
+      required this.icdTo,
+      required this.loadingport,
+      required this.destinationport,
+      required this.selectedQuantity,
+      required this.size,
+      required this.type,
+      required this.commodity,
+      required this.ourClass,
+      required this.unNo})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
