@@ -21,36 +21,36 @@ class _CommodityDropDownButtonState extends State<CommodityDropDownButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.all(10.0),
-        margin: const EdgeInsets.all(10.0),
-        decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
-            border: Border.all(width: 2.0, style: BorderStyle.solid)),
-        child: DropdownButtonHideUnderline(
-          child: DropdownButton<dynamic>(
-            isExpanded: true,
-            value: commodityValue,
-            style: const TextStyle(color: Colors.black),
-            items:
-                widget.listItems.map<DropdownMenuItem<dynamic>>((dynamic item) {
-              return DropdownMenuItem<dynamic>(
-                value: item,
-                child: Text("$item"),
-              );
-            }).toList(),
-            hint: const NormalText(
-              text: "Select",
-              size: 15,
-              color: Colors.black,
-            ),
-            onChanged: (value) {
-              // commodityValue = value;
-              // if (value == "Hazardous") {
-              //   isVisible = true;
-              // }
-              widget.notifyParent(value);
-            },
+      padding: const EdgeInsets.all(10.0),
+      margin: const EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          border: Border.all(width: 2.0, style: BorderStyle.solid)),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<dynamic>(
+          isExpanded: true,
+          value: commodityValue,
+          style: const TextStyle(color: Colors.black),
+          items:
+              widget.listItems.map<DropdownMenuItem<dynamic>>((dynamic value) {
+            return DropdownMenuItem<dynamic>(
+              value: value,
+              child: Text("$value"),
+            );
+          }).toList(),
+          hint: const NormalText(
+            text: "Select",
+            size: 15,
+            color: Colors.black,
           ),
-        ));
+          onChanged: (value) {
+            setState(() {
+              commodityValue = value;
+              widget.notifyParent(value);
+            });
+          },
+        ),
+      ),
+    );
   }
 }

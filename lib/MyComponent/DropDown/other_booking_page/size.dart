@@ -13,10 +13,9 @@ class SizeDropDownButton extends StatefulWidget {
 }
 
 class _SizeDropDownButtonState extends State<SizeDropDownButton> {
+  dynamic sizeSelected;
   @override
   Widget build(BuildContext context) {
-    dynamic sizeSelected;
-
     return Container(
       padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.all(10.0),
@@ -40,8 +39,11 @@ class _SizeDropDownButtonState extends State<SizeDropDownButton> {
             size: 15,
             color: Colors.black,
           ),
-          onChanged: (sizedSelectedValue) {
-            widget.notifyParent(sizedSelectedValue);
+          onChanged: (value) {
+            setState(() {
+              sizeSelected = value;
+              widget.notifyParent(value);
+            });
           },
         ),
       ),

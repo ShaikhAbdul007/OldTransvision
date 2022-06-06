@@ -33,4 +33,7 @@ class Icdfrom {
     map['icdname'] = _icdname;
     return map;
   }
+
+  @override
+  toString() => '$_icdname';
 }

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class TypeDropDownButton extends StatefulWidget {
   final List<dynamic> listItems;
-  const TypeDropDownButton({Key? key, required this.listItems})
+  final Function(dynamic value) notifyValue;
+  const TypeDropDownButton(
+      {Key? key, required this.listItems, required this.notifyValue})
       : super(key: key);
 
   @override
@@ -10,10 +12,9 @@ class TypeDropDownButton extends StatefulWidget {
 }
 
 class _TypeDropDownButtonState extends State<TypeDropDownButton> {
+  dynamic selectedValue;
   @override
   Widget build(BuildContext context) {
-    dynamic selectedValue;
-
     return Container(
       padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.all(10.0),
@@ -39,7 +40,9 @@ class _TypeDropDownButtonState extends State<TypeDropDownButton> {
           ),
           onChanged: (value) {
             setState(() {
+              selectedValue = null;
               selectedValue = value;
+              widget.notifyValue(value);
             });
           },
         ),

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 class IcdFromDropDownButton extends StatefulWidget {
   final List<dynamic> listItems;
+  final dynamic icdFromValue;
   final Function(dynamic value) notifyParent;
 
   const IcdFromDropDownButton({
     Key? key,
     required this.listItems,
     required this.notifyParent,
+    this.icdFromValue,
   }) : super(key: key);
 
   @override
@@ -17,7 +19,6 @@ class IcdFromDropDownButton extends StatefulWidget {
 class _IcdFromDropDownButtonState extends State<IcdFromDropDownButton> {
   @override
   Widget build(BuildContext context) {
-    dynamic icdSelectedValue;
     return Container(
       padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.all(10.0),
@@ -27,12 +28,12 @@ class _IcdFromDropDownButtonState extends State<IcdFromDropDownButton> {
       child: DropdownButtonHideUnderline(
         child: DropdownButton<dynamic>(
           isExpanded: true,
-          value: icdSelectedValue,
+          value: widget.icdFromValue,
           style: const TextStyle(color: Colors.black),
           items:
               widget.listItems.map<DropdownMenuItem<dynamic>>((dynamic item) {
             return DropdownMenuItem<dynamic>(
-              value: item.icd,
+              value: item.icdname,
               child: Text(item.icdname),
             );
           }).toList(),
@@ -41,8 +42,12 @@ class _IcdFromDropDownButtonState extends State<IcdFromDropDownButton> {
             style: TextStyle(
                 color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
           ),
-          onChanged: (_icdFromSelectedValue) {
-            widget.notifyParent(_icdFromSelectedValue);
+          onChanged: (value) {
+            setState(() {
+              // icdFromValue = value;
+              widget.notifyParent(value);
+              //
+            });
           },
         ),
       ),

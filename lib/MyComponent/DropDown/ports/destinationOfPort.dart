@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 class DestinationPortDropDownButton extends StatefulWidget {
   final List<dynamic> listItems;
-  const DestinationPortDropDownButton({Key? key, required this.listItems})
+  final dynamic destinationPortValue;
+  final Function(dynamic value) notifyparent;
+  const DestinationPortDropDownButton(
+      {Key? key, required this.listItems, required this.notifyparent, this.destinationPortValue})
       : super(key: key);
 
   @override
@@ -12,7 +15,7 @@ class DestinationPortDropDownButton extends StatefulWidget {
 
 class _DestinationPortDropDownButtonState
     extends State<DestinationPortDropDownButton> {
-  dynamic _destinationPortSelectedValue;
+  dynamic destinationPortSelectedValue;
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +28,13 @@ class _DestinationPortDropDownButtonState
       child: DropdownButtonHideUnderline(
         child: DropdownButton<dynamic>(
           isExpanded: true,
-          value: _destinationPortSelectedValue,
+          value: widget.destinationPortValue,
           style: const TextStyle(color: Colors.black),
           items:
-              widget.listItems.map<DropdownMenuItem<dynamic>>((dynamic value) {
+              widget.listItems.map<DropdownMenuItem<dynamic>>((dynamic item) {
             return DropdownMenuItem<dynamic>(
-              value: value,
-              child: Text("$value"),
+              value: item,
+              child: Text("$item"),
             );
           }).toList(),
           hint: const Text(
@@ -41,7 +44,7 @@ class _DestinationPortDropDownButtonState
           ),
           onChanged: (value) {
             setState(() {
-              _destinationPortSelectedValue = value;
+              widget.notifyparent(value);
             });
           },
         ),

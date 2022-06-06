@@ -1,38 +1,40 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
+import 'package:transvision_app1/BottomScreen/contacted_person.dart';
 import 'package:transvision_app1/MyComponent/constant/colors.dart';
 import 'package:transvision_app1/MyComponent/constant/sizedBox.dart';
-import 'package:transvision_app1/MyComponent/constant/textField.dart';
 import 'package:transvision_app1/MyComponent/text.dart';
 
-class BookingDetails2 extends StatelessWidget {
-  final String icdFrom;
-  final String icdTo;
-  final String loadingport;
-  final String destinationport;
-  final int selectedQuantity;
-  final int size;
-  final int type;
-  final String commodity;
-  final int ourClass;
-  final int unNo;
+class BookingDetails2 extends StatefulWidget {
+  final List data;
+  // dynamic icdFrom,
+  //     icdTo,
+  //     loadingPort,
+  //     destinationPort,
+  //     commodity,
+  //     type,
+  //     size,
+  //     myQuantity;
 
-  const BookingDetails2(
-      {Key? key,
-      required this.icdFrom,
-      required this.icdTo,
-      required this.loadingport,
-      required this.destinationport,
-      required this.selectedQuantity,
-      required this.size,
-      required this.type,
-      required this.commodity,
-      required this.ourClass,
-      required this.unNo})
-      : super(key: key);
+  const BookingDetails2({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
 
   @override
+  State<BookingDetails2> createState() => _BookingDetails2State();
+}
+
+class _BookingDetails2State extends State<BookingDetails2> {
+  @override
   Widget build(BuildContext context) {
+    final rateController = TextEditingController();
+    final weightController = TextEditingController();
+    final freightController = TextEditingController();
+    final height = MediaQuery.of(context).size.height / 9.5;
+    final width = MediaQuery.of(context).size.width;
+    bool isVisible = true;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.orange[300],
@@ -53,22 +55,84 @@ class BookingDetails2 extends StatelessWidget {
                     size: 18.0,
                     color: AppColor.black),
                 const CustomHeight(),
-                const CustomTextField(hint: "Freight/Container"),
+                Container(
+                    padding: const EdgeInsets.all(5.0),
+                    margin: const EdgeInsets.all(5.0),
+                    height: height,
+                    width: width,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(
+                            color: AppColor.black,
+                            style: BorderStyle.solid,
+                            width: 2.0)),
+                    child: TextField(
+                        //controller: freightController,
+                        expands: false,
+                        cursorColor: Colors.black,
+                        decoration: const InputDecoration(
+                          hintText: "Enter the Quantity",
+                          hintStyle: TextStyle(
+                              color: Colors.black, fontWeight: FontWeight.w500),
+                          border:
+                              OutlineInputBorder(borderSide: BorderSide.none),
+                        ))),
                 const CustomHeight(),
                 WeightText(
                     text: "Weight/Cont in kgs.",
                     size: 18.0,
                     color: AppColor.black),
                 const CustomHeight(),
-                const CustomTextField(hint: "Weight/Cont in kgs."),
+                Container(
+                    padding: const EdgeInsets.all(5.0),
+                    margin: const EdgeInsets.all(5.0),
+                    height: height,
+                    width: width,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(
+                            color: AppColor.black,
+                            style: BorderStyle.solid,
+                            width: 2.0)),
+                    child: TextField(
+                        //controller: weightController,
+                        expands: false,
+                        cursorColor: Colors.black,
+                        decoration: const InputDecoration(
+                          hintText: "Enter the Quantity",
+                          hintStyle: TextStyle(
+                              color: Colors.black, fontWeight: FontWeight.w500),
+                          border:
+                              OutlineInputBorder(borderSide: BorderSide.none),
+                        ))),
                 const CustomHeight(),
                 WeightText(
                     text: "Rate Agreed", size: 18.0, color: AppColor.black),
                 const CustomHeight(),
-                const CustomTextField(hint: "Enter the Rate"),
+                Container(
+                    padding: const EdgeInsets.all(5.0),
+                    margin: const EdgeInsets.all(5.0),
+                    height: height,
+                    width: width,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(
+                            color: AppColor.black,
+                            style: BorderStyle.solid,
+                            width: 2.0)),
+                    child: TextField(
+                        //controller: rateController,
+                        expands: false,
+                        cursorColor: Colors.black,
+                        decoration: const InputDecoration(
+                          hintText: "Enter the Quantity",
+                          hintStyle: TextStyle(
+                              color: Colors.black, fontWeight: FontWeight.w500),
+                          border:
+                              OutlineInputBorder(borderSide: BorderSide.none),
+                        ))),
                 const CustomHeight(),
                 InkWell(
-                  onTap: () {},
                   child: Padding(
                     padding: const EdgeInsets.only(left: 50.0, right: 50.0),
                     child: Container(
@@ -84,23 +148,68 @@ class BookingDetails2 extends StatelessWidget {
                               color: Colors.black),
                         )),
                   ),
+                  onTap: () {
+                    setState(() {
+                      isVisible = true;
+                    });
+                  },
                 ),
                 const CustomHeight(),
-                ListView.builder(
-                  shrinkWrap: true,
-                  itemBuilder: (BuildContext context, int index) {
-                    return const Card(
-                      child: ListTile(
-                        title: Text("Abdul"),
-                        leading: Icon(Icons.list),
-                        trailing: Text(
-                          "All record",
-                          style: TextStyle(color: Colors.green, fontSize: 15),
-                        ),
-                      ),
-                    );
-                  },
-                  itemCount: 3,
+                Visibility(
+                  visible: isVisible,
+                  child: Card(
+                    margin: const EdgeInsets.all(5),
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Column(children: [
+                          if (isVisible)
+                            Text(
+                                "Icd From:" +
+                                    widget.data[0].icdFromValue.toString(),
+                                style: const TextStyle(fontSize: 18)),
+                          const Icon(Icons.arrow_right_alt_outlined),
+                          Text("Icd To:" + widget.data[1].icdToValue.toString(),
+                              style: const TextStyle(fontSize: 18)),
+                          Text(
+                            "Loading Port:" +
+                                widget.data[2].loadingPortValue.toString(),
+                            style: const TextStyle(fontSize: 18),
+                          ),
+                          const Icon(Icons.arrow_right_alt_outlined),
+                          Text(
+                              "Destination Port:" +
+                                  widget.data[3].destinationPortValue
+                                      .toString(),
+                              style: const TextStyle(fontSize: 18)),
+                          Text(
+                              "Commodity:" +
+                                  widget.data[7].updatedCommodityValue
+                                      .toString(),
+                              style: const TextStyle(fontSize: 18)),
+                          Row(
+                            children: [
+                              Text(
+                                  "Quantity :" +
+                                      widget.data[4].newQuantity.toString(),
+                                  style: const TextStyle(fontSize: 18)),
+                              const Icon(Icons.arrow_right_alt_outlined),
+                              Text(
+                                  "Type :" +
+                                      widget.data[5].updatedTypeValue
+                                          .toString(),
+                                  style: const TextStyle(fontSize: 18)),
+                              const Icon(Icons.arrow_right_alt_outlined),
+                              Text(
+                                  "Size :" +
+                                      widget.data[6].sizedUpdate.toString(),
+                                  style: const TextStyle(fontSize: 18)),
+                            ],
+                          ),
+                        ]);
+                      },
+                    ),
+                  ),
                 ),
                 const CustomHeight(),
                 Padding(
@@ -110,7 +219,9 @@ class BookingDetails2 extends StatelessWidget {
                     children: [
                       Expanded(
                           child: InkWell(
-                        onTap: (() {}),
+                        onTap: (() {
+                          _insertOnlinePostApi();
+                        }),
                         child: Container(
                           padding: const EdgeInsets.only(
                             left: 40.0,
@@ -175,4 +286,24 @@ class BookingDetails2 extends StatelessWidget {
       ),
     );
   }
+}
+
+void _insertOnlinePostApi() {
+  final String partycode;
+  final String qty;
+  final String size;
+  final String type;
+  final String commodity;
+  final String classs;
+  final String unno;
+  final String freight;
+  final String weight;
+  final String icdfrom;
+  final String icdto;
+  final String pol;
+  final String pod;
+  final String rateagreedby;
+  final String bookingdate;
+  final String fromdate;
+  final String todate;
 }

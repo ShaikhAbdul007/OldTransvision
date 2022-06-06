@@ -3,7 +3,6 @@ import 'package:transvision_app1/BottomScreen/all_record.dart';
 import 'package:transvision_app1/MyComponent/constant/colors.dart';
 import 'package:transvision_app1/Screen/bookingScreen/booking_details.dart';
 import 'package:transvision_app1/BottomScreen/address.dart';
-import 'package:transvision_app1/Screen/bookingScreen/booking_details2.dart';
 import 'package:transvision_app1/Screen/loginScreen/login_screen.dart';
 import 'package:transvision_app1/Screen/loginScreen/reset_password.dart';
 import 'package:transvision_app1/Screen/loginScreen/splash_screen.dart';
@@ -13,6 +12,7 @@ import 'package:transvision_app1/consignee_Dashboard/consignee_screen/invoice_sc
 import 'package:transvision_app1/consignee_Dashboard/consignee_screen/invoice_screens/detention_invoice.dart';
 import 'package:transvision_app1/consignee_Dashboard/consignee_screen/invoice_screens/import_invoice.dart';
 import 'package:transvision_app1/consignee_Dashboard/consignee_screen/invoice_screens/security_invoice.dart';
+import 'package:transvision_app1/screen/bookingScreen/booking_details2.dart';
 import 'Screen/drawerScreen.dart/BillOfLanding/bill_of_lading.dart';
 import 'Screen/drawerScreen.dart/bill_summary.dart';
 import 'Screen/drawerScreen.dart/do_slip.dart';
@@ -50,7 +50,9 @@ class MyApp extends StatelessWidget {
           "/reports": (context) => const Reports(),
           "/bs": (context) => const BillSummary(),
           "/bd": (context) => const BookingDetails(),
-          "/bd2": (context) => const BookingDetails2(),
+          "/bd2": (context) => const BookingDetails2(
+                data: ['data'],
+              ),
           "/contact": (context) => const ContactedPerson(),
           "/home": (context) => const Home(),
           "/navigation": (context) => const MyNavigation(),

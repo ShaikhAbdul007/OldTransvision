@@ -70,9 +70,8 @@ class _MyDrawerState extends State<MyDrawer> {
     Future<UserDetails> getDrawerApi() async {
       Shared shared = Shared();
       var username = await shared.retrieveUserName();
-
       final response = await http.get(Uri.parse(
-          "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/consigneedata?username=$username"));
+          "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/consigneedata?username=C100"));
       var data = jsonDecode(response.body.toString());
       if (response.statusCode == 200) {
         return UserDetails.fromJson(data);

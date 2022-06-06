@@ -14,7 +14,7 @@ import 'package:transvision_app1/MyComponent/DropDown/icd/icdFrom.dart';
 import 'package:transvision_app1/MyComponent/DropDown/icd/icd_To.dart';
 import 'package:transvision_app1/MyComponent/DropDown/other_booking_page/size.dart';
 import 'package:transvision_app1/MyComponent/constant/sizedBox.dart';
-import 'package:transvision_app1/MyComponent/constant/textField.dart';
+import 'package:transvision_app1/screen/bookingScreen/booking_details2.dart';
 import 'package:transvision_app1/utils/routes.dart';
 import 'package:http/http.dart' as http;
 import '../../MyComponent/text.dart';
@@ -30,22 +30,28 @@ class _BookingDetails extends State<BookingDetails> {
   bool isVisible = false;
   final item = [20, 40];
   final items = ['General', 'Hazardous', "ODC"];
-  dynamic idcFromPortValue;
-  dynamic loadingPortValue = "";
+  dynamic icdToValue;
+  dynamic icdFromValue;
+  dynamic updatedCommodityValue = "";
+  dynamic loadingPortValue;
+  dynamic destinationPortValue;
   dynamic sizedUpdate = "";
-
-  // var d= "http://portal.transvisionshipping.com:"
-  final icdForm = TextEditingController();
+  dynamic upadatedTypeValue = "";
+  dynamic updatedTypeValue = "";
   List<Loadingport> loadingPort = [];
   List<Icdfrom> idcFromPort = [];
   List<Icdto> icdToPort = [];
   List<DestinationPort> destinationPort = [];
   List<SizedModel> sizeModel = [];
-  dynamic newIcdToValue;
+  final icdForm = TextEditingController();
+  final newQuantity = TextEditingController();
+  final myClassController = TextEditingController();
+  final unNoController = TextEditingController();
 
-  var url =
-      "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/pol/";
-  var uri = "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/pol/";
+//
+// // http://192.168.1.143
+//   var url = "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/pol/";
+//   var uri = "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/pol/";
 
   Future<List<Loadingport>> getLoadingPortApi() async {
     final response = await http.get(
@@ -80,6 +86,7 @@ class _BookingDetails extends State<BookingDetails> {
   loadingPortUpdated(dynamic value) {
     setState(() {
       loadingPortValue = value;
+      destinationPortValue = null;
     });
     getDestinationPortApi(value);
   }
@@ -99,21 +106,18 @@ class _BookingDetails extends State<BookingDetails> {
     }
   }
 
-  icdFromUpdated(dynamic value) {
+  icdFromUpdated(dynamic icdFrom) {
     setState(() {
-      idcFromPortValue = value;
+      icdFromValue = icdFrom;
+      icdToValue = null;
     });
-    idcFromPortValue = value[0];
-    getIcdToApi(value);
+    getIcdToApi(icdFrom);
   }
 
-  Future<List<Icdto>> getIcdToApi(dynamic value) async {
-    icdToPort = [];
-
+  Future<List<Icdto>> getIcdToApi(dynamic icdFrom) async {
     final response = await http.get(Uri.parse(
-        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/icdto?icd=$value"));
-    var data = [];
-    data = jsonDecode(response.body.toString());
+        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/icdto?icd=$icdFrom"));
+    var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       icdToPort = [];
       for (Map i in data) {
@@ -135,9 +139,8 @@ class _BookingDetails extends State<BookingDetails> {
         sizeModel.add(SizedModel.fromJson(i));
       }
       return sizeModel;
-    } else {
-      return sizeModel;
     }
+    return sizeModel;
   }
 
   sizeUpdated(dynamic value) {
@@ -145,6 +148,7 @@ class _BookingDetails extends State<BookingDetails> {
       sizedUpdate = value;
     });
     getTypeApi(value);
+    updatedTypeValue = value;
   }
 
   @override
@@ -157,6 +161,9 @@ class _BookingDetails extends State<BookingDetails> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height / 9.5;
+    final width = MediaQuery.of(context).size.width;
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColor.bgColor,
@@ -187,6 +194,7 @@ class _BookingDetails extends State<BookingDetails> {
                         if (snapshot.hasData) {
                           return IcdFromDropDownButton(
                             listItems: idcFromPort,
+                            icdFromValue: icdFromValue,
                             notifyParent: icdFromUpdated,
                           );
                         } else {
@@ -212,6 +220,7 @@ class _BookingDetails extends State<BookingDetails> {
                         try {
                           if (snapshot.hasData) {
                             return LoadingPortDropDownButton(
+                                loadingPortValue: loadingPortValue,
                                 notifyParent: loadingPortUpdated,
                                 listItems: loadingPort);
                           } else {
@@ -240,6 +249,12 @@ class _BookingDetails extends State<BookingDetails> {
                               if (snapshot.hasData) {
                                 return DestinationPortDropDownButton(
                                   listItems: destinationPort,
+                                  destinationPortValue: destinationPortValue,
+                                  notifyparent: (destinationValue) {
+                                    setState(() {
+                                      destinationPortValue = destinationValue;
+                                    });
+                                  },
                                 );
                               } else {
                                 return const Text("Loading Item");
@@ -266,6 +281,12 @@ class _BookingDetails extends State<BookingDetails> {
                               if (snapshot.hasData) {
                                 return IcdToDropDownButton(
                                   listItems: icdToPort,
+                                  icdToValue: icdToValue,
+                                  notifyIcdTovalueToBookingPage: (value) {
+                                    setState(() {
+                                      icdToValue = value;
+                                    });
+                                  },
                                 );
                               } else {
                                 return const Text("Loading Item");
@@ -287,7 +308,30 @@ class _BookingDetails extends State<BookingDetails> {
                                   const SizedBox(
                                     height: 5.0,
                                   ),
-                                  const CustomTextField(hint: "Enter Quantity")
+                                  Container(
+                                      padding: const EdgeInsets.all(5.0),
+                                      margin: const EdgeInsets.all(5.0),
+                                      height: height,
+                                      width: width,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          border: Border.all(
+                                              color: AppColor.black,
+                                              style: BorderStyle.solid,
+                                              width: 2.0)),
+                                      child: TextField(
+                                          controller: newQuantity,
+                                          expands: false,
+                                          cursorColor: Colors.black,
+                                          decoration: const InputDecoration(
+                                            hintText: "Enter the Quantity",
+                                            hintStyle: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w500),
+                                            border: OutlineInputBorder(
+                                                borderSide: BorderSide.none),
+                                          ))),
                                 ],
                               ),
                             ),
@@ -329,7 +373,13 @@ class _BookingDetails extends State<BookingDetails> {
                                           AsyncSnapshot snapshot) {
                                         if (snapshot.hasData) {
                                           return TypeDropDownButton(
-                                              listItems: sizeModel);
+                                            listItems: sizeModel,
+                                            notifyValue: (typeValue) {
+                                              setState(() {
+                                                updatedTypeValue = typeValue;
+                                              });
+                                            },
+                                          );
                                         } else {
                                           return const Text("Loading Item");
                                         }
@@ -352,6 +402,7 @@ class _BookingDetails extends State<BookingDetails> {
                                   CommodityDropDownButton(
                                     listItems: items,
                                     notifyParent: (value) {
+                                      updatedCommodityValue = value;
                                       if (value == "Hazardous") {
                                         setState(() {
                                           isVisible = true;
@@ -385,8 +436,32 @@ class _BookingDetails extends State<BookingDetails> {
                                           text: "Class",
                                           size: 18.0,
                                           color: AppColor.black),
-                                      const CustomTextField(
-                                          hint: "Enter Quantity"),
+                                      Container(
+                                          padding: const EdgeInsets.all(5.0),
+                                          margin: const EdgeInsets.all(5.0),
+                                          height: height,
+                                          width: width,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              border: Border.all(
+                                                  color: AppColor.black,
+                                                  style: BorderStyle.solid,
+                                                  width: 2.0)),
+                                          child: TextField(
+                                              controller: myClassController,
+                                              expands: false,
+                                              cursorColor: Colors.black,
+                                              decoration: const InputDecoration(
+                                                hintText: "Enter the class",
+                                                hintStyle: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                                border: OutlineInputBorder(
+                                                    borderSide:
+                                                        BorderSide.none),
+                                              ))),
                                       const SizedBox(
                                         height: 4.0,
                                       ),
@@ -402,7 +477,30 @@ class _BookingDetails extends State<BookingDetails> {
                                         text: "UN No",
                                         size: 18.0,
                                         color: AppColor.black),
-                                    const CustomTextField(hint: "Enter UN No"),
+                                    Container(
+                                        padding: const EdgeInsets.all(5.0),
+                                        margin: const EdgeInsets.all(5.0),
+                                        height: height,
+                                        width: width,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            border: Border.all(
+                                                color: AppColor.black,
+                                                style: BorderStyle.solid,
+                                                width: 2.0)),
+                                        child: TextField(
+                                            controller: unNoController,
+                                            expands: false,
+                                            cursorColor: Colors.black,
+                                            decoration: const InputDecoration(
+                                              hintText: "Enter the Un No",
+                                              hintStyle: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w500),
+                                              border: OutlineInputBorder(
+                                                  borderSide: BorderSide.none),
+                                            ))),
                                     const SizedBox(
                                       height: 4.0,
                                     ),
@@ -426,8 +524,13 @@ class _BookingDetails extends State<BookingDetails> {
                                             MaterialStateProperty.all(
                                                 Colors.orange[400])),
                                     onPressed: () {
-                                      Navigator.pushNamed(context,
-                                          MyRoutes.bookingDetailsRoute2);
+                                      Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      BookingDetails2(
+                                                          data: ['data'])))
+                                          .whenComplete(() => {});
                                     },
                                     child: WeightText(
                                         text: "Next",
@@ -442,4 +545,15 @@ class _BookingDetails extends State<BookingDetails> {
           ),
         ));
   }
+
+  Map<String, dynamic> data = {
+    'icdFrom': 'icdFromValue',
+    'icdTo': 'icdToValue',
+    'loadingPort': 'loadingPortValue',
+    'destinationPort': 'destinationPortValue',
+    'myQuantity': 'newQuantity',
+    'type': 'updatedTypeValue',
+    'size': 'sizedUpdate',
+    'commodity': 'updatedCommodityValue',
+  };
 }

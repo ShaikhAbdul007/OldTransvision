@@ -33,4 +33,7 @@ class Loadingport {
     map['portname'] = _portname;
     return map;
   }
+
+  @override
+  toString() => '$_portname';
 }
